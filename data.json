@@ -213,7 +213,7 @@
   "visibility": {
     "about": true,
     "products": true,
-    "services": true,
+    "services": false,
     "leadership": true,
     "gallery": true,
     "testimonials": true,
@@ -233,7 +233,7 @@
     "heroAlign": "center",
     "navStyle": "floating",
     "cardStyle": "glass",
-    "navHide": "always",
+    "navHide": "autohide",
     "navHover": "underline"
   },
   "customSections": []
