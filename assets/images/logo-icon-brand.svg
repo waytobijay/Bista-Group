@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#1a3a8f"/>
+      <stop offset="55%" stop-color="#2a5fc9"/>
+      <stop offset="100%" stop-color="#c0152a"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="512" height="512" rx="112" ry="112" fill="url(#bgGrad)"/>
+  
+
+  <!-- Outer B mark: spine + two right-facing D lobes -->
+  <g fill="#ffffff">
+    <!-- spine -->
+    <rect x="140" y="110" width="56" height="292"/>
+    <!-- top lobe (right half-ellipse anchored to spine right edge) -->
+    <path d="M 196 110
+             L 196 252
+             A 100 71.0 0 0 0 196 110 Z"/>
+    <!-- bottom lobe -->
+    <path d="M 196 252
+             L 196 402
+             A 116 75.0 0 0 0 196 252 Z"/>
+  </g>
+
+  <!-- Counters (holes) painted in background fill on top -->
+  <g fill="url(#bgGrad)">
+    <!-- top counter -->
+    <path d="M 202 145.0
+             L 202 217.0
+             A 52 36 0 0 0 202 145.0 Z"/>
+    <!-- bottom counter -->
+    <path d="M 202 285.0
+             L 202 369.0
+             A 64 42 0 0 0 202 285.0 Z"/>
+  </g>
+
+  <!-- Accent: ascending bars (growth / multiple verticals across industries) -->
+  <g>
+    <rect x="140" y="426" width="36" height="14" rx="3" fill="#ffd166" opacity="0.95"/>
+    <rect x="184" y="426" width="60" height="14" rx="3" fill="#ffd166" opacity="0.75"/>
+    <rect x="252" y="426" width="92" height="14" rx="3" fill="#ffd166" opacity="0.55"/>
+  </g>
+</svg>
