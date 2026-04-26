@@ -4,58 +4,237 @@
     "title": "Bista Group",
     "sub": "A diversified conglomerate delivering excellence across industries — from premium products to innovative solutions that empower communities and drive growth."
   },
-  "logo": { "url": "assets/images/logo-placeholder.png", "brand": "Bista Group" },
+  "logo": {
+    "url": "assets/images/logo-placeholder.png",
+    "brand": "Bista Group"
+  },
   "about": {
-    "img": "https://placehold.co/600x420/1a3a8f/ffffff?text=About+Us",
-    "badgeNum": "25+", "badgeTxt": "Years of Excellence",
+    "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200053/bista-group/eusmczlxkwgm6ivslhsr.png",
+    "badgeNum": "25+",
+    "badgeTxt": "Years of Excellence",
     "p1": "Bista Group is a leading diversified conglomerate with a strong presence across multiple industries. Founded on principles of integrity, innovation, and excellence, we have grown to become a trusted name in the region.",
     "p2": "Our commitment to quality and customer satisfaction has earned us a reputation for delivering world-class products and services that make a meaningful difference in people's lives.",
-    "s1v": "500+", "s1l": "Products", "s2v": "50+", "s2l": "Countries", "s3v": "10K+", "s3l": "Customers"
+    "s1v": "500+",
+    "s1l": "Products",
+    "s2v": "50+",
+    "s2l": "Countries",
+    "s3v": "10K+",
+    "s3l": "Customers"
   },
   "products": [
-    { "id":1, "name":"Alpine Watch",           "desc":"Precision Swiss-inspired timepiece",        "fullDesc":"Handcrafted with premium materials, the Alpine Watch features sapphire crystal glass, 100m water resistance, and automatic movement.",    "price":45000, "images":["https://placehold.co/600x400/1a3a8f/ffffff?text=Alpine+Watch"] },
-    { "id":2, "name":"Executive Pen Set",      "desc":"Premium writing instrument collection",     "fullDesc":"Crafted from aircraft-grade aluminium with gold plating, this executive pen set is the ultimate professional accessory.",                  "price":8500,  "images":["https://placehold.co/600x400/c0152a/ffffff?text=Pen+Set"] },
-    { "id":3, "name":"Leather Portfolio",      "desc":"Hand-stitched genuine leather portfolio",   "fullDesc":"Full-grain leather with hand-stitched edges, internal organiser, and magnetic closure. Fits A4 documents.",                                 "price":12000, "images":["https://placehold.co/600x400/1a3a8f/ffffff?text=Portfolio"] },
-    { "id":4, "name":"Premium Tea Collection", "desc":"Himalayan high-altitude teas",              "fullDesc":"Sourced from the finest tea gardens in the Himalayan highlands. Includes 6 premium varieties hand-picked at altitude.",                     "price":3500,  "images":["https://placehold.co/600x400/c0152a/ffffff?text=Tea+Collection"] }
+    {
+      "id": 1,
+      "name": "Alpine Watch",
+      "desc": "Precision Swiss-inspired timepiece",
+      "fullDesc": "Handcrafted with premium materials, the Alpine Watch features sapphire crystal glass, 100m water resistance, and automatic movement.",
+      "price": 45000,
+      "images": [
+        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200119/bista-group/zucbq9rhgdmywj2mhmhc.png"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Executive Pen Set",
+      "desc": "Premium writing instrument collection",
+      "fullDesc": "Crafted from aircraft-grade aluminium with gold plating, this executive pen set is the ultimate professional accessory.",
+      "price": 8500,
+      "images": [
+        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200133/bista-group/bw1qgxchick9wxcnkafr.png"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Leather Portfolio",
+      "desc": "Hand-stitched genuine leather portfolio",
+      "fullDesc": "Full-grain leather with hand-stitched edges, internal organiser, and magnetic closure. Fits A4 documents.",
+      "price": 12000,
+      "images": [
+        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200165/bista-group/bdayldve6bivaxmqkvto.png"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Premium Tea Collection",
+      "desc": "Himalayan high-altitude teas",
+      "fullDesc": "Sourced from the finest tea gardens in the Himalayan highlands. Includes 6 premium varieties hand-picked at altitude.",
+      "price": 3500,
+      "images": [
+        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200183/bista-group/u68maqzctnkvbzdxtxoe.png"
+      ]
+    }
   ],
   "services": [
-    { "id":1, "icon":"🌍", "title":"Global Trading",  "desc":"Premium sourcing and export expertise connecting businesses across 50+ countries worldwide." },
-    { "id":2, "icon":"🏭", "title":"Manufacturing",   "desc":"Precision-engineered products at scale with strict quality assurance and modern facilities." },
-    { "id":3, "icon":"💼", "title":"Consulting",      "desc":"Strategic business advisory helping enterprises navigate complex international markets." },
-    { "id":4, "icon":"🚚", "title":"Logistics",       "desc":"End-to-end supply chain management ensuring timely and secure delivery globally." }
+    {
+      "id": 1,
+      "icon": "🌍",
+      "title": "Global Trading",
+      "desc": "Premium sourcing and export expertise connecting businesses across 50+ countries worldwide."
+    },
+    {
+      "id": 2,
+      "icon": "🏭",
+      "title": "Manufacturing",
+      "desc": "Precision-engineered products at scale with strict quality assurance and modern facilities."
+    },
+    {
+      "id": 3,
+      "icon": "💼",
+      "title": "Consulting",
+      "desc": "Strategic business advisory helping enterprises navigate complex international markets."
+    },
+    {
+      "id": 4,
+      "icon": "🚚",
+      "title": "Logistics",
+      "desc": "End-to-end supply chain management ensuring timely and secure delivery globally."
+    }
   ],
   "leadership": [
-    { "id":1, "name":"Bijay Bista",   "role":"Founder & CEO",           "desc":"Visionary leader with 25+ years of experience driving growth and innovation across diverse industries.",    "fullDesc":"Bijay Bista founded the Bista Group with a vision to create a world-class diversified conglomerate. With over 25 years of leadership experience across manufacturing, trading, and consulting sectors, he has steered the group to become a trusted name in the region and beyond.", "img":"https://placehold.co/400x400/1a3a8f/ffffff?text=BB" },
-    { "id":2, "name":"Priya Sharma",  "role":"Managing Director",        "desc":"Strategic operations expert who has overseen expansion into 50+ global markets.",                         "fullDesc":"Priya Sharma brings over 18 years of operational expertise to the Bista Group. Her strategic vision has been instrumental in driving the group's expansion into more than 50 global markets, establishing strong partnerships and distribution networks across Asia, Europe, and the Americas.", "img":"https://placehold.co/400x400/c0152a/ffffff?text=PS" },
-    { "id":3, "name":"Rajan Thapa",   "role":"Chief Financial Officer",  "desc":"CPA with expertise in international finance, risk management, and sustainable investment.",               "fullDesc":"Rajan Thapa is a Certified Public Accountant with over 15 years of expertise in international finance and risk management. He oversees the group's financial operations, investment portfolio, and sustainable growth initiatives, ensuring robust fiscal discipline across all business units.", "img":"https://placehold.co/400x400/1a3a8f/ffffff?text=RT" }
+    {
+      "id": 1,
+      "name": "Kabindra Bista",
+      "role": "Founder & CEO",
+      "desc": "Visionary leader with 25+ years of experience driving growth and innovation across diverse industries.",
+      "fullDesc": "Bijay Bista founded the Bista Group with a vision to create a world-class diversified conglomerate. With over 25 years of leadership experience across manufacturing, trading, and consulting sectors, he has steered the group to become a trusted name in the region and beyond.",
+      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200222/bista-group/mhxidpz4guv51ayjlhpo.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Bijay Bista",
+      "role": "Managing Director",
+      "desc": "Strategic operations expert who has overseen expansion into 50+ global markets.",
+      "fullDesc": "Priya Sharma brings over 18 years of operational expertise to the Bista Group. Her strategic vision has been instrumental in driving the group's expansion into more than 50 global markets, establishing strong partnerships and distribution networks across Asia, Europe, and the Americas.",
+      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200243/bista-group/gwmj0e0g1hn8qfywogg7.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Kapil Bista",
+      "role": "Chief Financial Officer",
+      "desc": "CPA with expertise in international finance, risk management, and sustainable investment.",
+      "fullDesc": "Rajan Thapa is a Certified Public Accountant with over 15 years of expertise in international finance and risk management. He oversees the group's financial operations, investment portfolio, and sustainable growth initiatives, ensuring robust fiscal discipline across all business units.",
+      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200268/bista-group/vrcts537fzergg5rapyt.jpg"
+    },
+    {
+      "id": 1777200378213,
+      "name": "Binay Bista",
+      "role": "Chief Engineering Head",
+      "desc": "The Head of Engineering Development is responsible for leading engineering teams, overseeing product development, and ensuring technical projects are delivered efficiently and aligned with business goals.",
+      "fullDesc": "The Head of Engineering Development is responsible for leading engineering teams, overseeing product development, and ensuring technical projects are delivered efficiently and aligned with business goals.",
+      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200376/bista-group/la6xopc7r4fumtjk9pib.jpg"
+    },
+    {
+      "id": 1777200419621,
+      "name": "Kamal Bista",
+      "role": "The Chief Operations Head (COO)",
+      "desc": "The Chief Operations Head (COO) is responsible for overseeing daily business operations and ensuring processes run efficiently to meet the company’s strategic goals.",
+      "fullDesc": "The Chief Operations Head (COO) is responsible for overseeing daily business operations and ensuring processes run efficiently to meet the company’s strategic goals.",
+      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200418/bista-group/fjmr9ernbhggoh3m5nzi.jpg"
+    }
   ],
   "gallery": {
     "interval": 4,
     "items": [
-      { "id":1, "url":"https://placehold.co/1200x600/1a3a8f/ffffff?text=Gallery+1", "cap":"Our Headquarters" },
-      { "id":2, "url":"https://placehold.co/1200x600/c0152a/ffffff?text=Gallery+2", "cap":"Annual Summit 2024" },
-      { "id":3, "url":"https://placehold.co/1200x600/1a3a8f/ffffff?text=Gallery+3", "cap":"Product Launch" },
-      { "id":4, "url":"https://placehold.co/1200x600/c0152a/ffffff?text=Gallery+4", "cap":"Team Building" },
-      { "id":5, "url":"https://placehold.co/1200x600/1a3a8f/ffffff?text=Gallery+5", "cap":"Export Ceremony" },
-      { "id":6, "url":"https://placehold.co/1200x600/c0152a/ffffff?text=Gallery+6", "cap":"CSR Initiative" }
+      {
+        "id": 1777199979737,
+        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777199979/bista-group/wynutxwqrkt7nfvw3goj.jpg",
+        "cap": ""
+      },
+      {
+        "id": 1777199993331,
+        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777199993/bista-group/hyag9pa4jt0eqek8brvd.jpg",
+        "cap": ""
+      },
+      {
+        "id": 1777200001201,
+        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200000/bista-group/opxjorbnrhywpss8p3al.jpg",
+        "cap": ""
+      },
+      {
+        "id": 1777200010911,
+        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200010/bista-group/awa5fr5lpyxhvruw9e1z.jpg",
+        "cap": ""
+      },
+      {
+        "id": 1777200022998,
+        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200022/bista-group/j3zozqb3klybcqob2912.jpg",
+        "cap": ""
+      }
     ]
   },
   "testimonials": [
-    { "id":1, "name":"Aarav Mehta",        "title":"CEO, TechVentures",  "text":"Bista Group has been an outstanding business partner. Their attention to detail and commitment to quality is unmatched.", "stars":5 },
-    { "id":2, "name":"Sarah Johnson",      "title":"Import Manager, AU", "text":"We've sourced premium products from Bista Group for years. Consistent quality and exceptional service every time.",        "stars":5 },
-    { "id":3, "name":"Dr. Ramesh Koirala", "title":"Director, FinCorp",  "text":"A trustworthy conglomerate with genuine values. Their leadership team is professional, responsive, and results-driven.",   "stars":5 }
+    {
+      "id": 1,
+      "name": "Aarav Mehta",
+      "title": "CEO, TechVentures",
+      "text": "Bista Group has been an outstanding business partner. Their attention to detail and commitment to quality is unmatched.",
+      "stars": 5
+    },
+    {
+      "id": 2,
+      "name": "Sarah Johnson",
+      "title": "Import Manager, AU",
+      "text": "We've sourced premium products from Bista Group for years. Consistent quality and exceptional service every time.",
+      "stars": 5
+    },
+    {
+      "id": 3,
+      "name": "Dr. Ramesh Koirala",
+      "title": "Director, FinCorp",
+      "text": "A trustworthy conglomerate with genuine values. Their leadership team is professional, responsive, and results-driven.",
+      "stars": 5
+    }
   ],
   "contact": {
-    "email": "bijaybista006@gmail.com", "phone": "+977-XXXXXXXX", "addr": "Kathmandu, Nepal",
+    "email": "bijaybista006@gmail.com",
+    "phone": "+977-XXXXXXXX",
+    "addr": "Kathmandu, Nepal",
     "footerDesc": "A diversified conglomerate committed to excellence, innovation, and sustainable growth across industries worldwide.",
     "footerCopy": "© 2025 Bista Group. All Rights Reserved."
   },
-  "emailjs":    { "pk": "", "sid": "", "tid": "" },
-  "cloudinary": { "cloud": "dyjzhbvkf", "preset": "bista-group-unassigned" },
-  "rates":      { "aud": 0.012, "usd": 0.0075 },
-  "theme":      { "primary": "#1a3a8f", "secondary": "#c0152a", "bg": "#080c18", "accent": "#2563eb" },
-  "visibility": { "about":true, "products":true, "services":true, "leadership":true, "gallery":true, "testimonials":true, "contact":true },
-  "sectionTitles": { "about":"About Us", "products":"Our Products", "services":"Our Services", "leadership":"Leadership", "gallery":"Gallery", "testimonials":"Testimonials", "contact":"Contact Us" },
-  "design": { "layout": "default", "heroAlign": "center", "navStyle": "top", "cardStyle": "shadow", "navHide": "always", "navHover": "simple" },
+  "emailjs": {
+    "pk": "",
+    "sid": "",
+    "tid": ""
+  },
+  "cloudinary": {
+    "cloud": "dyjzhbvkf",
+    "preset": "bista-group-unassigned"
+  },
+  "rates": {
+    "aud": 0.012,
+    "usd": 0.0075
+  },
+  "theme": {
+    "primary": "#1a3a8f",
+    "secondary": "#88780c",
+    "bg": "#080c18",
+    "accent": "#2563eb"
+  },
+  "visibility": {
+    "about": true,
+    "products": true,
+    "services": true,
+    "leadership": true,
+    "gallery": true,
+    "testimonials": true,
+    "contact": true
+  },
+  "sectionTitles": {
+    "about": "About Us",
+    "products": "Our Products",
+    "services": "Our Services",
+    "leadership": "Leadership",
+    "gallery": "Gallery",
+    "testimonials": "Testimonials",
+    "contact": "Contact Us"
+  },
+  "design": {
+    "layout": "default",
+    "heroAlign": "center",
+    "navStyle": "floating",
+    "cardStyle": "glass",
+    "navHide": "always",
+    "navHover": "underline"
+  },
   "customSections": []
 }
