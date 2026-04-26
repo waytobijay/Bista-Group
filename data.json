@@ -96,7 +96,7 @@
       "role": "Founder & CEO",
       "desc": "Visionary leader with 25+ years of experience driving growth and innovation across diverse industries.",
       "fullDesc": "Bijay Bista founded the Bista Group with a vision to create a world-class diversified conglomerate. With over 25 years of leadership experience across manufacturing, trading, and consulting sectors, he has steered the group to become a trusted name in the region and beyond.",
-      "img": "https://placehold.co/400x400/1a3a8f/ffffff?text=BB"
+      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777195893/bista-group/byilgslbk2zqajnocvjq.jpg"
     },
     {
       "id": 2,
@@ -118,11 +118,6 @@
   "gallery": {
     "interval": 4,
     "items": [
-      {
-        "id": 1,
-        "url": "https://placehold.co/1200x600/1a3a8f/ffffff?text=Gallery+1",
-        "cap": "Our Headquarters"
-      },
       {
         "id": 2,
         "url": "https://placehold.co/1200x600/c0152a/ffffff?text=Gallery+2",
@@ -149,8 +144,8 @@
         "cap": "CSR Initiative"
       },
       {
-        "id": 1777195663028,
-        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777195662/bista-group/vh0ohu2gjdfcnjn7s5am.jpg",
+        "id": 1777195919398,
+        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777195918/bista-group/zdfh3aiwndluw90rn2jt.jpg",
         "cap": ""
       }
     ]
