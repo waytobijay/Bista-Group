@@ -1,55 +1,158 @@
 {
   "hero": {
-    "tag":   "Premium Quality Products",
-    "title": "Bista Group",
-    "sub":   "A diversified conglomerate delivering excellence across industries — from premium products to innovative solutions that empower communities and drive growth."
+    "sub": "A diversified conglomerate delivering excellence across industries — from premium products to innovative solutions that empower communities and drive growth.",
+    "tag": "Premium Quality Products Hello",
+    "title": "Bista Group"
   },
   "logo": {
-    "url":   "assets/images/logo-placeholder.png",
-    "brand": "Bista Group"
+    "brand": "Bista Group",
+    "url": "assets/images/logo-placeholder.png"
   },
   "about": {
-    "img":      "https://placehold.co/600x420/1a3a8f/ffffff?text=About+Us",
     "badgeNum": "25+",
     "badgeTxt": "Years of Excellence",
-    "p1":       "Bista Group is a leading diversified conglomerate with a strong presence across multiple industries. Founded on principles of integrity, innovation, and excellence, we have grown to become a trusted name in the region.",
-    "p2":       "Our commitment to quality and customer satisfaction has earned us a reputation for delivering world-class products and services that make a meaningful difference in people's lives.",
-    "s1v": "500+", "s1l": "Products",
-    "s2v": "50+",  "s2l": "Countries",
-    "s3v": "10K+", "s3l": "Customers"
+    "img": "https://placehold.co/600x420/1a3a8f/ffffff?text=About+Us",
+    "p1": "Bista Group is a leading diversified conglomerate with a strong presence across multiple industries. Founded on principles of integrity, innovation, and excellence, we have grown to become a trusted name in the region.",
+    "p2": "Our commitment to quality and customer satisfaction has earned us a reputation for delivering world-class products and services that make a meaningful difference in people's lives.",
+    "s1l": "Products",
+    "s1v": "500+",
+    "s2l": "Countries",
+    "s2v": "50+",
+    "s3l": "Customers",
+    "s3v": "10K+"
   },
   "products": [
-    { "id":1, "name":"Alpine Watch",           "desc":"Precision Swiss-inspired timepiece",        "fullDesc":"Handcrafted with premium materials, the Alpine Watch features sapphire crystal glass, 100m water resistance, and automatic movement.",    "price":45000, "img":"https://placehold.co/600x400/1a3a8f/ffffff?text=Alpine+Watch" },
-    { "id":2, "name":"Executive Pen Set",      "desc":"Premium writing instrument collection",     "fullDesc":"Crafted from aircraft-grade aluminium with gold plating, this executive pen set is the ultimate professional accessory.",                  "price":8500,  "img":"https://placehold.co/600x400/c0152a/ffffff?text=Pen+Set" },
-    { "id":3, "name":"Leather Portfolio",      "desc":"Hand-stitched genuine leather portfolio",   "fullDesc":"Full-grain leather with hand-stitched edges, internal organiser, and magnetic closure. Fits A4 documents.",                                 "price":12000, "img":"https://placehold.co/600x400/1a3a8f/ffffff?text=Portfolio" },
-    { "id":4, "name":"Premium Tea Collection", "desc":"Himalayan high-altitude teas",              "fullDesc":"Sourced from the finest tea gardens in the Himalayan highlands. Includes 6 premium varieties hand-picked at altitude.",                     "price":3500,  "img":"https://placehold.co/600x400/c0152a/ffffff?text=Tea+Collection" }
+    {
+      "desc": "Precision Swiss-inspired timepiece",
+      "fullDesc": "Handcrafted with premium materials, the Alpine Watch features sapphire crystal glass, 100m water resistance, and automatic movement.",
+      "id": 1,
+      "img": "https://placehold.co/600x400/1a3a8f/ffffff?text=Alpine+Watch",
+      "name": "Alpine Watch",
+      "price": 45000
+    },
+    {
+      "desc": "Premium writing instrument collection",
+      "fullDesc": "Crafted from aircraft-grade aluminium with gold plating, this executive pen set is the ultimate professional accessory.",
+      "id": 2,
+      "img": "https://placehold.co/600x400/c0152a/ffffff?text=Pen+Set",
+      "name": "Executive Pen Set",
+      "price": 8500
+    },
+    {
+      "desc": "Hand-stitched genuine leather portfolio",
+      "fullDesc": "Full-grain leather with hand-stitched edges, internal organiser, and magnetic closure. Fits A4 documents.",
+      "id": 3,
+      "img": "https://placehold.co/600x400/1a3a8f/ffffff?text=Portfolio",
+      "name": "Leather Portfolio",
+      "price": 12000
+    },
+    {
+      "desc": "Himalayan high-altitude teas",
+      "fullDesc": "Sourced from the finest tea gardens in the Himalayan highlands. Includes 6 premium varieties hand-picked at altitude.",
+      "id": 4,
+      "img": "https://placehold.co/600x400/c0152a/ffffff?text=Tea+Collection",
+      "name": "Premium Tea Collection",
+      "price": 3500
+    }
   ],
   "leadership": [
-    { "id":1, "name":"Bijay Bista",   "role":"Founder & CEO",           "desc":"Visionary leader with 25+ years of experience driving growth and innovation across diverse industries.",    "img":"https://placehold.co/400x400/1a3a8f/ffffff?text=BB" },
-    { "id":2, "name":"Priya Sharma",  "role":"Managing Director",        "desc":"Strategic operations expert who has overseen expansion into 50+ global markets.",                         "img":"https://placehold.co/400x400/c0152a/ffffff?text=PS" },
-    { "id":3, "name":"Rajan Thapa",   "role":"Chief Financial Officer",  "desc":"CPA with expertise in international finance, risk management, and sustainable investment.",               "img":"https://placehold.co/400x400/1a3a8f/ffffff?text=RT" }
+    {
+      "desc": "Visionary leader with 25+ years of experience driving growth and innovation across diverse industries.",
+      "id": 1,
+      "img": "https://placehold.co/400x400/1a3a8f/ffffff?text=BB",
+      "name": "Bijay Bista",
+      "role": "Founder & CEO"
+    },
+    {
+      "desc": "Strategic operations expert who has overseen expansion into 50+ global markets.",
+      "id": 2,
+      "img": "https://placehold.co/400x400/c0152a/ffffff?text=PS",
+      "name": "Priya Sharma",
+      "role": "Managing Director"
+    },
+    {
+      "desc": "CPA with expertise in international finance, risk management, and sustainable investment.",
+      "id": 3,
+      "img": "https://placehold.co/400x400/1a3a8f/ffffff?text=RT",
+      "name": "Rajan Thapa",
+      "role": "Chief Financial Officer"
+    }
   ],
   "gallery": [
-    { "id":1, "url":"https://placehold.co/600x450/1a3a8f/ffffff?text=Gallery+1", "cap":"Our Headquarters" },
-    { "id":2, "url":"https://placehold.co/600x450/c0152a/ffffff?text=Gallery+2", "cap":"Annual Summit 2024" },
-    { "id":3, "url":"https://placehold.co/600x450/1a3a8f/ffffff?text=Gallery+3", "cap":"Product Launch" },
-    { "id":4, "url":"https://placehold.co/600x450/c0152a/ffffff?text=Gallery+4", "cap":"Team Building" },
-    { "id":5, "url":"https://placehold.co/600x450/1a3a8f/ffffff?text=Gallery+5", "cap":"Export Ceremony" },
-    { "id":6, "url":"https://placehold.co/600x450/c0152a/ffffff?text=Gallery+6", "cap":"CSR Initiative" }
+    {
+      "cap": "Our Headquarters",
+      "id": 1,
+      "url": "https://placehold.co/600x450/1a3a8f/ffffff?text=Gallery+1"
+    },
+    {
+      "cap": "Annual Summit 2024",
+      "id": 2,
+      "url": "https://placehold.co/600x450/c0152a/ffffff?text=Gallery+2"
+    },
+    {
+      "cap": "Product Launch",
+      "id": 3,
+      "url": "https://placehold.co/600x450/1a3a8f/ffffff?text=Gallery+3"
+    },
+    {
+      "cap": "Team Building",
+      "id": 4,
+      "url": "https://placehold.co/600x450/c0152a/ffffff?text=Gallery+4"
+    },
+    {
+      "cap": "Export Ceremony",
+      "id": 5,
+      "url": "https://placehold.co/600x450/1a3a8f/ffffff?text=Gallery+5"
+    },
+    {
+      "cap": "CSR Initiative",
+      "id": 6,
+      "url": "https://placehold.co/600x450/c0152a/ffffff?text=Gallery+6"
+    }
   ],
   "testimonials": [
-    { "id":1, "name":"Aarav Mehta",       "title":"CEO, TechVentures",  "text":"Bista Group has been an outstanding business partner. Their attention to detail and commitment to quality is unmatched.", "stars":5 },
-    { "id":2, "name":"Sarah Johnson",     "title":"Import Manager, AU", "text":"We've sourced premium products from Bista Group for years. Consistent quality and exceptional service every time.",        "stars":5 },
-    { "id":3, "name":"Dr. Ramesh Koirala","title":"Director, FinCorp",  "text":"A trustworthy conglomerate with genuine values. Their leadership team is professional, responsive, and results-driven.",   "stars":5 }
+    {
+      "id": 1,
+      "name": "Aarav Mehta",
+      "stars": 5,
+      "text": "Bista Group has been an outstanding business partner. Their attention to detail and commitment to quality is unmatched.",
+      "title": "CEO, TechVentures"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Johnson",
+      "stars": 5,
+      "text": "We've sourced premium products from Bista Group for years. Consistent quality and exceptional service every time.",
+      "title": "Import Manager, AU"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Ramesh Koirala",
+      "stars": 5,
+      "text": "A trustworthy conglomerate with genuine values. Their leadership team is professional, responsive, and results-driven.",
+      "title": "Director, FinCorp"
+    }
   ],
   "contact": {
-    "email":      "bijaybista006@gmail.com",
-    "phone":      "+977-XXXXXXXX",
-    "addr":       "Kathmandu, Nepal",
+    "addr": "Kathmandu, Nepal",
+    "email": "bijaybista006@gmail.com",
+    "footerCopy": "© 2025 Bista Group. All Rights Reserved.",
     "footerDesc": "A diversified conglomerate committed to excellence, innovation, and sustainable growth across industries worldwide.",
-    "footerCopy": "© 2025 Bista Group. All Rights Reserved."
+    "phone": "+977-XXXXXXXX"
   },
-  "emailjs": { "pk": "", "sid": "", "tid": "" },
-  "rates":   { "aud": 0.012, "usd": 0.0075 },
-  "theme":   { "primary": "#1a3a8f", "secondary": "#c0152a", "bg": "#080c18", "accent": "#2563eb" }
+  "emailjs": {
+    "pk": "",
+    "sid": "",
+    "tid": ""
+  },
+  "rates": {
+    "aud": 0.012,
+    "usd": 0.0075
+  },
+  "theme": {
+    "accent": "#0a296b",
+    "bg": "#080c18",
+    "primary": "#1a3a8f",
+    "secondary": "#008040"
+  }
 }
