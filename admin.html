@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Bista Group</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="admin-login" class="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🛡</div>
+    <h2>Admin Panel</h2>
+    <p>Sign in to manage your website.</p>
+    <div class="field-group"><label>Username</label><input type="text" id="admin-user" placeholder="admin"></div>
+    <div class="field-group"><label>Password</label><input type="password" id="admin-pass" placeholder="••••••••"></div>
+    <div id="admin-login-msg" class="login-error"></div>
+    <button class="save-btn full-width" onclick="doLogin()">Login →</button>
+    <a href="index.html" class="back-link">← Back to Website</a>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="admin-dash" style="display:none;">
+
+  <div class="admin-header">
+    <div class="admin-header-left">
+      <span class="admin-logo">🛡</span>
+      <h1>Bista Group <span>Admin</span></h1>
+    </div>
+    <div class="admin-nav" id="admin-nav">
+      <button class="admin-nav-btn active" onclick="showTab('tab-hero',this)">Hero</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-about',this)">About</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-products',this)">Products</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-services',this)">Services</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-leadership',this)">Leadership</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-gallery',this)">Gallery</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-testi',this)">Testimonials</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-contact',this)">Contact</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-sections',this)">Sections</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-custom-sections',this)">Custom Sections</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-design',this)">Design</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-theme',this)">Theme</button>
+    </div>
+    <div class="admin-header-right">
+      <a href="index.html" target="_blank" class="view-site-btn">🌐 View Site</a>
+      <button class="signout-btn" onclick="signOut()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- ── HERO ── -->
+    <div class="admin-section active" id="tab-hero">
+      <div class="tab-title">Hero Section</div>
+      <div class="admin-card">
+        <h3>Hero Content</h3>
+        <div class="field-group"><label>Tag Line</label><input id="a-hero-tag" type="text"></div>
+        <div class="field-group"><label>Main Title</label><input id="a-hero-title" type="text"></div>
+        <div class="field-group"><label>Subtitle</label><textarea id="a-hero-sub" rows="3"></textarea></div>
+        <button class="save-btn" onclick="saveHero()">Save Hero</button>
+      </div>
+      <div class="admin-card">
+        <h3>Logo &amp; Branding</h3>
+        <div class="field-group"><label>Logo URL</label><input id="a-logo-url" type="text"></div>
+        <div class="field-group"><label>Upload Logo</label><input type="file" id="a-logo-file" accept="image/*" onchange="handleLogoUpload(this)"></div>
+        <img id="a-logo-preview" class="img-preview" src="" style="display:none;margin:.5rem 0 1rem;">
+        <div class="field-group"><label>Brand Name</label><input id="a-brand-name" type="text"></div>
+        <button class="save-btn" onclick="saveLogo()">Save Logo</button>
+      </div>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <div class="admin-section" id="tab-about">
+      <div class="tab-title">About Section</div>
+      <div class="admin-card">
+        <h3>About Image &amp; Badge</h3>
+        <div class="field-group"><label>Image URL</label><input id="a-about-img" type="text"></div>
+        <div class="field-group"><label>Upload Image</label><input type="file" id="a-about-file" accept="image/*" onchange="handleImgUpload(this,'a-about-img')"></div>
+        <div class="grid-2">
+          <div class="field-group"><label>Badge Number</label><input id="a-badge-num" type="text"></div>
+          <div class="field-group"><label>Badge Text</label><input id="a-badge-txt" type="text"></div>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>About Text</h3>
+        <div class="field-group"><label>Paragraph 1</label><textarea id="a-about-p1" rows="4"></textarea></div>
+        <div class="field-group"><label>Paragraph 2</label><textarea id="a-about-p2" rows="4"></textarea></div>
+        <button class="save-btn" onclick="saveAbout()">Save About</button>
+      </div>
+      <div class="admin-card">
+        <h3>Stats</h3>
+        <div class="grid-2">
+          <div class="field-group"><label>Stat 1 Value</label><input id="a-s1v" type="text"></div>
+          <div class="field-group"><label>Stat 1 Label</label><input id="a-s1l" type="text"></div>
+          <div class="field-group"><label>Stat 2 Value</label><input id="a-s2v" type="text"></div>
+          <div class="field-group"><label>Stat 2 Label</label><input id="a-s2l" type="text"></div>
+          <div class="field-group"><label>Stat 3 Value</label><input id="a-s3v" type="text"></div>
+          <div class="field-group"><label>Stat 3 Label</label><input id="a-s3l" type="text"></div>
+        </div>
+        <button class="save-btn" onclick="saveAbout()">Save Stats</button>
+      </div>
+    </div>
+
+    <!-- ── PRODUCTS ── -->
+    <div class="admin-section" id="tab-products">
+      <div class="tab-title">Products</div>
+      <div class="admin-card">
+        <h3 id="product-form-title">Add New Product</h3>
+        <input type="hidden" id="editing-product-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Product Name</label><input id="a-prod-name" type="text"></div>
+          <div class="field-group"><label>Price (NPR)</label><input id="a-prod-price" type="number"></div>
+        </div>
+        <div class="field-group"><label>Short Description</label><textarea id="a-prod-desc" rows="2"></textarea></div>
+        <div class="field-group"><label>Full Description (modal)</label><textarea id="a-prod-fulldesc" rows="4"></textarea></div>
+        <div class="admin-card" style="margin-top:1rem;padding:1rem;">
+          <h3>Product Images</h3>
+          <div id="prod-images-list" style="margin-bottom:1rem;"></div>
+          <div class="grid-2">
+            <div class="field-group"><label>Add by URL</label><input id="a-prod-img-url" type="text" placeholder="https://..."></div>
+            <div class="field-group"><label>Or Upload File</label><input type="file" id="a-prod-file" accept="image/*"></div>
+          </div>
+          <button class="clear-btn" onclick="addProdImage()">+ Add Image</button>
+        </div>
+        <div class="btn-row" style="margin-top:1rem;">
+          <button class="save-btn" onclick="saveProduct()">Save Product</button>
+          <button class="clear-btn" onclick="clearProductForm()">Clear Form</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Product List</h3>
+        <div id="admin-product-list"></div>
+      </div>
+      <div class="admin-card">
+        <h3>Currency / Exchange Rates</h3>
+        <p class="hint-text">Multiplier relative to NPR (1 NPR = ? currency).</p>
+        <div class="grid-2">
+          <div class="field-group"><label>AUD rate</label><input id="a-aud-rate" type="number" step="0.0001"></div>
+          <div class="field-group"><label>USD rate</label><input id="a-usd-rate" type="number" step="0.0001"></div>
+        </div>
+        <button class="save-btn" onclick="saveRates()">Save Rates</button>
+      </div>
+    </div>
+
+    <!-- ── SERVICES ── -->
+    <div class="admin-section" id="tab-services">
+      <div class="tab-title">Services</div>
+      <div class="admin-card">
+        <h3 id="service-form-title">Add Service</h3>
+        <input type="hidden" id="editing-service-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Icon (emoji)</label><input id="a-svc-icon" type="text" placeholder="🌍"></div>
+          <div class="field-group"><label>Title</label><input id="a-svc-title" type="text"></div>
+        </div>
+        <div class="field-group"><label>Description</label><textarea id="a-svc-desc" rows="3"></textarea></div>
+        <div class="field-group"><label>Optional Image URL <span style="color:var(--text-muted);font-weight:400;">(shown above icon)</span></label><input id="a-svc-img" type="text" placeholder="https://..."></div>
+        <div class="field-group"><label>Or Upload Image</label><input type="file" id="a-svc-file" accept="image/*" onchange="handleImgUpload(this,'a-svc-img')"></div>
+        <div class="btn-row">
+          <button class="save-btn" onclick="saveService()">Save Service</button>
+          <button class="clear-btn" onclick="clearServiceForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Service List</h3>
+        <div id="admin-service-list"></div>
+      </div>
+    </div>
+
+    <!-- ── LEADERSHIP ── -->
+    <div class="admin-section" id="tab-leadership">
+      <div class="tab-title">Leadership</div>
+      <div class="admin-card">
+        <h3 id="leader-form-title">Add Leader</h3>
+        <input type="hidden" id="editing-leader-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Full Name</label><input id="a-lead-name" type="text"></div>
+          <div class="field-group"><label>Title / Role</label><input id="a-lead-role" type="text"></div>
+        </div>
+        <div class="field-group"><label>Short Bio (shown on card)</label><textarea id="a-lead-desc" rows="2"></textarea></div>
+        <div class="field-group"><label>Full Bio (shown in modal)</label><textarea id="a-lead-fulldesc" rows="4"></textarea></div>
+        <div class="field-group"><label>Photo URL</label><input id="a-lead-img" type="text"></div>
+        <div class="field-group"><label>Upload Photo</label><input type="file" id="a-lead-file" accept="image/*" onchange="handleImgUpload(this,'a-lead-img')"></div>
+        <div class="btn-row">
+          <button class="save-btn" onclick="saveLeader()">Save Leader</button>
+          <button class="clear-btn" onclick="clearLeaderForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Leadership List</h3>
+        <div id="admin-leader-list"></div>
+      </div>
+    </div>
+
+    <!-- ── GALLERY ── -->
+    <div class="admin-section" id="tab-gallery">
+      <div class="tab-title">Gallery</div>
+      <div class="admin-card">
+        <h3>Slideshow Settings</h3>
+        <div class="field-group" style="max-width:200px;">
+          <label>Auto-advance (seconds, 0 = manual only)</label>
+          <input id="a-gal-interval" type="number" min="0" max="30" value="4">
+        </div>
+        <button class="save-btn" onclick="saveGallerySettings()">Save Settings</button>
+      </div>
+      <div class="admin-card">
+        <h3>Add Image</h3>
+        <div class="field-group"><label>Image URL</label><input id="a-gal-url" type="text" placeholder="https://..."></div>
+        <div class="field-group"><label>Upload Image</label><input type="file" id="a-gal-file" accept="image/*"></div>
+        <div class="field-group"><label>Caption (optional)</label><input id="a-gal-cap" type="text"></div>
+        <button class="save-btn" onclick="addGallery()">Add to Gallery</button>
+      </div>
+      <div class="admin-card">
+        <h3>Gallery Images</h3>
+        <div id="admin-gallery-list" class="gallery-admin-grid"></div>
+      </div>
+    </div>
+
+    <!-- ── TESTIMONIALS ── -->
+    <div class="admin-section" id="tab-testi">
+      <div class="tab-title">Testimonials</div>
+      <div class="admin-card">
+        <h3 id="testi-form-title">Add Testimonial</h3>
+        <input type="hidden" id="editing-testi-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Client Name</label><input id="a-testi-name" type="text"></div>
+          <div class="field-group"><label>Title / Company</label><input id="a-testi-title" type="text"></div>
+        </div>
+        <div class="field-group"><label>Review Text</label><textarea id="a-testi-text" rows="3"></textarea></div>
+        <div class="field-group" style="max-width:140px;"><label>Stars (1–5)</label><input id="a-testi-stars" type="number" min="1" max="5" value="5"></div>
+        <div class="btn-row">
+          <button class="save-btn" onclick="saveTesti()">Save</button>
+          <button class="clear-btn" onclick="clearTestiForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Testimonial List</h3>
+        <div id="admin-testi-list"></div>
+      </div>
+    </div>
+
+    <!-- ── CONTACT ── -->
+    <div class="admin-section" id="tab-contact">
+      <div class="tab-title">Contact &amp; Footer</div>
+      <div class="admin-card">
+        <h3>Contact Details</h3>
+        <div class="field-group"><label>Email</label><input id="a-con-email" type="text"></div>
+        <div class="field-group"><label>Phone</label><input id="a-con-phone" type="text"></div>
+        <div class="field-group"><label>Address</label><input id="a-con-addr" type="text"></div>
+        <button class="save-btn" onclick="saveContact()">Save Contact</button>
+      </div>
+      <div class="admin-card">
+        <h3>Footer</h3>
+        <div class="field-group"><label>Footer Description</label><textarea id="a-footer-desc" rows="3"></textarea></div>
+        <div class="field-group"><label>Copyright Text</label><input id="a-footer-copy" type="text"></div>
+        <button class="save-btn" onclick="saveContact()">Save Footer</button>
+      </div>
+      <div class="admin-card">
+        <h3>EmailJS Configuration</h3>
+        <p class="hint-text">Get credentials at <strong>emailjs.com</strong>. Template variables: <code>{{from_name}}</code> <code>{{reply_to}}</code> <code>{{subject}}</code> <code>{{message}}</code></p>
+        <div class="field-group"><label>Public Key</label><input id="a-ejs-pk" type="text" placeholder="YOUR_PUBLIC_KEY"></div>
+        <div class="field-group"><label>Service ID</label><input id="a-ejs-sid" type="text" placeholder="service_xxxxxxx"></div>
+        <div class="field-group"><label>Template ID</label><input id="a-ejs-tid" type="text" placeholder="template_xxxxxxx"></div>
+        <button class="save-btn" onclick="saveEmailJS()">Save EmailJS</button>
+      </div>
+      <div class="admin-card">
+        <h3>Cloudinary Configuration</h3>
+        <p class="hint-text">Get credentials at <strong>cloudinary.com</strong>. Create an <strong>unsigned</strong> upload preset under Settings → Upload Presets.</p>
+        <div class="field-group"><label>Cloud Name</label><input id="a-cloud-name" type="text" placeholder="your-cloud-name"></div>
+        <div class="field-group"><label>Upload Preset</label><input id="a-cloud-preset" type="text" placeholder="your-preset-name"></div>
+        <button class="save-btn" onclick="saveCloudinary()">Save Cloudinary</button>
+      </div>
+    </div>
+
+    <!-- ── SECTIONS (Visibility + Titles) ── -->
+    <div class="admin-section" id="tab-sections">
+      <div class="tab-title">Sections — Visibility &amp; Titles</div>
+      <div class="admin-card">
+        <h3>Show / Hide Sections</h3>
+        <p class="hint-text">Toggle each section on or off. Hidden sections are removed from both the page and the navigation bar.</p>
+        <div class="toggle-list">
+          <div class="toggle-row"><label>About Us</label><label class="toggle-switch"><input type="checkbox" id="vis-about" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Products</label><label class="toggle-switch"><input type="checkbox" id="vis-products" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Services</label><label class="toggle-switch"><input type="checkbox" id="vis-services" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Leadership</label><label class="toggle-switch"><input type="checkbox" id="vis-leadership" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Gallery</label><label class="toggle-switch"><input type="checkbox" id="vis-gallery" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Testimonials</label><label class="toggle-switch"><input type="checkbox" id="vis-testimonials" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Contact</label><label class="toggle-switch"><input type="checkbox" id="vis-contact" checked><span class="toggle-slider"></span></label></div>
+        </div>
+        <button class="save-btn" style="margin-top:1.2rem;" onclick="saveVisibility()">Save Visibility</button>
+      </div>
+      <div class="admin-card">
+        <h3>Section Titles</h3>
+        <p class="hint-text">Rename any section heading as it appears on the public site.</p>
+        <div class="field-group"><label>About Section Title</label><input id="st-about" type="text"></div>
+        <div class="field-group"><label>Products Section Title</label><input id="st-products" type="text"></div>
+        <div class="field-group"><label>Services Section Title</label><input id="st-services" type="text"></div>
+        <div class="field-group"><label>Leadership Section Title</label><input id="st-leadership" type="text"></div>
+        <div class="field-group"><label>Gallery Section Title</label><input id="st-gallery" type="text"></div>
+        <div class="field-group"><label>Testimonials Section Title</label><input id="st-testimonials" type="text"></div>
+        <div class="field-group"><label>Contact Section Title</label><input id="st-contact" type="text"></div>
+        <button class="save-btn" onclick="saveSectionTitles()">Save Titles</button>
+      </div>
+    </div>
+
+    <!-- ── CUSTOM SECTIONS ── -->
+    <div class="admin-section" id="tab-custom-sections">
+      <div class="tab-title">Custom Sections</div>
+      <div class="admin-card">
+        <h3 id="cs-form-title">New Custom Section</h3>
+        <div class="grid-2">
+          <div class="field-group"><label>Section Title</label><input id="cs-title" type="text" placeholder="e.g. Our Partners"></div>
+          <div class="field-group"><label>Tag / Subtitle</label><input id="cs-tag" type="text" placeholder="e.g. Who We Work With"></div>
+        </div>
+        <div class="field-group">
+          <label>Layout Template</label>
+          <select id="cs-layout" onchange="updateCsForm()">
+            <option value="card-grid">Card Grid (Products-style)</option>
+            <option value="icon-grid">Icon Grid (Services-style)</option>
+            <option value="content-block">Content Block (About-style)</option>
+            <option value="centered-text">Centered Text</option>
+          </select>
+        </div>
+
+        <!-- Content Block Fields -->
+        <div id="cs-content-block-fields" style="display:none;">
+          <div class="field-group"><label>Image URL</label><input id="cs-img" type="text" placeholder="https://..."></div>
+          <div class="field-group"><label>Paragraph 1</label><textarea id="cs-p1" rows="3"></textarea></div>
+          <div class="field-group"><label>Paragraph 2</label><textarea id="cs-p2" rows="3"></textarea></div>
+        </div>
+
+        <!-- Shared items list for Card Grid + Icon Grid -->
+        <div id="cs-items-section" style="display:none;">
+          <div id="cs-items-list" style="margin-bottom:.8rem;"></div>
+          <!-- Card add form -->
+          <div id="cs-card-add-form" class="admin-card" style="padding:1rem;margin-bottom:.5rem;">
+            <h3 style="font-size:.85rem;margin-bottom:.8rem;">Add Card</h3>
+            <div class="grid-2">
+              <div class="field-group"><label>Name</label><input id="cs-item-name" type="text"></div>
+              <div class="field-group"><label>Image URL (optional)</label><input id="cs-item-img" type="text" placeholder="https://..."></div>
+            </div>
+            <div class="field-group"><label>Description</label><textarea id="cs-item-desc" rows="2"></textarea></div>
+            <button class="clear-btn" onclick="addCsItem()">+ Add Card</button>
+          </div>
+          <!-- Icon add form -->
+          <div id="cs-icon-add-form" class="admin-card" style="padding:1rem;margin-bottom:.5rem;display:none;">
+            <h3 style="font-size:.85rem;margin-bottom:.8rem;">Add Icon Item</h3>
+            <div class="grid-2">
+              <div class="field-group"><label>Icon (emoji)</label><input id="cs-item-icon" type="text" placeholder="🌍"></div>
+              <div class="field-group"><label>Title</label><input id="cs-item-title" type="text"></div>
+            </div>
+            <div class="field-group"><label>Description</label><textarea id="cs-item-icon-desc" rows="2"></textarea></div>
+            <button class="clear-btn" onclick="addCsItem()">+ Add Item</button>
+          </div>
+        </div>
+        <!-- (card-grid and icon-grid use the shared section above) -->
+        <div id="cs-card-grid-fields" style="display:none;"></div>
+        <div id="cs-icon-grid-fields" style="display:none;"></div>
+
+        <!-- Centered Text Fields -->
+        <div id="cs-centered-text-fields" style="display:none;">
+          <div class="field-group"><label>Body Text</label><textarea id="cs-body" rows="5"></textarea></div>
+        </div>
+
+        <div class="btn-row" style="margin-top:1rem;">
+          <button class="save-btn" onclick="saveCustomSection()">Save Section</button>
+          <button class="clear-btn" onclick="clearCsForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Custom Sections List</h3>
+        <p class="hint-text">Sections appear on the public site between Testimonials and Contact.</p>
+        <div id="admin-cs-list"></div>
+      </div>
+    </div>
+
+    <!-- ── DESIGN ── -->
+    <div class="admin-section" id="tab-design">
+      <div class="tab-title">Design &amp; Layout</div>
+      <div class="admin-card">
+        <h3>Layout Style</h3>
+        <p class="hint-text">Choose the overall visual style of the website.</p>
+        <div class="layout-options">
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="default" checked>
+            <div class="layout-preview layout-preview-default">
+              <div class="lp-nav"></div><div class="lp-hero"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Default</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="minimal">
+            <div class="layout-preview layout-preview-minimal">
+              <div class="lp-nav"></div><div class="lp-hero"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Minimal</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="bold">
+            <div class="layout-preview layout-preview-bold">
+              <div class="lp-nav"></div><div class="lp-hero lp-hero-bold"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Bold</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Hero Text Alignment</h3>
+        <div class="layout-options">
+          <label class="layout-option">
+            <input type="radio" name="a-hero-align" value="center" checked>
+            <div class="layout-preview" style="padding:.8rem;gap:.4rem;display:flex;flex-direction:column;align-items:center;">
+              <div style="width:70%;height:6px;background:var(--grad);border-radius:3px;"></div>
+              <div style="width:50%;height:4px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
+              <div style="width:40%;height:4px;background:rgba(255,255,255,.15);border-radius:3px;"></div>
+            </div>
+            <span>Centered</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-hero-align" value="left">
+            <div class="layout-preview" style="padding:.8rem;gap:.4rem;display:flex;flex-direction:column;align-items:flex-start;">
+              <div style="width:70%;height:6px;background:var(--grad);border-radius:3px;"></div>
+              <div style="width:50%;height:4px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
+              <div style="width:40%;height:4px;background:rgba(255,255,255,.15);border-radius:3px;"></div>
+            </div>
+            <span>Left Aligned</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Navigation Style</h3>
+        <p class="hint-text">Choose how the navigation menu is displayed on your site.</p>
+        <div class="layout-options" style="flex-wrap:wrap;gap:1rem;">
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="top" checked>
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;">
+              <div class="lp-nav"></div><div class="lp-hero"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Top Bar</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="sidebar-left">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:row;">
+              <div style="width:20px;background:rgba(255,255,255,.12);border-radius:4px;flex-shrink:0;"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:.3rem;">
+                <div class="lp-hero"></div><div class="lp-cards"><span></span><span></span></div>
+              </div>
+            </div>
+            <span>Sidebar Left</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="sidebar-right">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:row;">
+              <div style="flex:1;display:flex;flex-direction:column;gap:.3rem;">
+                <div class="lp-hero"></div><div class="lp-cards"><span></span><span></span></div>
+              </div>
+              <div style="width:20px;background:rgba(255,255,255,.12);border-radius:4px;flex-shrink:0;"></div>
+            </div>
+            <span>Sidebar Right</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="floating">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;align-items:center;">
+              <div style="width:80%;height:8px;background:rgba(255,255,255,.15);border-radius:20px;"></div>
+              <div class="lp-hero" style="width:100%;"></div>
+              <div class="lp-cards" style="width:100%;"><span></span><span></span><span></span></div>
+            </div>
+            <span>Floating Pill</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Card Style</h3>
+        <p class="hint-text">Choose the visual style of cards across the site.</p>
+        <div class="layout-options">
+          <label class="layout-option">
+            <input type="radio" name="a-card-style" value="shadow" checked>
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;">
+              <div class="lp-hero"></div>
+              <div class="lp-cards"><span style="box-shadow:0 4px 12px rgba(0,0,0,.4);border-radius:4px;"></span><span style="box-shadow:0 4px 12px rgba(0,0,0,.4);border-radius:4px;"></span></div>
+            </div>
+            <span>Shadow (Default)</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-card-style" value="flat">
+            <div class="layout-preview layout-preview-minimal" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;">
+              <div class="lp-hero"></div><div class="lp-cards"><span></span><span></span></div>
+            </div>
+            <span>Flat / Minimal</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-card-style" value="glass">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;background:rgba(37,99,235,.08);">
+              <div class="lp-hero"></div>
+              <div class="lp-cards"><span style="background:rgba(255,255,255,.12);border-radius:4px;"></span><span style="background:rgba(255,255,255,.12);border-radius:4px;"></span></div>
+            </div>
+            <span>Glass</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Nav Visibility on Scroll</h3>
+        <p class="hint-text">Control whether the navigation bar stays visible or hides when the user scrolls down.</p>
+        <div class="toggle-list">
+          <div class="toggle-row">
+            <div>
+              <label style="font-size:.875rem;color:var(--text);">Always Visible</label>
+              <p style="font-size:.78rem;color:var(--text-muted);margin-top:.15rem;">Nav stays fixed at all times — classic, always accessible.</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="radio" name="a-nav-hide" value="always" checked style="opacity:0;position:absolute;">
+              <span class="toggle-slider" id="nav-hide-always-indicator"></span>
+            </label>
+          </div>
+        </div>
+        <div class="nav-hide-options" style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hide" value="always" checked>
+            <div class="layout-preview" style="padding:.6rem;gap:.4rem;display:flex;flex-direction:column;">
+              <div class="lp-nav" style="opacity:1;"></div>
+              <div class="lp-hero"></div>
+              <div class="lp-nav" style="opacity:1;"></div>
+              <div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Always Show</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hide" value="autohide">
+            <div class="layout-preview" style="padding:.6rem;gap:.4rem;display:flex;flex-direction:column;">
+              <div class="lp-nav" style="opacity:1;"></div>
+              <div class="lp-hero"></div>
+              <div class="lp-nav" style="opacity:.2;"></div>
+              <div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Auto-Hide</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Nav Link Hover Animation</h3>
+        <p class="hint-text">Choose how navigation links respond when hovered. Preview by hovering the boxes below.</p>
+        <div class="layout-options nav-hover-previews" style="flex-wrap:wrap;gap:1rem;">
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="simple" checked>
+            <div class="layout-preview nav-hover-demo-simple" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Simple</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="underline">
+            <div class="layout-preview nav-hover-demo-underline" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Underline Slide</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="glow">
+            <div class="layout-preview nav-hover-demo-glow" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Glow</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="fill">
+            <div class="layout-preview nav-hover-demo-fill" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Fill Pill</span>
+          </label>
+        </div>
+        <button class="save-btn" style="margin-top:1.2rem;" onclick="saveDesign()">Save All Design Settings</button>
+      </div>
+    </div>
+
+    <!-- ── THEME ── -->
+    <div class="admin-section" id="tab-theme">
+      <div class="tab-title">Theme &amp; Settings</div>
+      <div class="admin-card">
+        <h3>Colour Customization</h3>
+        <div class="color-grid">
+          <div class="color-item"><label>Primary (Blue)</label><input id="a-col-primary" type="color" value="#1a3a8f"><span id="a-col-primary-val">#1a3a8f</span></div>
+          <div class="color-item"><label>Secondary (Red)</label><input id="a-col-secondary" type="color" value="#c0152a"><span id="a-col-secondary-val">#c0152a</span></div>
+          <div class="color-item"><label>Background</label><input id="a-col-bg" type="color" value="#080c18"><span id="a-col-bg-val">#080c18</span></div>
+          <div class="color-item"><label>Accent</label><input id="a-col-accent" type="color" value="#2563eb"><span id="a-col-accent-val">#2563eb</span></div>
+        </div>
+        <div class="btn-row" style="margin-top:1.5rem;">
+          <button class="save-btn" onclick="saveTheme()">Apply Theme</button>
+        </div>
+      </div>
+      <div class="admin-card danger-zone">
+        <h3>⚠ Danger Zone</h3>
+        <p class="hint-text" style="margin-bottom:1.2rem;">Reset all content to factory defaults. Cannot be undone.</p>
+        <button class="reset-btn" onclick="resetAll()">🔄 Reset Everything to Default</button>
+      </div>
+      <div class="admin-card">
+        <h3>📦 Publish Changes</h3>
+        <p class="hint-text" style="margin-bottom:1rem;">After making all edits, download <code>data.json</code> and commit it to your GitHub repository to publish changes to all visitors.</p>
+        <button class="save-btn" style="background:#1a3a8f;" onclick="exportDataJson()">⬇ Download data.json</button>
+      </div>
+    </div>
+
+  </div><!-- admin-body -->
+</div><!-- admin-dash -->
+
+<script src="js/admin.js"></script>
+</body>
+</html>
