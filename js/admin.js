@@ -149,12 +149,87 @@ function populateForms() {
     const el = document.getElementById('vis-' + k);
     if (el) el.checked = v[k] !== false;
   });
+  populateOwnership();
   renderAdminProducts();
   renderAdminServices();
   renderAdminLeaders();
   renderAdminGallery();
   renderAdminTestis();
   renderAdminCustomSections();
+}
+
+// ══════════ OWNERSHIP ══════════
+function populateOwnership() {
+  setVal('own-company',     state.logo.brand || 'Bista Group');
+  setVal('own-tag',         state.hero.tag   || '');
+  setVal('own-desc',        state.hero.sub   || '');
+  // Extract year and suffix from footerCopy e.g. "© 2025 Bista Group. All Rights Reserved."
+  const copy   = state.contact.footerCopy || '';
+  const mYear  = copy.match(/©\s*(\d{4})/);
+  const mSuffix= copy.replace(/©\s*\d{4}\s*[^.]*\.?\s*/, '');
+  setVal('own-year',        mYear ? mYear[1] : new Date().getFullYear());
+  setVal('own-copy-suffix', mSuffix || 'All Rights Reserved.');
+}
+
+function saveOwnership() {
+  const name   = val('own-company').trim();
+  if (!name) { toast('Please enter a company name.', true); return; }
+  const tag    = val('own-tag').trim();
+  const desc   = val('own-desc').trim();
+  const year   = val('own-year').trim() || new Date().getFullYear();
+  const suffix = val('own-copy-suffix').trim() || 'All Rights Reserved.';
+  const oldName = state.logo.brand || 'Bista Group';
+
+  // Sync to all fields
+  state.logo.brand          = name;
+  state.hero.title          = name;
+  if (tag)  state.hero.tag  = tag;
+  if (desc) {
+    state.hero.sub            = desc;
+    state.contact.footerDesc  = desc;
+  }
+  state.contact.footerCopy  = `© ${year} ${name}. ${suffix}`;
+
+  // Optionally replace old name in about text
+  if (document.getElementById('own-update-about')?.checked && oldName !== name) {
+    const replace = (str) => str ? str.split(oldName).join(name) : str;
+    state.about.p1 = replace(state.about.p1);
+    state.about.p2 = replace(state.about.p2);
+    setVal('a-about-p1', state.about.p1);
+    setVal('a-about-p2', state.about.p2);
+  }
+
+  // Update admin panel header + page title live
+  const adminNameEl = document.getElementById('admin-company-name');
+  if (adminNameEl) adminNameEl.textContent = name;
+  const titleEl = document.getElementById('admin-page-title');
+  if (titleEl) titleEl.textContent = `Admin Panel — ${name}`;
+
+  // Sync form fields that mirror these values
+  setVal('a-brand-name',   name);
+  setVal('a-hero-title',   name);
+  setVal('a-hero-tag',     tag  || state.hero.tag);
+  setVal('a-hero-sub',     desc || state.hero.sub);
+  setVal('a-footer-desc',  desc || state.contact.footerDesc);
+  setVal('a-footer-copy',  state.contact.footerCopy);
+
+  // Show preview of what was updated
+  const previewEl = document.getElementById('own-preview');
+  const listEl    = document.getElementById('own-preview-list');
+  if (previewEl && listEl) {
+    listEl.innerHTML = [
+      `Nav / Page title → <strong style="color:#fff;">${esc(name)}</strong>`,
+      `Hero company name → <strong style="color:#fff;">${esc(name)}</strong>`,
+      tag  ? `Hero tag → <strong style="color:#fff;">${esc(tag)}</strong>` : null,
+      desc ? `Hero subtitle → <strong style="color:#fff;">${esc(desc.slice(0,60))}…</strong>` : null,
+      desc ? `Footer description → updated` : null,
+      `Copyright → <strong style="color:#fff;">© ${year} ${esc(name)}. ${esc(suffix)}</strong>`,
+      document.getElementById('own-update-about')?.checked ? `About text → replaced "${esc(oldName)}" with "${esc(name)}"` : null,
+    ].filter(Boolean).map(s => `<div style="padding:.2rem 0;border-bottom:1px solid rgba(255,255,255,.06);">✓ ${s}</div>`).join('');
+    previewEl.style.display = 'block';
+  }
+
+  toast(`✅ "${name}" synced everywhere! Download data.json to publish.`);
 }
 
 // ══════════ SAVE: HERO ══════════

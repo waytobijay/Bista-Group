@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel — Bista Group</title>
+<title id="admin-page-title">Admin Panel — Bista Group</title>
 <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
@@ -28,9 +28,10 @@
   <div class="admin-header">
     <div class="admin-header-left">
       <span class="admin-logo">🛡</span>
-      <h1>Bista Group <span>Admin</span></h1>
+      <h1><span id="admin-company-name">Bista Group</span> <span>Admin</span></h1>
     </div>
     <div class="admin-nav" id="admin-nav">
+      <button class="admin-nav-btn" onclick="showTab('tab-ownership',this)">🏢 Ownership</button>
       <button class="admin-nav-btn active" onclick="showTab('tab-hero',this)">Hero</button>
       <button class="admin-nav-btn" onclick="showTab('tab-about',this)">About</button>
       <button class="admin-nav-btn" onclick="showTab('tab-products',this)">Products</button>
@@ -51,6 +52,65 @@
   </div>
 
   <div class="admin-body">
+
+    <!-- ── OWNERSHIP ── -->
+    <div class="admin-section" id="tab-ownership">
+      <div class="tab-title">Ownership &amp; Branding</div>
+
+      <div class="admin-card">
+        <h3>Company Name</h3>
+        <p class="hint-text">Changing the company name here will update it everywhere on the site — navigation, hero, footer, copyright, and the admin panel header — in one click.</p>
+        <div class="field-group">
+          <label>Company / Brand Name</label>
+          <input id="own-company" type="text" placeholder="e.g. Bista Group">
+        </div>
+        <div class="field-group">
+          <label>Industry / Type <span style="color:var(--text-muted);font-weight:400;">(shown in hero tag)</span></label>
+          <input id="own-tag" type="text" placeholder="e.g. Premium Quality Products">
+        </div>
+        <div class="field-group">
+          <label>One-line Description <span style="color:var(--text-muted);font-weight:400;">(hero subtitle &amp; footer description)</span></label>
+          <textarea id="own-desc" rows="3" placeholder="A diversified conglomerate delivering excellence..."></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field-group">
+            <label>Copyright Year</label>
+            <input id="own-year" type="text" placeholder="2025">
+          </div>
+          <div class="field-group">
+            <label>Copyright Suffix</label>
+            <input id="own-copy-suffix" type="text" placeholder="All Rights Reserved.">
+          </div>
+        </div>
+        <div class="field-group" style="margin-top:.5rem;">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;">
+            <input type="checkbox" id="own-update-about" style="width:auto;accent-color:var(--accent);">
+            <span style="font-size:.82rem;color:var(--text-muted);">Also replace old company name in the About section text</span>
+          </label>
+        </div>
+        <div class="btn-row" style="margin-top:1rem;">
+          <button class="save-btn" onclick="saveOwnership()">🔄 Sync Company Info Everywhere</button>
+        </div>
+        <div id="own-preview" style="margin-top:1.2rem;padding:1rem;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:10px;font-size:.82rem;color:var(--text-muted);display:none;">
+          <strong style="color:var(--text);display:block;margin-bottom:.5rem;">Preview — fields that will be updated:</strong>
+          <div id="own-preview-list"></div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3>What Gets Updated</h3>
+        <div class="toggle-list">
+          <div class="toggle-row"><label>🌐 Nav bar &amp; page tab title</label><span style="font-size:.78rem;color:var(--accent);">logo.brand</span></div>
+          <div class="toggle-row"><label>🦸 Hero section company name</label><span style="font-size:.78rem;color:var(--accent);">hero.title</span></div>
+          <div class="toggle-row"><label>🏷 Hero tag / badge</label><span style="font-size:.78rem;color:var(--accent);">hero.tag</span></div>
+          <div class="toggle-row"><label>📝 Hero subtitle</label><span style="font-size:.78rem;color:var(--accent);">hero.sub</span></div>
+          <div class="toggle-row"><label>🦶 Footer brand name</label><span style="font-size:.78rem;color:var(--accent);">logo.brand</span></div>
+          <div class="toggle-row"><label>📄 Footer description</label><span style="font-size:.78rem;color:var(--accent);">contact.footerDesc</span></div>
+          <div class="toggle-row"><label>©️ Copyright line</label><span style="font-size:.78rem;color:var(--accent);">contact.footerCopy</span></div>
+          <div class="toggle-row" style="border-bottom:none;"><label>🛡 Admin panel header</label><span style="font-size:.78rem;color:var(--accent);">live update</span></div>
+        </div>
+      </div>
+    </div>
 
     <!-- ── HERO ── -->
     <div class="admin-section active" id="tab-hero">
