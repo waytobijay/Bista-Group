@@ -1,12 +1,12 @@
 {
   "hero": {
     "tag": "Premium Quality Products",
-    "title": "Bista Group",
+    "title": "Bista Group of Company",
     "sub": "A diversified conglomerate delivering excellence across industries — from premium products to innovative solutions that empower communities and drive growth."
   },
   "logo": {
     "url": "assets/images/logo-placeholder.png",
-    "brand": "Bista Group"
+    "brand": "Bista Group of Company"
   },
   "about": {
     "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200053/bista-group/eusmczlxkwgm6ivslhsr.png",
@@ -188,8 +188,8 @@
     "email": "bijaybista006@gmail.com",
     "phone": "+977-XXXXXXXX",
     "addr": "Kathmandu, Nepal",
-    "footerDesc": "A diversified conglomerate committed to excellence, innovation, and sustainable growth across industries worldwide.",
-    "footerCopy": "© 2025 Bista Group. All Rights Reserved."
+    "footerDesc": "A diversified conglomerate delivering excellence across industries — from premium products to innovative solutions that empower communities and drive growth.",
+    "footerCopy": "© 2025 Bista Group of Company. All Rights Reserved."
   },
   "emailjs": {
     "pk": "",
