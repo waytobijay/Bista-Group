@@ -231,7 +231,7 @@
   "design": {
     "layout": "default",
     "heroAlign": "center",
-    "navStyle": "floating",
+    "navStyle": "sidebar-left",
     "cardStyle": "glass",
     "navHide": "autohide",
     "navHover": "underline"
