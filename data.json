@@ -207,7 +207,7 @@
   "theme": {
     "primary": "#1a3a8f",
     "secondary": "#88780c",
-    "bg": "#080c18",
+    "bg": "#eaecf0",
     "accent": "#2563eb"
   },
   "visibility": {
@@ -231,7 +231,7 @@
   "design": {
     "layout": "default",
     "heroAlign": "center",
-    "navStyle": "sidebar-left",
+    "navStyle": "floating",
     "cardStyle": "glass",
     "navHide": "autohide",
     "navHover": "underline"
