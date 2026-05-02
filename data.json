@@ -1,18 +1,18 @@
 {
   "hero": {
     "tag": "Premium Quality Products",
-    "title": "Bista Group of Company",
+    "title": "IT Gateway",
     "sub": "A diversified conglomerate delivering excellence across industries — from premium products to innovative solutions that empower communities and drive growth."
   },
   "logo": {
     "url": "assets/images/logo-placeholder.png",
-    "brand": "Bista Group of Company"
+    "brand": "IT Gateway"
   },
   "about": {
-    "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200053/bista-group/eusmczlxkwgm6ivslhsr.png",
+    "img": "https://placehold.co/600x420/1a3a8f/ffffff?text=About+Us",
     "badgeNum": "25+",
     "badgeTxt": "Years of Excellence",
-    "p1": "Bista Group is a leading diversified conglomerate with a strong presence across multiple industries. Founded on principles of integrity, innovation, and excellence, we have grown to become a trusted name in the region.",
+    "p1": "IT Gateway is a leading diversified conglomerate with a strong presence across multiple industries. Founded on principles of integrity, innovation, and excellence, we have grown to become a trusted name in the region.",
     "p2": "Our commitment to quality and customer satisfaction has earned us a reputation for delivering world-class products and services that make a meaningful difference in people's lives.",
     "s1v": "500+",
     "s1l": "Products",
@@ -29,7 +29,7 @@
       "fullDesc": "Handcrafted with premium materials, the Alpine Watch features sapphire crystal glass, 100m water resistance, and automatic movement.",
       "price": 45000,
       "images": [
-        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200119/bista-group/zucbq9rhgdmywj2mhmhc.png"
+        "https://placehold.co/600x400/1a3a8f/ffffff?text=Alpine+Watch"
       ]
     },
     {
@@ -39,7 +39,7 @@
       "fullDesc": "Crafted from aircraft-grade aluminium with gold plating, this executive pen set is the ultimate professional accessory.",
       "price": 8500,
       "images": [
-        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200133/bista-group/bw1qgxchick9wxcnkafr.png"
+        "https://placehold.co/600x400/c0152a/ffffff?text=Pen+Set"
       ]
     },
     {
@@ -49,7 +49,7 @@
       "fullDesc": "Full-grain leather with hand-stitched edges, internal organiser, and magnetic closure. Fits A4 documents.",
       "price": 12000,
       "images": [
-        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200165/bista-group/bdayldve6bivaxmqkvto.png"
+        "https://placehold.co/600x400/1a3a8f/ffffff?text=Portfolio"
       ]
     },
     {
@@ -59,7 +59,7 @@
       "fullDesc": "Sourced from the finest tea gardens in the Himalayan highlands. Includes 6 premium varieties hand-picked at altitude.",
       "price": 3500,
       "images": [
-        "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200183/bista-group/u68maqzctnkvbzdxtxoe.png"
+        "https://placehold.co/600x400/c0152a/ffffff?text=Tea+Collection"
       ]
     }
   ],
@@ -92,72 +92,61 @@
   "leadership": [
     {
       "id": 1,
-      "name": "Kabindra Bista",
+      "name": "Bijay Bista",
       "role": "Founder & CEO",
       "desc": "Visionary leader with 25+ years of experience driving growth and innovation across diverse industries.",
       "fullDesc": "Bijay Bista founded the Bista Group with a vision to create a world-class diversified conglomerate. With over 25 years of leadership experience across manufacturing, trading, and consulting sectors, he has steered the group to become a trusted name in the region and beyond.",
-      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200222/bista-group/mhxidpz4guv51ayjlhpo.jpg"
+      "img": "https://placehold.co/400x400/1a3a8f/ffffff?text=BB"
     },
     {
       "id": 2,
-      "name": "Bijay Bista",
+      "name": "Priya Sharma",
       "role": "Managing Director",
       "desc": "Strategic operations expert who has overseen expansion into 50+ global markets.",
       "fullDesc": "Priya Sharma brings over 18 years of operational expertise to the Bista Group. Her strategic vision has been instrumental in driving the group's expansion into more than 50 global markets, establishing strong partnerships and distribution networks across Asia, Europe, and the Americas.",
-      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200243/bista-group/gwmj0e0g1hn8qfywogg7.jpg"
+      "img": "https://placehold.co/400x400/c0152a/ffffff?text=PS"
     },
     {
       "id": 3,
-      "name": "Kapil Bista",
+      "name": "Rajan Thapa",
       "role": "Chief Financial Officer",
       "desc": "CPA with expertise in international finance, risk management, and sustainable investment.",
       "fullDesc": "Rajan Thapa is a Certified Public Accountant with over 15 years of expertise in international finance and risk management. He oversees the group's financial operations, investment portfolio, and sustainable growth initiatives, ensuring robust fiscal discipline across all business units.",
-      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200268/bista-group/vrcts537fzergg5rapyt.jpg"
-    },
-    {
-      "id": 1777200378213,
-      "name": "Binay Bista",
-      "role": "Chief Engineering Head",
-      "desc": "The Head of Engineering Development is responsible for leading engineering teams, overseeing product development, and ensuring technical projects are delivered efficiently and aligned with business goals.",
-      "fullDesc": "The Head of Engineering Development is responsible for leading engineering teams, overseeing product development, and ensuring technical projects are delivered efficiently and aligned with business goals.",
-      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200376/bista-group/la6xopc7r4fumtjk9pib.jpg"
-    },
-    {
-      "id": 1777200419621,
-      "name": "Kamal Bista",
-      "role": "The Chief Operations Head (COO)",
-      "desc": "The Chief Operations Head (COO) is responsible for overseeing daily business operations and ensuring processes run efficiently to meet the company’s strategic goals.",
-      "fullDesc": "The Chief Operations Head (COO) is responsible for overseeing daily business operations and ensuring processes run efficiently to meet the company’s strategic goals.",
-      "img": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200418/bista-group/fjmr9ernbhggoh3m5nzi.jpg"
+      "img": "https://placehold.co/400x400/1a3a8f/ffffff?text=RT"
     }
   ],
   "gallery": {
     "interval": 4,
     "items": [
       {
-        "id": 1777199979737,
-        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777199979/bista-group/wynutxwqrkt7nfvw3goj.jpg",
-        "cap": ""
+        "id": 1,
+        "url": "https://placehold.co/1200x600/1a3a8f/ffffff?text=Gallery+1",
+        "cap": "Our Headquarters"
       },
       {
-        "id": 1777199993331,
-        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777199993/bista-group/hyag9pa4jt0eqek8brvd.jpg",
-        "cap": ""
+        "id": 2,
+        "url": "https://placehold.co/1200x600/c0152a/ffffff?text=Gallery+2",
+        "cap": "Annual Summit 2024"
       },
       {
-        "id": 1777200001201,
-        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200000/bista-group/opxjorbnrhywpss8p3al.jpg",
-        "cap": ""
+        "id": 3,
+        "url": "https://placehold.co/1200x600/1a3a8f/ffffff?text=Gallery+3",
+        "cap": "Product Launch"
       },
       {
-        "id": 1777200010911,
-        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200010/bista-group/awa5fr5lpyxhvruw9e1z.jpg",
-        "cap": ""
+        "id": 4,
+        "url": "https://placehold.co/1200x600/c0152a/ffffff?text=Gallery+4",
+        "cap": "Team Building"
       },
       {
-        "id": 1777200022998,
-        "url": "https://res.cloudinary.com/dyjzhbvkf/image/upload/v1777200022/bista-group/j3zozqb3klybcqob2912.jpg",
-        "cap": ""
+        "id": 5,
+        "url": "https://placehold.co/1200x600/1a3a8f/ffffff?text=Gallery+5",
+        "cap": "Export Ceremony"
+      },
+      {
+        "id": 6,
+        "url": "https://placehold.co/1200x600/c0152a/ffffff?text=Gallery+6",
+        "cap": "CSR Initiative"
       }
     ]
   },
@@ -189,12 +178,144 @@
     "phone": "+977-XXXXXXXX",
     "addr": "Kathmandu, Nepal",
     "footerDesc": "A diversified conglomerate delivering excellence across industries — from premium products to innovative solutions that empower communities and drive growth.",
-    "footerCopy": "© 2025 Bista Group of Company. All Rights Reserved."
+    "footerCopy": "© 2025 IT Gateway. All Rights Reserved."
+  },
+  "payment": {
+    "cart": {
+      "enabled": true,
+      "maxQty": 10
+    },
+    "checkout": {
+      "enabled": true,
+      "customerForm": {
+        "enabled": true,
+        "fields": [
+          {
+            "id": 1,
+            "label": "Full Name",
+            "type": "text",
+            "required": true,
+            "enabled": true
+          },
+          {
+            "id": 2,
+            "label": "Phone Number",
+            "type": "tel",
+            "required": true,
+            "enabled": true
+          },
+          {
+            "id": 3,
+            "label": "Email Address",
+            "type": "email",
+            "required": true,
+            "enabled": true
+          },
+          {
+            "id": 4,
+            "label": "Address",
+            "type": "textarea",
+            "required": true,
+            "enabled": true
+          }
+        ]
+      },
+      "pickup": {
+        "enabled": true,
+        "stores": [
+          {
+            "id": 1,
+            "name": "Main Store",
+            "address": "Kathmandu, Nepal",
+            "hours": "9am–6pm Mon–Sat"
+          }
+        ]
+      },
+      "delivery": {
+        "enabled": true,
+        "providers": {
+          "manual": {
+            "enabled": true,
+            "label": "Standard Delivery",
+            "charge": 200,
+            "info": "3–5 business days"
+          },
+          "dhl": {
+            "enabled": false,
+            "label": "DHL Express",
+            "charge": 0,
+            "info": "Contact for international rates"
+          },
+          "auspost": {
+            "enabled": false,
+            "label": "Australia Post",
+            "charge": 0,
+            "info": "Contact for rates"
+          },
+          "tnt": {
+            "enabled": false,
+            "label": "TNT",
+            "charge": 0,
+            "info": "Contact for rates"
+          }
+        }
+      }
+    },
+    "currency": {
+      "default": "NPR",
+      "enabled": [
+        "NPR",
+        "USD",
+        "AUD"
+      ]
+    },
+    "charge": {
+      "pct": 2,
+      "label": "Processing fee"
+    },
+    "gateways": {
+      "contact": {
+        "enabled": true
+      },
+      "stripe": {
+        "enabled": false,
+        "pk": "",
+        "payLink": ""
+      },
+      "eway": {
+        "enabled": false,
+        "apiKey": "",
+        "payUrl": ""
+      },
+      "fonepay": {
+        "enabled": false,
+        "merchantCode": "",
+        "qrImg": ""
+      },
+      "esewa": {
+        "enabled": false,
+        "merchantId": "",
+        "successUrl": "",
+        "failureUrl": ""
+      },
+      "khalti": {
+        "enabled": false,
+        "pk": ""
+      }
+    },
+    "email": {
+      "enabled": false,
+      "subject": "Payment Confirmation — {product}",
+      "body": "Dear {customer},\n\nThank you for your payment!\n\nProduct: {product}\nAmount: {amount}\nGateway: {gateway}\n\nBista Group"
+    }
   },
   "emailjs": {
     "pk": "",
     "sid": "",
-    "tid": ""
+    "tid": "",
+    "tidContact": "",
+    "contactSubject": "New Enquiry from {name}",
+    "contactEnabled": false
   },
   "cloudinary": {
     "cloud": "dyjzhbvkf",
@@ -205,15 +326,15 @@
     "usd": 0.0075
   },
   "theme": {
-    "primary": "#1a3a8f",
-    "secondary": "#88780c",
-    "bg": "#eaecf0",
-    "accent": "#2563eb"
+    "primary": "#28b8d7",
+    "secondary": "#bd8b17",
+    "bg": "#080c18",
+    "accent": "#072052"
   },
   "visibility": {
     "about": true,
     "products": true,
-    "services": false,
+    "services": true,
     "leadership": true,
     "gallery": true,
     "testimonials": true,
@@ -229,12 +350,255 @@
     "contact": "Contact Us"
   },
   "design": {
-    "layout": "default",
+    "layout": "bold",
     "heroAlign": "center",
-    "navStyle": "floating",
+    "navStyle": "sidebar-right",
     "cardStyle": "glass",
     "navHide": "autohide",
-    "navHover": "underline"
+    "navHover": "glow"
   },
-  "customSections": []
+  "customSections": [],
+  "dsConfig": {
+    "backend": "firebase",
+    "media": "cloudinary",
+    "firebase": {
+      "apiKey": "AIzaSyCRWlp2Q3zugwg8pTFYdjIGsA_KBL_DdQI",
+      "projectId": "bista-group",
+      "authDomain": "bista-group.firebaseapp.com",
+      "storageBucket": "bista-group.firebasestorage.app",
+      "appId": "1:675226391196:web:4403be31f0759b00541359"
+    },
+    "supabase": {},
+    "awsS3": {}
+  },
+  "contactForm": {
+    "fields": [
+      {
+        "id": 1,
+        "key": "name",
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "enabled": true,
+        "placeholder": "Your name"
+      },
+      {
+        "id": 2,
+        "key": "email",
+        "label": "Email Address",
+        "type": "email",
+        "required": true,
+        "enabled": true,
+        "placeholder": "your@email.com"
+      },
+      {
+        "id": 3,
+        "key": "phone",
+        "label": "Phone Number",
+        "type": "tel",
+        "required": false,
+        "enabled": false,
+        "placeholder": "+1 234 567 8900"
+      },
+      {
+        "id": 4,
+        "key": "subject",
+        "label": "Subject",
+        "type": "text",
+        "required": false,
+        "enabled": true,
+        "placeholder": "How can we help?"
+      },
+      {
+        "id": 5,
+        "key": "message",
+        "label": "Message",
+        "type": "textarea",
+        "required": true,
+        "enabled": true,
+        "placeholder": "Tell us more..."
+      }
+    ]
+  },
+  "auth": {
+    "enabled": true,
+    "googleEnabled": true,
+    "emailVerification": false,
+    "allowGuest": true,
+    "signupFields": [
+      {
+        "id": 1,
+        "key": "name",
+        "label": "Full Name",
+        "type": "text",
+        "required": true,
+        "enabled": true,
+        "placeholder": "Your full name"
+      },
+      {
+        "id": 2,
+        "key": "phone",
+        "label": "Phone Number",
+        "type": "tel",
+        "required": false,
+        "enabled": true,
+        "placeholder": "+1 234 567 8900"
+      }
+    ]
+  },
+  "typography": {
+    "headingFont": "Segoe UI",
+    "bodyFont": "Segoe UI",
+    "baseFontSize": 16,
+    "headingScale": 2.5,
+    "lineHeight": 1.7,
+    "letterSpacing": 0
+  },
+  "_orders": [
+    {
+      "id": "BP-1777463972583",
+      "deliveryCharge": 200,
+      "gateway": "Contact Seller",
+      "fulfillment": "delivery",
+      "subtotal": 45000,
+      "customer": {
+        "Email Address": "babshs",
+        "Address": "Bababaab",
+        "Full Name": "Hbsb",
+        "Phone Number": "048484"
+      },
+      "store": null,
+      "fee": 900,
+      "provider": "manual",
+      "createdAt": "2026-04-29T11:59:32.583Z",
+      "status": "pending",
+      "total": 46100,
+      "items": [
+        {
+          "name": "Alpine Watch",
+          "id": 1,
+          "price": 45000,
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "BG-1777462289005",
+      "updatedAt": "2026-04-29T12:00:35.847Z",
+      "subtotal": 34000,
+      "customer": {
+        "Phone Number": "0452450545",
+        "Email Address": "waytobijay@gmail.com",
+        "Full Name": "Bijay",
+        "Address": "sdafda"
+      },
+      "fulfillment": "delivery",
+      "statusHistory": [
+        {
+          "adminName": "Master Admin",
+          "status": "warehouse_processing",
+          "timestamp": "2026-04-29T12:00:35.846Z",
+          "comment": "Preparing"
+        }
+      ],
+      "deliveryCharge": 200,
+      "gateway": "Contact Seller",
+      "createdAt": "2026-04-29T11:31:29.005Z",
+      "status": "warehouse_processing",
+      "total": 34880,
+      "provider": "manual",
+      "items": [
+        {
+          "id": 2,
+          "name": "Executive Pen Set",
+          "qty": 4,
+          "price": 8500
+        }
+      ],
+      "fee": 680,
+      "store": null
+    },
+    {
+      "id": "BG-1777461550081",
+      "customer": {
+        "Phone Number": "dqwd",
+        "Email Address": "qwdqw",
+        "Address": "dqd",
+        "Full Name": "wqdqd"
+      },
+      "subtotal": 180000,
+      "deliveryCharge": 200,
+      "gateway": "Contact Seller",
+      "fulfillment": "delivery",
+      "fee": 3600,
+      "createdAt": "2026-04-29T11:19:10.081Z",
+      "status": "pending",
+      "total": 183800,
+      "provider": "manual",
+      "items": [
+        {
+          "name": "Alpine Watch",
+          "id": 1,
+          "price": 45000,
+          "qty": 4
+        }
+      ],
+      "store": null
+    },
+    {
+      "id": "BG-1777378810029",
+      "status": "delivered",
+      "createdAt": "2026-04-28T12:20:10.029Z",
+      "total": 46100,
+      "provider": "manual",
+      "items": [
+        {
+          "price": 45000,
+          "qty": 1,
+          "name": "Alpine Watch",
+          "id": 1
+        }
+      ],
+      "fee": 900,
+      "store": null,
+      "updatedAt": "2026-04-28T12:44:36.551Z",
+      "customer": {
+        "Phone Number": "wqe",
+        "Email Address": "qwewq",
+        "Address": "eqew",
+        "Full Name": "qweq"
+      },
+      "subtotal": 45000,
+      "fulfillment": "delivery",
+      "statusHistory": [
+        {
+          "timestamp": "2026-04-28T12:44:36.551Z",
+          "status": "delivered",
+          "adminName": "Master Admin",
+          "comment": ""
+        }
+      ],
+      "deliveryCharge": 200,
+      "gateway": "Contact Seller"
+    }
+  ],
+  "_enquiries": [
+    {
+      "id": "ENQ-1777456120422",
+      "subject": "wefwef",
+      "name": "sfewrf",
+      "createdAt": "2026-04-29T09:48:40.422Z",
+      "message": "wefewf",
+      "email": "wefwef"
+    },
+    {
+      "id": "ENQ-1777378826911",
+      "subject": "Order inquirywqeqw from qweq",
+      "name": "wqewqe",
+      "createdAt": "2026-04-28T12:20:26.911Z",
+      "message": "qweqe",
+      "email": "qwewqe"
+    }
+  ],
+  "_exportedAt": "2026-05-02T05:36:23.526Z"
 }
