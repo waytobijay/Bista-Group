@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — Bista Group</title>
+<link rel="stylesheet" href="css/admin.css">
+<style>
+  .role-chips { display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.2rem; }
+  .role-chip {
+    padding:.4rem 1rem; border-radius:20px; border:1px solid var(--border);
+    background:none; color:var(--text-muted); cursor:pointer; font-size:.82rem;
+    transition:all .2s;
+  }
+  .role-chip:hover, .role-chip.active {
+    border-color:var(--accent); color:#fff; background:rgba(37,99,235,.15);
+  }
+  .role-hint { font-size:.78rem; color:var(--text-muted); text-align:center; margin-top:.6rem; min-height:1.2em; }
+  .login-portal-links { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-top:1.2rem; }
+  .login-portal-links a { font-size:.78rem; color:var(--text-muted); text-decoration:none; transition:color .2s; }
+  .login-portal-links a:hover { color:#fff; }
+</style>
+</head>
+<body>
+
+<div id="admin-login" class="login-screen">
+  <div class="login-box" style="max-width:420px;">
+    <div class="login-logo">🛡</div>
+    <h2 style="margin-bottom:.3rem;">Admin Login</h2>
+    <p style="margin-bottom:1.2rem;">Select your role and sign in.</p>
+
+    <div class="role-chips" id="role-chips">
+      <button class="role-chip active" data-role="master"    onclick="selectRole(this)">👑 Master</button>
+      <button class="role-chip" data-role="config"           onclick="selectRole(this)">⚙ Config</button>
+      <button class="role-chip" data-role="warehouse"        onclick="selectRole(this)">🏭 Warehouse</button>
+      <button class="role-chip" data-role="delivery"         onclick="selectRole(this)">🚚 Delivery</button>
+      <button class="role-chip" data-role="quality"          onclick="selectRole(this)">✅ Quality</button>
+    </div>
+    <div class="role-hint" id="role-hint">Full access to all admin features.</div>
+
+    <div class="field-group" style="margin-top:1rem;"><label>Username</label><input type="text" id="admin-user" placeholder="username" autocomplete="username"></div>
+    <div class="field-group"><label>Password</label><input type="password" id="admin-pass" placeholder="••••••••" autocomplete="current-password"></div>
+    <div id="admin-login-msg" class="login-error"></div>
+    <button class="save-btn full-width" onclick="doLogin()">Login →</button>
+    <div class="login-portal-links">
+      <a href="admin.html">🛡 Master Admin</a>
+      <span style="color:var(--border);">|</span>
+      <a href="index.html">← Back to Website</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/data-service.js"></script>
+<script>
+const ROLE_HINTS = {
+  master:    'Full access to all admin features.',
+  config:    'Manage website content, products and design.',
+  warehouse: 'View and update warehouse order status.',
+  delivery:  'Manage delivery dispatch and tracking.',
+  quality:   'Confirm deliveries and record customer feedback.'
+};
+const ROLE_PORTALS = {
+  master:    'admin.html',
+  config:    'admin.html',
+  warehouse: 'admin-warehouse.html',
+  delivery:  'admin-delivery.html',
+  quality:   'admin-quality.html'
+};
+
+let selectedRole = 'master';
+
+function selectRole(btn) {
+  document.querySelectorAll('.role-chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  selectedRole = btn.dataset.role;
+  document.getElementById('role-hint').textContent = ROLE_HINTS[selectedRole] || '';
+}
+
+async function doLogin() {
+  const u = document.getElementById('admin-user').value.trim();
+  const p = document.getElementById('admin-pass').value;
+  const msgEl = document.getElementById('admin-login-msg');
+  msgEl.style.display = 'none';
+
+  try {
+    const admin = await DS.getAdminByCredentials(u, p);
+    if (admin) {
+      DS.setSession({ id:admin.id, name:admin.name, role:admin.role, username:admin.username });
+      window.location.href = ROLE_PORTALS[admin.role] || 'admin.html';
+      return;
+    }
+  } catch(e) {}
+
+  // Hardcoded master fallback
+  if (u === 'admin' && p === 'bista2025' && selectedRole === 'master') {
+    DS.setSession({ id:'master', name:'Master Admin', role:'master', username:'admin' });
+    window.location.href = 'admin.html';
+    return;
+  }
+
+  msgEl.textContent = 'Invalid credentials or wrong role.';
+  msgEl.style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('admin-user').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('admin-pass').focus(); });
+  document.getElementById('admin-pass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+});
+</script>
+</body>
+</html>

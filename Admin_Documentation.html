@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bista Group — Master Admin Documentation</title>
+<style>
+/* ═══════════════════════════════
+   BASE
+═══════════════════════════════ */
+:root {
+  --primary:   #1a3a8f;
+  --accent:    #2563eb;
+  --red:       #c0152a;
+  --green:     #16a34a;
+  --orange:    #ea580c;
+  --purple:    #7c3aed;
+  --teal:      #0d9488;
+  --yellow:    #d97706;
+  --bg:        #f8faff;
+  --card:      #ffffff;
+  --border:    #e2e8f0;
+  --text:      #1e293b;
+  --muted:     #64748b;
+  --light:     #f1f5f9;
+  --tag-bg:    #eff6ff;
+  --tag-text:  #1d4ed8;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text);
+  font-size: 15px; line-height: 1.65;
+}
+
+/* ═══════════════════════════════
+   PRINT
+═══════════════════════════════ */
+@media print {
+  .no-print { display:none !important; }
+  body { font-size:12px; background:#fff; }
+  .sidebar { display:none; }
+  .main { margin-left:0 !important; }
+  .section-block { break-inside:avoid; page-break-inside:avoid; }
+  h2.section-heading { break-before:page; }
+  h2.section-heading:first-of-type { break-before:auto; }
+}
+
+/* ═══════════════════════════════
+   LAYOUT
+═══════════════════════════════ */
+.layout { display:flex; min-height:100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: 260px; flex-shrink:0; background:#0f172a; color:#cbd5e1;
+  position: fixed; top:0; left:0; bottom:0; overflow-y:auto;
+  z-index:100; padding:1.5rem 0;
+}
+.sidebar-logo {
+  padding:0 1.5rem 1.5rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  margin-bottom:1rem;
+}
+.sidebar-logo h2 { color:#fff; font-size:1rem; font-weight:800; }
+.sidebar-logo p  { font-size:.75rem; color:#64748b; margin-top:.2rem; }
+.sidebar-section { padding:.5rem 1.5rem .25rem; font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#475569; }
+.sidebar a {
+  display:block; padding:.45rem 1.5rem; font-size:.82rem; color:#94a3b8;
+  text-decoration:none; border-left:3px solid transparent; transition:all .15s;
+}
+.sidebar a:hover { color:#fff; background:rgba(255,255,255,.05); border-left-color:var(--accent); }
+.sidebar a.active { color:#fff; border-left-color:var(--accent); background:rgba(37,99,235,.12); }
+
+/* Main */
+.main { margin-left:260px; flex:1; padding:2.5rem 3rem; max-width:1100px; }
+@media(max-width:900px) { .sidebar { display:none; } .main { margin-left:0; padding:1.5rem; } }
+
+/* ═══════════════════════════════
+   COVER
+═══════════════════════════════ */
+.cover {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1a3a8f 100%);
+  color: #fff; border-radius: 16px; padding: 3rem; margin-bottom: 3rem;
+  position:relative; overflow:hidden;
+}
+.cover::before {
+  content:''; position:absolute; top:-40px; right:-40px;
+  width:260px; height:260px; border-radius:50%;
+  background:rgba(192,21,42,.15);
+}
+.cover::after {
+  content:''; position:absolute; bottom:-60px; left:-20px;
+  width:200px; height:200px; border-radius:50%;
+  background:rgba(37,99,235,.12);
+}
+.cover-badge { display:inline-block; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); padding:.3rem .9rem; border-radius:20px; font-size:.75rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-bottom:1.2rem; position:relative; z-index:1; }
+.cover h1 { font-size:2.2rem; font-weight:900; position:relative; z-index:1; line-height:1.2; margin-bottom:.6rem; }
+.cover h1 span { color:#93c5fd; }
+.cover p { font-size:1rem; color:#93c5fd; position:relative; z-index:1; max-width:560px; }
+.cover-meta { display:flex; gap:2rem; margin-top:2rem; position:relative; z-index:1; flex-wrap:wrap; }
+.cover-meta-item { font-size:.82rem; }
+.cover-meta-item strong { display:block; color:#fff; font-size:.95rem; }
+.cover-meta-item span { color:#93c5fd; }
+
+/* ═══════════════════════════════
+   SECTION
+═══════════════════════════════ */
+.section-block { margin-bottom:3rem; }
+h2.section-heading {
+  font-size:1.4rem; font-weight:800; color:var(--primary);
+  padding-bottom:.7rem; border-bottom:2px solid var(--primary);
+  margin-bottom:1.5rem; display:flex; align-items:center; gap:.6rem;
+}
+h2.section-heading .hico { font-size:1.2rem; }
+h3.sub-heading { font-size:1rem; font-weight:700; color:var(--text); margin:1.5rem 0 .6rem; }
+
+/* ═══════════════════════════════
+   CARDS
+═══════════════════════════════ */
+.card {
+  background: var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:1.4rem 1.6rem; margin-bottom:1.2rem;
+}
+.card-title {
+  font-size:.95rem; font-weight:700; margin-bottom:.6rem; display:flex; align-items:center; gap:.5rem;
+}
+.card p { font-size:.875rem; color:var(--muted); line-height:1.6; }
+.card p + p { margin-top:.5rem; }
+
+/* Where visible tag */
+.where-tag {
+  display:inline-flex; align-items:center; gap:.35rem;
+  background:var(--tag-bg); color:var(--tag-text);
+  border:1px solid #bfdbfe; border-radius:6px;
+  padding:.2rem .65rem; font-size:.73rem; font-weight:700;
+  margin:.5rem .3rem .3rem 0;
+}
+
+/* Info box */
+.info-box {
+  background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px;
+  padding:1rem 1.2rem; margin:.8rem 0;
+  display:flex; gap:.8rem; align-items:flex-start;
+}
+.info-box .ib-icon { font-size:1.2rem; flex-shrink:0; margin-top:.05rem; }
+.info-box .ib-body { font-size:.84rem; color:#1e40af; line-height:1.55; }
+.info-box .ib-body strong { font-weight:700; }
+
+.warn-box {
+  background:#fffbeb; border:1px solid #fde68a; border-radius:10px;
+  padding:1rem 1.2rem; margin:.8rem 0;
+  display:flex; gap:.8rem; align-items:flex-start;
+}
+.warn-box .ib-body { color:#92400e; }
+
+.success-box {
+  background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px;
+  padding:1rem 1.2rem; margin:.8rem 0;
+  display:flex; gap:.8rem; align-items:flex-start;
+}
+.success-box .ib-body { color:#14532d; }
+
+.danger-box {
+  background:#fef2f2; border:1px solid #fecaca; border-radius:10px;
+  padding:1rem 1.2rem; margin:.8rem 0;
+  display:flex; gap:.8rem; align-items:flex-start;
+}
+.danger-box .ib-body { color:#991b1b; }
+
+/* ═══════════════════════════════
+   TABLE
+═══════════════════════════════ */
+table { width:100%; border-collapse:collapse; font-size:.84rem; margin:.8rem 0; }
+thead th { background:var(--primary); color:#fff; padding:.6rem .9rem; text-align:left; font-weight:700; }
+tbody td { padding:.55rem .9rem; border-bottom:1px solid var(--border); vertical-align:top; }
+tbody tr:last-child td { border-bottom:none; }
+tbody tr:nth-child(even) { background:#f8faff; }
+table code { font-family:monospace; font-size:.8rem; background:#f1f5f9; padding:.1rem .35rem; border-radius:4px; }
+
+/* ═══════════════════════════════
+   STEP LIST
+═══════════════════════════════ */
+.step-list { list-style:none; counter-reset:steps; margin:.8rem 0; }
+.step-list li {
+  counter-increment:steps; padding:.55rem .8rem .55rem 2.6rem;
+  position:relative; border-left:2px solid var(--border);
+  margin-left:.6rem; margin-bottom:.3rem; font-size:.875rem;
+}
+.step-list li::before {
+  content:counter(steps); position:absolute; left:-.9rem; top:.45rem;
+  width:1.6rem; height:1.6rem; border-radius:50%;
+  background:var(--primary); color:#fff; font-size:.72rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Bullet list */
+.bullet-list { list-style:none; margin:.6rem 0; }
+.bullet-list li { padding:.3rem 0 .3rem 1.4rem; font-size:.875rem; color:var(--muted); position:relative; }
+.bullet-list li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-weight:700; }
+
+/* ═══════════════════════════════
+   BACKEND COMPARISON
+═══════════════════════════════ */
+.backend-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin:1rem 0; }
+.backend-card { border-radius:12px; padding:1.3rem; border:2px solid; }
+.backend-card.local   { border-color:#e2e8f0; background:#f8faff; }
+.backend-card.firebase{ border-color:#fbbf24; background:#fffdf0; }
+.backend-card.supabase{ border-color:#34d399; background:#f0fdf9; }
+.backend-card .bc-icon { font-size:2rem; margin-bottom:.5rem; }
+.backend-card h4 { font-size:.95rem; font-weight:800; margin-bottom:.4rem; }
+.backend-card.local h4    { color:#334155; }
+.backend-card.firebase h4 { color:#b45309; }
+.backend-card.supabase h4 { color:#065f46; }
+.backend-card p { font-size:.8rem; line-height:1.55; color:var(--muted); }
+.bc-tag { display:inline-block; font-size:.7rem; font-weight:700; padding:.15rem .55rem; border-radius:4px; margin:.5rem 0 .3rem; }
+.bc-tag.free { background:#dcfce7; color:#166534; }
+.bc-tag.setup { background:#fef3c7; color:#92400e; }
+.bc-tag.recommended { background:#dbeafe; color:#1e40af; }
+.bc-check { font-size:.78rem; margin-top:.3rem; }
+.bc-check span { display:block; padding:.15rem 0; }
+.bc-check .yes::before { content:'✅ '; }
+.bc-check .no::before  { content:'❌ '; }
+.bc-check .partial::before { content:'⚠️ '; }
+
+/* ═══════════════════════════════
+   ROLE CARDS
+═══════════════════════════════ */
+.role-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1rem; margin:1rem 0; }
+.role-card { border-radius:12px; padding:1.2rem; border:1px solid; }
+.role-card h4 { font-size:.88rem; font-weight:800; margin-bottom:.5rem; }
+.role-card p  { font-size:.78rem; color:var(--muted); }
+.role-card .rc-url { font-size:.72rem; font-family:monospace; margin-top:.5rem; padding:.25rem .5rem; border-radius:4px; display:inline-block; }
+.rc-master   { border-color:#93c5fd; background:#eff6ff; }
+.rc-master h4 { color:#1e40af; }
+.rc-master .rc-url { background:#dbeafe; color:#1e40af; }
+.rc-config   { border-color:#c4b5fd; background:#faf5ff; }
+.rc-config h4 { color:#5b21b6; }
+.rc-config .rc-url { background:#ede9fe; color:#5b21b6; }
+.rc-warehouse{ border-color:#5eead4; background:#f0fdfa; }
+.rc-warehouse h4 { color:#0f766e; }
+.rc-warehouse .rc-url { background:#ccfbf1; color:#0f766e; }
+.rc-delivery { border-color:#fdba74; background:#fff7ed; }
+.rc-delivery h4 { color:#c2410c; }
+.rc-delivery .rc-url { background:#fed7aa; color:#c2410c; }
+.rc-quality  { border-color:#d8b4fe; background:#fdf4ff; }
+.rc-quality h4 { color:#7e22ce; }
+.rc-quality .rc-url { background:#f3e8ff; color:#7e22ce; }
+
+/* ═══════════════════════════════
+   QUICK REF
+═══════════════════════════════ */
+.qref-table tbody td:first-child { font-weight:600; font-size:.84rem; }
+.qref-table tbody td:nth-child(2) { color:var(--primary); font-weight:700; }
+.qref-table tbody td:nth-child(2)::before { content:'⚙ '; }
+
+/* ═══════════════════════════════
+   STATUS PIPELINE
+═══════════════════════════════ */
+.pipeline { display:flex; flex-wrap:wrap; gap:0; margin:1rem 0; }
+.pipeline-step {
+  flex:1; min-width:110px; padding:.7rem .6rem; text-align:center;
+  font-size:.75rem; font-weight:700; position:relative;
+}
+.pipeline-step::after {
+  content:'→'; position:absolute; right:-8px; top:50%;
+  transform:translateY(-50%); color:var(--muted); font-size:.9rem; z-index:2;
+}
+.pipeline-step:last-child::after { display:none; }
+.ps-1  { background:#fef9c3; color:#713f12; border-radius:8px 0 0 8px; }
+.ps-2  { background:#fed7aa; color:#7c2d12; }
+.ps-3  { background:#bfdbfe; color:#1e3a8a; }
+.ps-4r { background:#bbf7d0; color:#14532d; }
+.ps-4n { background:#fecaca; color:#7f1d1d; }
+.ps-5  { background:#e9d5ff; color:#4a1d96; }
+.ps-6d { background:#d1fae5; color:#064e3b; border-radius:0 8px 8px 0; }
+.ps-6n { background:#fee2e2; color:#7f1d1d; border-radius:0 8px 8px 0; }
+.ps-sub { font-weight:400; font-size:.68rem; display:block; margin-top:.15rem; opacity:.7; }
+
+/* ═══════════════════════════════
+   DIVIDER
+═══════════════════════════════ */
+.divider { border:none; border-top:1px solid var(--border); margin:2rem 0; }
+
+/* ═══════════════════════════════
+   NAV FLOAT PRINT BTN
+═══════════════════════════════ */
+.print-btn {
+  position:fixed; bottom:2rem; right:2rem; z-index:200;
+  background:var(--primary); color:#fff; border:none; padding:.75rem 1.4rem;
+  border-radius:12px; font-size:.85rem; font-weight:700; cursor:pointer;
+  box-shadow:0 4px 20px rgba(26,58,143,.4); transition:all .2s;
+}
+.print-btn:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(26,58,143,.5); }
+
+/* TOC highlight */
+:target { scroll-margin-top:1.5rem; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav class="sidebar no-print">
+  <div class="sidebar-logo">
+    <h2>🛡 Admin Docs</h2>
+    <p>Bista Group — Master Admin</p>
+  </div>
+
+  <div class="sidebar-section">Getting Started</div>
+  <a href="#access">Accessing the Admin</a>
+  <a href="#flow">How It All Works</a>
+
+  <div class="sidebar-section">Content Tabs</div>
+  <a href="#ownership">🏢 Ownership</a>
+  <a href="#hero">Hero Section</a>
+  <a href="#about">About Section</a>
+  <a href="#products">Products</a>
+  <a href="#services">Services</a>
+  <a href="#leadership">Leadership</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#testimonials">Testimonials</a>
+  <a href="#contact">Contact &amp; Footer</a>
+  <a href="#contact-form-fields">↳ Contact Form Fields</a>
+  <a href="#sections">Sections Visibility</a>
+  <a href="#custom">Custom Sections</a>
+
+  <div class="sidebar-section">Business Tabs</div>
+  <a href="#payments">💳 Payments</a>
+  <a href="#orders">📦 Orders</a>
+  <a href="#enquiries">✉ Enquiries</a>
+
+  <div class="sidebar-section">System Tabs</div>
+  <a href="#users">👤 Users</a>
+  <a href="#config">⚙ Configuration</a>
+  <a href="#auth-config">↳ Auth Configuration</a>
+  <a href="#design">🎨 Design</a>
+  <a href="#typography">↳ Typography &amp; Fonts</a>
+  <a href="#theme">Theme &amp; Colors</a>
+
+  <div class="sidebar-section">User Features</div>
+  <a href="#user-auth">🔐 User Accounts</a>
+  <a href="#user-profile">👤 Profile &amp; Favourites</a>
+  <a href="#guest-checkout">🛒 Guest Checkout</a>
+
+  <div class="sidebar-section">Deep Dives</div>
+  <a href="#backend">Backend Explained</a>
+  <a href="#roles">Role Portals</a>
+  <a href="#publishing">Publishing Changes</a>
+  <a href="#quickref">Quick Reference</a>
+</nav>
+
+<!-- PRINT BUTTON -->
+<button class="print-btn no-print" onclick="window.print()">🖨 Print / Save PDF</button>
+
+<!-- MAIN CONTENT -->
+<div class="layout">
+<main class="main">
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="cover">
+  <div class="cover-badge">Master Admin Documentation — v2.0</div>
+  <h1>Bista Group<br><span>Admin Panel Guide</span></h1>
+  <p>Everything you need to manage your website, handle orders, configure the system, and manage customer accounts — explained in plain language.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><strong>Admin URL</strong><span>admin.html</span></div>
+    <div class="cover-meta-item"><strong>Login</strong><span>admin / bista2025</span></div>
+    <div class="cover-meta-item"><strong>Role Portals</strong><span>admin-login.html</span></div>
+    <div class="cover-meta-item"><strong>Customer Login</strong><span>Sign In button on website</span></div>
+    <div class="cover-meta-item"><strong>Updated</strong><span>April 2026</span></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ ACCESS ═══════════════════ -->
+<div class="section-block" id="access">
+  <h2 class="section-heading"><span class="hico">🔑</span> Accessing the Admin Panel</h2>
+
+  <div class="card">
+    <div class="card-title">🌐 Two Ways to Access</div>
+    <table>
+      <thead><tr><th>Method</th><th>URL / Command</th><th>When to Use</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Local (recommended for edits)</strong></td>
+          <td><code>python server.py</code> → <code>http://localhost:8080/admin.html</code></td>
+          <td>Day-to-day content editing, image uploads, all testing</td>
+        </tr>
+        <tr>
+          <td><strong>Live (GitHub Pages)</strong></td>
+          <td><code>https://yourdomain.com/admin.html</code></td>
+          <td>Quick edits when you are away from your computer</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="warn-box" style="margin-top:.8rem;">
+      <div class="ib-icon">⚠️</div>
+      <div class="ib-body"><strong>Image uploads only work when server.py is running.</strong> On GitHub Pages, you must use Cloudinary (set up in the Configuration tab) for image uploads to work.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔐 Login Credentials</div>
+    <table>
+      <thead><tr><th>User</th><th>Username</th><th>Password</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr><td>Master Admin</td><td><code>admin</code></td><td><code>bista2025</code></td><td>Everything</td></tr>
+        <tr><td>Other roles</td><td colspan="3">Created by Master Admin in the <strong>👥 Admin Users</strong> tab → log in at <code>admin-login.html</code></td></tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">The master admin password <strong>bista2025</strong> is hardcoded as a fallback. You should also create a Master Admin user in the Admin Users tab with a strong password for daily use.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+<div class="section-block" id="flow">
+  <h2 class="section-heading"><span class="hico">🗺️</span> How It All Works Together</h2>
+
+  <div class="card">
+    <div class="card-title">The Big Picture</div>
+    <p>Your website is made of three layers:</p>
+    <table style="margin-top:.8rem;">
+      <thead><tr><th>Layer</th><th>What It Is</th><th>Where Changes Come From</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>data.json</strong></td>
+          <td>The content file — stores all text, products, settings, prices, theme colors</td>
+          <td>You edit in admin panel → click <em>"Download data.json"</em> → upload to GitHub</td>
+        </tr>
+        <tr>
+          <td><strong>localStorage / Firebase</strong></td>
+          <td>Order database — stores customer orders and enquiries</td>
+          <td>Customers place orders → saved automatically (no download needed)</td>
+        </tr>
+        <tr>
+          <td><strong>HTML / CSS / JS files</strong></td>
+          <td>The actual website code — you rarely need to touch these</td>
+          <td>Developer changes only</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">📌</div>
+      <div class="ib-body"><strong>Important:</strong> Content changes (products, hero, contact, etc.) go live only after you click <strong>"⬇ Download data.json"</strong> and commit to GitHub. Orders and enquiries save automatically — no download needed.<br><br><strong>Design, Theme, Typography and Auth toggles</strong> are special — they are also saved to your browser's local storage. This means changes appear <em>immediately on the main site in the same browser</em> after a page refresh, even before you download data.json. Download data.json to publish to all visitors on all devices.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ No Flash of Default Content</div>
+    <p>The website starts completely invisible (opacity 0) until your <code>data.json</code> has finished loading. Once all your content is ready, the page fades in — so visitors <strong>always see your latest content, never a blank default</strong>. This eliminates the flicker of placeholder text that would appear before your custom data loaded.</p>
+    <div class="success-box" style="margin-top:.6rem;">
+      <div class="ib-icon">✅</div>
+      <div class="ib-body">This means every page load shows your real content from the first frame. There is a 2.5 second safety timeout — if data.json fails to load, the page reveals itself anyway so visitors are never stuck on a blank screen.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ OWNERSHIP ═══════════════════ -->
+<div class="section-block" id="ownership">
+  <h2 class="section-heading"><span class="hico">🏢</span> Ownership &amp; Branding Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>This is the <strong>one-stop place to change your company name</strong> everywhere at once. Instead of going to 6 different tabs to update the name, you type it once here and it syncs to all sections automatically.</p>
+    <div class="where-tag">🌐 Nav bar logo text</div>
+    <div class="where-tag">🦸 Hero title</div>
+    <div class="where-tag">🏷 Hero tag line</div>
+    <div class="where-tag">🦶 Footer brand name</div>
+    <div class="where-tag">©️ Copyright line</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>What It Does</th><th>Shows On Website At</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Company / Brand Name</strong></td><td>Your company's name</td><td>Navigation, hero, footer, browser tab title</td></tr>
+        <tr><td><strong>Industry / Type</strong></td><td>Short descriptor (e.g. "Premium Quality Products")</td><td>Small badge above the hero title</td></tr>
+        <tr><td><strong>One-line Description</strong></td><td>Your company's tagline</td><td>Under the hero title + footer description</td></tr>
+        <tr><td><strong>Copyright Year</strong></td><td>The year in the footer</td><td>Footer bottom bar</td></tr>
+        <tr><td><strong>Copyright Suffix</strong></td><td>Text after the year (e.g. "All Rights Reserved.")</td><td>Footer bottom bar</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">Tick <strong>"Also replace old company name in the About section text"</strong> if you're rebranding — it will find and replace the old name in your About paragraphs too.</div>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fffbeb;border-color:#fde68a;">
+    <div class="card-title">📌 Quick Note</div>
+    <p>After clicking <strong>"🔄 Sync Company Info Everywhere"</strong>, you'll see a preview of exactly which fields were updated. Then remember to Download data.json and push to GitHub to make it live.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<div class="section-block" id="hero">
+  <h2 class="section-heading"><span class="hico">🦸</span> Hero Section Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Controls the <strong>large banner at the top of your website</strong> — the first thing every visitor sees. Also controls the logo shown in the navigation bar.</p>
+    <div class="where-tag">🎯 Hero banner (full-screen welcome section)</div>
+    <div class="where-tag">🖼 Navigation bar logo</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>Where It Appears</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tag Line</strong></td><td>Small pill badge above the main title (e.g. "Premium Quality Products")</td></tr>
+        <tr><td><strong>Main Title</strong></td><td>Large heading text (e.g. "Bista Group" — appears in gradient style)</td></tr>
+        <tr><td><strong>Subtitle</strong></td><td>Paragraph of text below the main title describing the company</td></tr>
+        <tr><td><strong>Logo URL / Upload</strong></td><td>The logo image in the top-left navigation bar and footer</td></tr>
+        <tr><td><strong>Brand Name</strong></td><td>Text next to the logo in the navigation bar</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<div class="section-block" id="about">
+  <h2 class="section-heading"><span class="hico">ℹ️</span> About Section Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Controls the <strong>"About Us"</strong> section — the image, the two text paragraphs, the badge (e.g. "25+ Years of Excellence"), and the three stat counters (Products / Countries / Customers).</p>
+    <div class="where-tag">📍 About Us section on the main page</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>What It Controls</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Image URL / Upload</strong></td><td>The photo shown on the left side of the About section</td></tr>
+        <tr><td><strong>Badge Number &amp; Text</strong></td><td>The small floating box on the photo (e.g. "25+" and "Years of Excellence")</td></tr>
+        <tr><td><strong>Paragraph 1 &amp; 2</strong></td><td>The two blocks of text describing the company's story and values</td></tr>
+        <tr><td><strong>Stat 1, 2, 3</strong></td><td>The three achievement cards at the bottom (e.g. "500+ Products")</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ PRODUCTS ═══════════════════ -->
+<div class="section-block" id="products">
+  <h2 class="section-heading"><span class="hico">🛍</span> Products Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>This is where you <strong>add, edit, and delete the products</strong> that customers see and can buy. Each product gets its own card on the main website. Customers can click on a product to see full details, add it to their cart, and proceed to checkout.</p>
+    <div class="where-tag">📍 Products section on the main page</div>
+    <div class="where-tag">🛒 Product detail modal (popup)</div>
+    <div class="where-tag">🛍 Shopping cart</div>
+    <div class="where-tag">🧾 Checkout order items</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>What It Controls</th><th>Where It Shows</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Product Name</strong></td><td>The name of the product</td><td>Product card, modal, cart, orders</td></tr>
+        <tr><td><strong>Short Description</strong></td><td>One-line summary shown on the product card</td><td>Product card on main page</td></tr>
+        <tr><td><strong>Full Description</strong></td><td>Detailed paragraph shown when product is clicked</td><td>Product detail popup (modal)</td></tr>
+        <tr><td><strong>Price (NPR)</strong></td><td>Price in Nepalese Rupees. Automatically converts to USD/AUD using exchange rates</td><td>Product card, cart, checkout, order summary</td></tr>
+        <tr><td><strong>Images</strong></td><td>One or more product photos. Multiple photos get a gallery with prev/next arrows</td><td>Product card and popup gallery</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">To <strong>add a product</strong>: fill in all fields, add at least one image, click Save.<br>To <strong>edit</strong>: click the Edit button next to any product in the list below.<br>To <strong>delete</strong>: click Delete. This cannot be undone.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ SERVICES ═══════════════════ -->
+<div class="section-block" id="services">
+  <h2 class="section-heading"><span class="hico">⚙</span> Services Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Controls the <strong>Services section</strong> — the icon cards explaining what your company does (e.g. Global Trading, Manufacturing, Consulting, Logistics). You can add, edit, and remove service cards.</p>
+    <div class="where-tag">📍 Services section on the main page</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>What It Controls</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Icon (emoji)</strong></td><td>The large emoji shown at the top of each service card (e.g. 🌍)</td></tr>
+        <tr><td><strong>Title</strong></td><td>The service name (e.g. "Global Trading")</td></tr>
+        <tr><td><strong>Description</strong></td><td>A short explanation of what this service involves</td></tr>
+        <tr><td><strong>Optional Image</strong></td><td>A photo shown above the icon for richer cards (optional)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ LEADERSHIP ═══════════════════ -->
+<div class="section-block" id="leadership">
+  <h2 class="section-heading"><span class="hico">👔</span> Leadership Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Manages the <strong>Leadership / Team section</strong>. Each leader has a card with their photo, name, and role. Clicking their card opens a full profile popup with their complete bio.</p>
+    <div class="where-tag">📍 Leadership section on the main page</div>
+    <div class="where-tag">👤 Leader profile popup (modal)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>Where It Shows</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Full Name</strong></td><td>Leader's name on card and in popup</td></tr>
+        <tr><td><strong>Title / Role</strong></td><td>Job title shown under their name (e.g. "Founder & CEO")</td></tr>
+        <tr><td><strong>Short Bio</strong></td><td>One-sentence summary shown on the card</td></tr>
+        <tr><td><strong>Full Bio</strong></td><td>Complete biography shown when visitor clicks "View Profile"</td></tr>
+        <tr><td><strong>Photo</strong></td><td>Portrait photo shown on card and in popup</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ GALLERY ═══════════════════ -->
+<div class="section-block" id="gallery">
+  <h2 class="section-heading"><span class="hico">🖼</span> Gallery Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Controls the <strong>photo slideshow gallery</strong> on the main page. You can add photos with captions, delete them, and set how fast the slideshow auto-advances.</p>
+    <div class="where-tag">📍 Gallery slideshow section on the main page</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Auto-advance (seconds)</strong></td><td>How many seconds each photo stays visible before automatically moving to the next one. Set to 0 to disable auto-advance (manual only)</td></tr>
+        <tr><td><strong>Image URL / Upload</strong></td><td>The photo to add to the gallery</td></tr>
+        <tr><td><strong>Caption</strong></td><td>Optional text shown at the bottom of the photo (e.g. "Annual Summit 2024")</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+<div class="section-block" id="testimonials">
+  <h2 class="section-heading"><span class="hico">⭐</span> Testimonials Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Manages the <strong>customer review cards</strong> shown on the website. Each testimonial shows the reviewer's name, company title, a star rating, and their quote.</p>
+    <div class="where-tag">📍 Testimonials section on the main page</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<div class="section-block" id="contact">
+  <h2 class="section-heading"><span class="hico">📞</span> Contact &amp; Footer Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Controls the contact information shown on the website and in the footer, as well as the footer description and copyright text.</p>
+    <div class="where-tag">📍 Contact section (email, phone, address displayed)</div>
+    <div class="where-tag">🦶 Footer (description, copyright, links)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fields Explained</div>
+    <table>
+      <thead><tr><th>Field</th><th>Where It Shows</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Email</strong></td><td>Contact section + footer + receives all contact form submissions and order emails</td></tr>
+        <tr><td><strong>Phone</strong></td><td>Contact section and footer</td></tr>
+        <tr><td><strong>Address</strong></td><td>Contact section and footer</td></tr>
+        <tr><td><strong>Footer Description</strong></td><td>Short paragraph in the footer below the company name</td></tr>
+        <tr><td><strong>Copyright Text</strong></td><td>The "© 2025 Bista Group. All Rights Reserved." line at the very bottom</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <div class="ib-icon">📧</div>
+      <div class="ib-body">The <strong>Email address</strong> entered here is where all contact form messages and payment confirmation emails are sent. Keep it accurate.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading" id="contact-form-fields">📋 Contact Form Fields — Add &amp; Customise</h3>
+  <div class="card">
+    <div class="card-title">What Is This?</div>
+    <p>The contact form your visitors fill in is now <strong>fully customisable from the admin panel</strong>. You can add new fields (phone, company name, budget, etc.), remove ones you don't need, mark them as mandatory or optional, and reorder them — all without touching any code.</p>
+    <div class="where-tag">📍 Contact Us form on the main website</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Managing Existing Fields</div>
+    <p>Each field shows as a card in the Contact tab. For every field you can:</p>
+    <table>
+      <thead><tr><th>Control</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Enable / Disable toggle</strong></td><td>Toggle ON = field is shown on the contact form. Toggle OFF = field is hidden (but its settings are saved for later)</td></tr>
+        <tr><td><strong>Mandatory checkbox</strong></td><td>When checked, the field gets a red asterisk (*) and the form will not submit unless the visitor fills it in</td></tr>
+        <tr><td><strong>Label</strong></td><td>The text the visitor sees above the input box (e.g. "Your Name")</td></tr>
+        <tr><td><strong>Placeholder</strong></td><td>The faded hint text inside the input box before they type (e.g. "Enter your full name")</td></tr>
+        <tr><td><strong>↑ / ↓ arrows</strong></td><td>Move the field up or down in the form order</td></tr>
+        <tr><td><strong>Save</strong></td><td>Saves your label/placeholder changes</td></tr>
+        <tr><td><strong>Delete</strong></td><td>Permanently removes the field. Default fields (Name, Email, Message) should not be deleted</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Default Fields (Out of the Box)</div>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Default State</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Full Name</strong></td><td>Text</td><td>✅ Enabled, ✅ Mandatory</td></tr>
+        <tr><td><strong>Email Address</strong></td><td>Email</td><td>✅ Enabled, ✅ Mandatory</td></tr>
+        <tr><td><strong>Phone Number</strong></td><td>Tel</td><td>⛔ Disabled (enable to show)</td></tr>
+        <tr><td><strong>Subject</strong></td><td>Text</td><td>✅ Enabled, optional</td></tr>
+        <tr><td><strong>Message</strong></td><td>Textarea</td><td>✅ Enabled, ✅ Mandatory</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Adding a New Field</div>
+    <ol class="step-list">
+      <li>Scroll to the bottom of the Contact Form Fields card → click <strong>"+ Add New Field"</strong></li>
+      <li>Enter the <strong>Label</strong> (e.g. "Company Name")</li>
+      <li>Enter the <strong>Field Key</strong> — a short internal identifier, no spaces (e.g. <code>company</code>). This is used in the enquiry data</li>
+      <li>Choose the <strong>Type</strong>: Text, Email, Tel, Number, Textarea, or Select (dropdown)</li>
+      <li>Click <strong>"Add Field"</strong> — the field appears in the list enabled by default</li>
+      <li>Click <strong>Save</strong> on the field card, then Download data.json and push to GitHub</li>
+    </ol>
+    <div class="info-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">The field key (e.g. <code>company</code>) will appear in the Enquiries tab next to the submitted value. Keep it short, lowercase, and with no spaces — e.g. <code>budget</code>, <code>phone</code>, <code>company_name</code>.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ SECTIONS ═══════════════════ -->
+<div class="section-block" id="sections">
+  <h2 class="section-heading"><span class="hico">👁</span> Sections — Visibility &amp; Titles Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Two things in one tab: (1) <strong>Show or hide entire sections</strong> of the website, and (2) <strong>Rename section headings</strong>. When you hide a section, it disappears from both the page and the navigation menu automatically.</p>
+    <div class="where-tag">🌐 Entire website structure</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Section Visibility Toggles</div>
+    <table>
+      <thead><tr><th>Toggle</th><th>What Happens When OFF</th></tr></thead>
+      <tbody>
+        <tr><td><strong>About</strong></td><td>The About Us section and its nav link disappear</td></tr>
+        <tr><td><strong>Products</strong></td><td>All products and the currency bar disappear. Customers cannot buy anything</td></tr>
+        <tr><td><strong>Services</strong></td><td>The Services section disappears</td></tr>
+        <tr><td><strong>Leadership</strong></td><td>The team section disappears</td></tr>
+        <tr><td><strong>Gallery</strong></td><td>The photo slideshow disappears</td></tr>
+        <tr><td><strong>Testimonials</strong></td><td>Customer reviews disappear</td></tr>
+        <tr><td><strong>Contact</strong></td><td>The contact form and details disappear</td></tr>
+      </tbody>
+    </table>
+    <div class="warn-box">
+      <div class="ib-icon">⚠️</div>
+      <div class="ib-body">Hiding the <strong>Products</strong> section will also prevent the shopping cart from working since there are no products to add. If you just want to temporarily pause orders, a better approach is to disable the cart in the <strong>💳 Payments</strong> tab.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Section Titles</div>
+    <p>These are the heading text for each section (e.g. "Our Products" can become "Shop Now"). Changes show on the page headings and do <strong>not</strong> affect the navigation menu links.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ CUSTOM SECTIONS ═══════════════════ -->
+<div class="section-block" id="custom">
+  <h2 class="section-heading"><span class="hico">➕</span> Custom Sections Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Allows you to <strong>add entirely new sections</strong> to your website that don't exist by default — a Partners section, an Awards section, a Blog section, etc. Each custom section is also added automatically to the navigation menu.</p>
+    <div class="where-tag">📍 Inserted between Testimonials and Contact on the main page</div>
+    <div class="where-tag">🧭 Navigation menu (automatically added)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Layout Types</div>
+    <table>
+      <thead><tr><th>Layout</th><th>Best For</th><th>What It Looks Like</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Content Block</strong></td><td>Text + image sections</td><td>Image on left, two paragraphs on right (same as About section style)</td></tr>
+        <tr><td><strong>Card Grid</strong></td><td>Partners, awards, team members</td><td>Grid of photo cards with name and description</td></tr>
+        <tr><td><strong>Icon Grid</strong></td><td>Features, benefits, values</td><td>Grid of emoji + title + text cards (same as Services section style)</td></tr>
+        <tr><td><strong>Centered Text</strong></td><td>Quotes, announcements, mission statement</td><td>Single block of centered paragraph text</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ PAYMENTS ═══════════════════ -->
+<div class="section-block" id="payments">
+  <h2 class="section-heading"><span class="hico">💳</span> Payments Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>This is the <strong>complete payment and checkout control centre</strong>. Everything about how customers buy from you — currency, fees, checkout steps, payment methods, store pickup, delivery — is configured here.</p>
+  </div>
+
+  <h3 class="sub-heading">💱 Currency Settings</h3>
+  <div class="card">
+    <p>Controls the currency switcher bar shown above the products section.</p>
+    <table>
+      <thead><tr><th>Setting</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Default Currency</strong></td><td>Which currency is selected when someone first visits the site (e.g. NPR)</td></tr>
+        <tr><td><strong>Show Currency Switcher For</strong></td><td>Tick each currency you want to offer. Untick to hide that option from customers</td></tr>
+      </tbody>
+    </table>
+    <div class="where-tag">📍 Currency bar above the Products section</div>
+    <div class="info-box" style="margin-top:.6rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">Exchange rates (1 NPR = ? USD/AUD) are set in the <strong>⚙ Configuration</strong> tab under Exchange Rates.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">🏷 Processing Fee</h3>
+  <div class="card">
+    <p>An optional percentage charge added to the order total at checkout (e.g. "2% Processing fee"). Set to <strong>0</strong> to hide the fee row entirely and not charge anything extra.</p>
+    <div class="where-tag">📍 Cart sidebar totals</div>
+    <div class="where-tag">📍 Checkout order summary</div>
+  </div>
+
+  <h3 class="sub-heading">🌐 Payment Gateways</h3>
+  <div class="card">
+    <p>Each payment method can be <strong>switched On or Off independently</strong>. When switched ON, a credential input area appears for you to enter the API keys or links.</p>
+    <table>
+      <thead><tr><th>Gateway</th><th>What It Does</th><th>What You Need to Enter</th></tr></thead>
+      <tbody>
+        <tr><td><strong>✉ Contact Seller</strong></td><td>Always available. Redirects customer to your contact form to arrange payment manually. No API needed</td><td>Nothing — it is always on</td></tr>
+        <tr><td><strong>💳 Stripe</strong></td><td>Accept Visa, MasterCard, Google Pay internationally. You create a Payment Link in your Stripe dashboard and paste it here</td><td>Payment Link URL + Publishable Key</td></tr>
+        <tr><td><strong>🔴 eWay</strong></td><td>Payment gateway popular in Australia and New Zealand</td><td>API Key + Hosted Payment Page URL (from eWay dashboard)</td></tr>
+        <tr><td><strong>📲 Fonepay QR</strong></td><td>Your Fonepay QR code is shown to the customer. They scan it and pay, then click "I've Paid" to confirm</td><td>Merchant Code + QR image URL (upload to Cloudinary first)</td></tr>
+        <tr><td><strong>🟢 eSewa</strong></td><td>Nepal's most popular digital wallet. Redirects customer to eSewa's payment page</td><td>Merchant Code (use EPAYTEST for testing) + Success/Failure redirect URLs</td></tr>
+        <tr><td><strong>🟣 Khalti</strong></td><td>Khalti digital wallet (Nepal). Redirects customer to Khalti's hosted checkout</td><td>Public Key from your Khalti merchant dashboard</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">🔧</div>
+      <div class="ib-body"><strong>How to add a gateway:</strong> Click the toggle to turn it ON → fill in the credentials that appear → click "Save Gateway Settings". The payment button will immediately appear in the customer checkout.</div>
+    </div>
+    <div class="where-tag">📍 Step 3 of the customer checkout (Payment Methods screen)</div>
+  </div>
+
+  <h3 class="sub-heading">📧 Payment Confirmation Email</h3>
+  <div class="card">
+    <p>When a customer completes checkout, this sends an automatic email to your admin email address with the order details. Requires EmailJS to be configured in the Configuration tab first.</p>
+    <table>
+      <thead><tr><th>Placeholder</th><th>Replaced With</th></tr></thead>
+      <tbody>
+        <tr><td><code>{product}</code></td><td>List of items ordered</td></tr>
+        <tr><td><code>{customer}</code></td><td>Customer's name</td></tr>
+        <tr><td><code>{amount}</code></td><td>Total amount paid</td></tr>
+        <tr><td><code>{gateway}</code></td><td>Which payment method was used</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-heading">🛒 Cart Settings</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th>Setting</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Enable Shopping Cart (toggle)</strong></td><td>ON = customers see "Add to Cart" button and can shop with a cart. OFF = the cart button disappears</td></tr>
+        <tr><td><strong>Max Quantity Per Item</strong></td><td>Maximum number of the same item a customer can add to the cart (default: 10). If they need more, they are directed to Contact Seller</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-heading">🧾 Checkout Settings</h3>
+  <div class="card">
+    <p>Controls the 3-step checkout flow customers go through after clicking "Proceed to Checkout".</p>
+    <table>
+      <thead><tr><th>Setting</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Enable Checkout</strong></td><td>Master switch for the entire checkout process</td></tr>
+        <tr><td><strong>Enable Store Pickup</strong></td><td>Shows the "🏪 Store Pickup" option on Step 1 of checkout</td></tr>
+        <tr><td><strong>Enable Home Delivery</strong></td><td>Shows the "🚚 Home Delivery" option on Step 1 of checkout</td></tr>
+        <tr><td><strong>Store Locations</strong></td><td>Add your physical store(s) with name, address, and opening hours. Customers select which store to pick up from</td></tr>
+        <tr><td><strong>Delivery Providers</strong></td><td>Toggle each courier/delivery method on or off, set their charge. Customers see these options when they choose Home Delivery</td></tr>
+        <tr><td><strong>Customer Form Fields</strong></td><td>The information collected from customers during checkout (Name, Phone, Email, Address). Toggle each field on or off</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">🗺️</div>
+      <div class="ib-body"><strong>How checkout works for a customer:</strong><br>
+        Step 1 → Choose Store Pickup or Home Delivery (and select store or courier)<br>
+        Step 2 → Fill in their details (Name, Phone, Email, Address)<br>
+        Step 3 → Choose payment method and complete purchase</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ ORDERS ═══════════════════ -->
+<div class="section-block" id="orders">
+  <h2 class="section-heading"><span class="hico">📦</span> Orders Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Your <strong>order management centre</strong>. Every order placed by a customer on the website appears here with full details: who ordered, what they ordered, how much, which payment method, and current status.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Order Status Pipeline</div>
+    <p>Every order moves through a status pipeline as your team processes it:</p>
+    <div class="pipeline" style="margin:1rem 0;">
+      <div class="pipeline-step ps-1">🟡 Order Placed<span class="ps-sub">Customer checked out</span></div>
+      <div class="pipeline-step ps-2">🟠 At Warehouse<span class="ps-sub">Being processed</span></div>
+      <div class="pipeline-step ps-4r">🔵 Ready for Delivery<span class="ps-sub">Packed &amp; ready</span></div>
+      <div class="pipeline-step ps-5">🟣 Out for Delivery<span class="ps-sub">Driver dispatched</span></div>
+      <div class="pipeline-step ps-6d">🟢 Delivered<span class="ps-sub">Confirmed</span></div>
+    </div>
+    <table>
+      <thead><tr><th>Status</th><th>Meaning</th><th>Who Updates It</th></tr></thead>
+      <tbody>
+        <tr><td>🟡 Order Placed</td><td>Customer just completed checkout</td><td>Automatic</td></tr>
+        <tr><td>🟠 At Warehouse</td><td>Warehouse team has received and is processing the order</td><td>Warehouse Admin (admin-warehouse.html)</td></tr>
+        <tr><td>🔵 Ready for Delivery</td><td>Order is packed and waiting for pickup by delivery driver</td><td>Warehouse Admin</td></tr>
+        <tr><td>🔴 Not Ready</td><td>Item is out of stock or has an issue — order cannot proceed yet</td><td>Warehouse Admin</td></tr>
+        <tr><td>🟣 Out for Delivery</td><td>Driver has collected the order and is en route to customer</td><td>Delivery Admin (admin-delivery.html)</td></tr>
+        <tr><td>🟢 Delivered</td><td>Customer confirmed they received the order</td><td>Quality Admin (admin-quality.html)</td></tr>
+        <tr><td>🔴 Not Delivered</td><td>Delivery attempt failed or customer was not available</td><td>Delivery or Quality Admin</td></tr>
+        <tr><td>⚫ Cancelled</td><td>Order was cancelled</td><td>Master Admin</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">How to Use</div>
+    <ul class="bullet-list">
+      <li>Use the <strong>status filter dropdown</strong> to see orders in a specific stage</li>
+      <li>Click <strong>"View"</strong> on any order row to see full details and update its status</li>
+      <li>Add a <strong>comment</strong> when changing status (e.g. "Item out of stock — expected restock 5 Jan")</li>
+      <li>Click <strong>"⬇ Export Excel"</strong> to download all orders as a spreadsheet</li>
+      <li>Click <strong>"🔄 Refresh"</strong> to reload the latest orders from the database</li>
+    </ul>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">📌</div>
+      <div class="ib-body"><strong>Storage note:</strong> By default, orders are stored in your browser's local storage. This means orders placed on one device are only visible from that same browser. To see all orders from all customers across all devices, set up <strong>Firebase</strong> in the Configuration tab (explained in detail below).</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ ENQUIRIES ═══════════════════ -->
+<div class="section-block" id="enquiries">
+  <h2 class="section-heading"><span class="hico">✉</span> Enquiries Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Shows all messages submitted through the <strong>Contact Form</strong> on the main website. Every time a visitor fills in the contact form and sends a message, it is saved here automatically alongside the EmailJS notification.</p>
+    <div class="where-tag">📍 Contact form on the main website</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">What You Can Do Here</div>
+    <ul class="bullet-list">
+      <li>View all enquiry messages with sender name, email, subject, and message</li>
+      <li>See the date each enquiry was submitted</li>
+      <li>Export all enquiries to Excel for follow-up tracking</li>
+    </ul>
+    <div class="info-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">Unlike orders, enquiries cannot be "processed" or have status updates — they are a read-only inbox. Reply to customers directly from your email client using the email address shown in each row.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ USERS TAB ═══════════════════ -->
+<div class="section-block" id="users">
+  <h2 class="section-heading"><span class="hico">👤</span> Users Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>The Users tab is the <strong>central hub for all user management</strong>. It has two sub-panels accessible via the tabs at the top:</p>
+    <table>
+      <thead><tr><th>Sub-Tab</th><th>Who It Shows</th><th>What You Can Do</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>👥 Customer Accounts</strong></td>
+          <td>All visitors who have registered an account on the website (via Sign Up or Google Sign-In)</td>
+          <td>Browse, search, and delete customer accounts</td>
+        </tr>
+        <tr>
+          <td><strong>🛡 Admin Users</strong></td>
+          <td>Your internal staff who log in to the admin or role portals</td>
+          <td>Create, edit, disable, and delete admin accounts with specific roles</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-heading">👥 Customer Accounts Sub-Tab</h3>
+  <div class="card">
+    <div class="card-title">What You See</div>
+    <p>Each registered customer appears as a card showing their name, email, account status, auth provider, and registration date. Customers who signed up with Google OAuth will have their Google name.</p>
+    <table>
+      <thead><tr><th>Badge</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px;font-size:.8rem;font-weight:700;">VERIFIED</span></td><td>Customer confirmed their email address — full account access</td></tr>
+        <tr><td><span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:.8rem;font-weight:700;">UNVERIFIED</span></td><td>Registered but has not yet clicked the verification email link</td></tr>
+        <tr><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:4px;font-size:.8rem;font-weight:700;">GUEST</span></td><td>Completed a checkout as a guest — no password, email only</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">🔍</div>
+      <div class="ib-body">Use the <strong>search bar</strong> at the top to filter customers by name or email. Click <strong>"🔄 Refresh"</strong> to reload the latest list from Firebase (if connected).</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⬇ Export Customer List to Excel</div>
+    <p>Click the <strong>"⬇ Export Excel"</strong> button at the top of the Customer Accounts panel to download all customer data as a <code>.csv</code> file that opens directly in Excel, Google Sheets, or Numbers.</p>
+    <p>The exported file includes these columns:</p>
+    <table style="margin-top:.5rem;">
+      <thead><tr><th>Column</th><th>What It Contains</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Name</strong></td><td>Customer's display name</td></tr>
+        <tr><td><strong>Email</strong></td><td>Email address used to register</td></tr>
+        <tr><td><strong>Auth Provider</strong></td><td>"Email/Password" or "Google"</td></tr>
+        <tr><td><strong>Email Verified</strong></td><td>"Yes" or "No"</td></tr>
+        <tr><td><strong>Registration Date</strong></td><td>When the account was created</td></tr>
+        <tr><td><strong>Last Seen</strong></td><td>Most recent sign-in date</td></tr>
+        <tr><td><strong>User ID</strong></td><td>Firebase UID (for technical reference)</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">The file is saved as <code>customers_YYYY-MM-DD.csv</code>. It includes a UTF-8 BOM so accented characters (e.g. Nepali names) display correctly in Excel without needing any import settings.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading" id="admins">🛡 Admin Users Sub-Tab</h3>
+  <div class="card">
+    <div class="card-title">The Five Admin Roles</div>
+    <div class="role-cards">
+      <div class="role-card rc-master">
+        <h4>👑 Master Admin</h4>
+        <p>Full access. Manages all content, orders, users, configuration, and all portals.</p>
+        <div class="rc-url">admin.html</div>
+      </div>
+      <div class="role-card rc-config">
+        <h4>⚙ Config Admin</h4>
+        <p>Can edit website content (products, text, images, design) but cannot manage users or orders.</p>
+        <div class="rc-url">admin.html</div>
+      </div>
+      <div class="role-card rc-warehouse">
+        <h4>🏭 Warehouse Admin</h4>
+        <p>Can only see incoming orders and update them from "Order Placed" to "Ready" or "Not Ready".</p>
+        <div class="rc-url">admin-warehouse.html</div>
+      </div>
+      <div class="role-card rc-delivery">
+        <h4>🚚 Delivery Admin</h4>
+        <p>Can only see ready-to-deliver orders and mark them as "Out for Delivery" or "Not Delivered".</p>
+        <div class="rc-url">admin-delivery.html</div>
+      </div>
+      <div class="role-card rc-quality">
+        <h4>✅ Quality Admin</h4>
+        <p>Can confirm final delivery outcome, record customer ratings (1–5 stars), and add customer feedback.</p>
+        <div class="rc-url">admin-quality.html</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">How to Create a New Admin User</div>
+    <ol class="step-list">
+      <li>Go to the <strong>👤 Users</strong> tab → click <strong>"🛡 Admin Users"</strong> sub-tab</li>
+      <li>Fill in the form: Full Name, Username, Password, Role</li>
+      <li>Make sure "Account Enabled" is toggled ON</li>
+      <li>Click <strong>"Save Admin User"</strong></li>
+      <li>Share the login URL with the new user: <code>admin-login.html</code></li>
+      <li>They select their role chip, enter username + password, and are taken directly to their portal</li>
+    </ol>
+    <div class="warn-box" style="margin-top:.8rem;">
+      <div class="ib-icon">⚠️</div>
+      <div class="ib-body">The <strong>Master Admin (admin/bista2025)</strong> account is protected and cannot be deleted. To add more master admins, create a new user with the "Master Admin" role.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ CONFIGURATION ═══════════════════ -->
+<div class="section-block" id="config">
+  <h2 class="section-heading"><span class="hico">⚙</span> Configuration Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>The <strong>technical backbone of your website</strong>. Here you choose where orders are stored (local browser, Firebase cloud, or Supabase cloud), where images are uploaded, how emails are sent, and your currency exchange rates.</p>
+  </div>
+
+  <h3 class="sub-heading">🗄 Data Backend — The Most Important Setting</h3>
+  <div class="card">
+    <p>This controls <strong>where customer orders and enquiries are saved</strong>. There are three options. Each is explained in full detail in the <a href="#backend" style="color:var(--accent);">Backend Deep Dive section below</a>.</p>
+    <div class="backend-cards">
+      <div class="backend-card local">
+        <div class="bc-icon">💾</div>
+        <h4>Local Storage</h4>
+        <div class="bc-tag setup">No setup needed</div>
+        <p>Saves data in the browser. Works out of the box. Best for getting started.</p>
+        <div class="bc-check">
+          <span class="yes">Works immediately</span>
+          <span class="no">Orders only on your browser</span>
+          <span class="no">Not shared with team</span>
+        </div>
+      </div>
+      <div class="backend-card firebase">
+        <div class="bc-icon">🔥</div>
+        <h4>Firebase</h4>
+        <div class="bc-tag recommended">Recommended for production</div>
+        <p>Google's cloud database. Free plan handles thousands of orders.</p>
+        <div class="bc-check">
+          <span class="yes">All orders in one place</span>
+          <span class="yes">All team members see same data</span>
+          <span class="yes">Free tier available</span>
+        </div>
+      </div>
+      <div class="backend-card supabase">
+        <div class="bc-icon">⚡</div>
+        <h4>Supabase</h4>
+        <div class="bc-tag setup">Requires setup</div>
+        <p>Open-source alternative to Firebase. Also free for low usage.</p>
+        <div class="bc-check">
+          <span class="yes">All orders shared</span>
+          <span class="yes">Free tier available</span>
+          <span class="partial">PostgreSQL knowledge helpful</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">☁ Media Storage</h3>
+  <div class="card">
+    <p>Controls where uploaded images (products, gallery, logos) are stored.</p>
+    <table>
+      <thead><tr><th>Option</th><th>When to Use</th><th>Setup Required</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>☁ Cloudinary</strong></td>
+          <td>When your site is on GitHub Pages or you want images hosted on a CDN (faster loading)</td>
+          <td>Free account at cloudinary.com → get Cloud Name and Upload Preset</td>
+        </tr>
+        <tr>
+          <td><strong>🪣 AWS S3</strong></td>
+          <td>Enterprise use — when you need full control over your own S3 bucket</td>
+          <td>AWS account + S3 bucket + IAM credentials</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">When running <strong>server.py locally</strong>, image uploads go directly to your <code>assets/images/</code> folder — no Cloudinary needed. Cloudinary is only needed for GitHub Pages hosting.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading" id="auth-config">🔐 Auth Configuration — User Accounts</h3>
+  <div class="card">
+    <div class="card-title">What Is This?</div>
+    <p>Two cards in the Configuration tab control your customer-facing accounts system. Both are <strong>ON by default</strong> — the Sign In button and Google Sign-In button appear on your website out of the box. You can turn either off if you don't need them.</p>
+    <div class="success-box" style="margin-top:.6rem;">
+      <div class="ib-icon">✅</div>
+      <div class="ib-body">The Sign In / Sign Up button and the Google Sign-In option are <strong>enabled by default</strong> — no admin setup required to see them on your website. Firebase Authentication is needed for sign-in to actually work.</div>
+    </div>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">⚡</div>
+      <div class="ib-body"><strong>Instant effect on the same device.</strong> When you toggle the Sign In button or Google Sign-In ON/OFF and click Save, the setting is also written to your browser's local storage. The <em>next time the main website loads in the same browser</em>, the change takes effect immediately — no need to download and replace <code>data.json</code> first. To publish the change to all visitors on all devices, still download and commit <code>data.json</code> as usual.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Card 1 — Show Sign In / Sign Up Button</div>
+    <p>Controls whether the Sign In button appears in the navigation bar at all.</p>
+    <table>
+      <thead><tr><th>State</th><th>What Visitors See</th><th>When to Use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ON (default)</strong></td><td>Sign In button in top-right nav. Visitors can create accounts, sign in, access their profile</td><td>Most sites — always recommended</td></tr>
+        <tr><td><strong>OFF</strong></td><td>Button completely hidden. Website acts as a public catalogue only</td><td>If you never want customer accounts (e.g. pure info site)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:.8rem;font-size:.875rem;color:var(--muted);">When ON, you also control these sub-options:</p>
+    <table style="margin-top:.4rem;">
+      <thead><tr><th>Sub-toggle</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Require Email Verification</strong></td><td>New accounts must click a verification link before they are fully active. Prevents fake sign-ups</td></tr>
+        <tr><td><strong>Allow Guest Checkout</strong></td><td>When ON (recommended), customers can choose "Continue as Guest" at checkout without creating an account</td></tr>
+      </tbody>
+    </table>
+    <div class="warn-box" style="margin-top:.8rem;">
+      <div class="ib-icon">⚠️</div>
+      <div class="ib-body">Turning this OFF hides the entire accounts system. Existing customer accounts are preserved in Firebase — turning it back ON restores them.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Card 2 — Google Sign-In (OAuth)</div>
+    <p>Controls the <strong>"Continue with Google"</strong> button that appears on both Sign In and Sign Up forms. <strong>ON by default</strong>.</p>
+    <table>
+      <thead><tr><th>State</th><th>What Happens</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ON (default)</strong></td><td>A Google button appears in the auth modal. Customers sign in with one click — no password needed. Firebase handles the entire OAuth flow</td></tr>
+        <tr><td><strong>OFF</strong></td><td>Google button hidden. Only email + password sign-in is available</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body"><strong>No Google Client ID or API keys are needed.</strong> Firebase handles Google OAuth completely. The only setup required is enabling the Google provider in your Firebase Console (see steps below).</div>
+    </div>
+    <div class="card-title" style="margin-top:1rem;">⚡ Test Google Connection Button</div>
+    <p style="font-size:.875rem;color:var(--muted);">Clicking <strong>"Test Google Connection"</strong> in the admin panel checks that Firebase Authentication is reachable with your API key. A green result confirms the endpoint is working. If Google Sign-In fails during actual use, it means the Google provider isn't enabled in Firebase Console yet (follow setup steps below).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Setting Up Firebase Authentication (One-Time, ~5 minutes)</div>
+    <p>The Sign In button and Google button will be <em>visible</em> immediately. For sign-in to actually work, you need to enable providers in Firebase:</p>
+    <ol class="step-list">
+      <li>Go to <strong>console.firebase.google.com</strong> → select your project</li>
+      <li>Left sidebar → <strong>Authentication</strong> → <strong>Get started</strong></li>
+      <li>Sign-in method tab → click <strong>Email/Password</strong> → Enable → Save</li>
+      <li>Click <strong>Google</strong> → Enable → add your Gmail as support email → Save</li>
+      <li>Click <strong>Settings</strong> tab → <strong>Authorized domains</strong> → <strong>Add domain</strong> → enter your GitHub Pages domain (e.g. <code>yourname.github.io</code>)</li>
+      <li>Back in admin panel → <strong>⚡ Test Firebase Auth Connection</strong> to confirm it works</li>
+    </ol>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">If you have already set up Firebase for orders (data backend), authentication uses the same project and API key — no extra setup for that part.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sign-Up Form Fields</div>
+    <p>Customise what extra information customers provide when creating an account (below the Email + Password fields).</p>
+    <table>
+      <thead><tr><th>Default Field</th><th>Default State</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Full Name</strong></td><td>✅ Enabled, Mandatory</td></tr>
+        <tr><td><strong>Phone Number</strong></td><td>✅ Enabled, Optional</td></tr>
+      </tbody>
+    </table>
+    <ul class="bullet-list" style="margin-top:.8rem;">
+      <li>Toggle each field Required / Optional via the checkbox</li>
+      <li>Toggle each field Enabled / Disabled via the toggle switch</li>
+      <li>Delete fields you don't need (Full Name cannot be deleted)</li>
+      <li>Click <strong>"+ Add Field"</strong> to add more (e.g. Company, Date of Birth)</li>
+    </ul>
+    <div class="info-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">Google Sign-In users skip the sign-up form — Google provides their name and email automatically.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">📧 EmailJS Configuration</h3>
+  <div class="card">
+    <p>Required for two features: (1) the <strong>Contact Form</strong> sending messages to you, and (2) the <strong>Payment Confirmation Email</strong> notifying you of orders.</p>
+    <ol class="step-list">
+      <li>Create a free account at <strong>emailjs.com</strong></li>
+      <li>Add an email service (Gmail, Outlook, etc.) → copy the <strong>Service ID</strong></li>
+      <li>Create an email template → copy the <strong>Template ID</strong></li>
+      <li>Go to Account → copy your <strong>Public Key</strong></li>
+      <li>Paste all three into the Configuration tab → click "Save EmailJS"</li>
+    </ol>
+    <div class="warn-box">
+      <div class="ib-icon">⚠️</div>
+      <div class="ib-body">Without EmailJS configured, the contact form will show an error and no confirmation emails will be sent. Orders still save normally — it only affects email notifications.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">💱 Exchange Rates</h3>
+  <div class="card">
+    <p>Enter the current conversion rates from NPR (Nepalese Rupee) to other currencies. These rates affect how prices are displayed when a customer switches currency on the website.</p>
+    <table>
+      <thead><tr><th>Field</th><th>Meaning</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1 NPR → AUD</strong></td><td>How many Australian Dollars equals 1 Rupee</td><td>0.012 (meaning रू 100 = A$1.20)</td></tr>
+        <tr><td><strong>1 NPR → USD</strong></td><td>How many US Dollars equals 1 Rupee</td><td>0.0075 (meaning रू 100 = $0.75)</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">Update these rates periodically to keep prices accurate. Check the current rate at <strong>xe.com</strong> or Google "NPR to USD".</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ DESIGN ═══════════════════ -->
+<div class="section-block" id="design">
+  <h2 class="section-heading"><span class="hico">🎨</span> Design Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Controls the <strong>overall visual layout, navigation style, and typography</strong> of your website. Changes here affect the entire site structure and appearance.</p>
+    <table>
+      <thead><tr><th>Setting</th><th>Options</th><th>What It Changes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Layout Style</strong></td><td>8 options (see below)</td><td>Overall visual structure and personality of the entire site</td></tr>
+        <tr><td><strong>Hero Text Alignment</strong></td><td>Centered / Left Aligned</td><td>Whether the hero title and subtitle are centered or left-aligned</td></tr>
+        <tr><td><strong>Navigation Style</strong></td><td>Top / Sidebar Left / Sidebar Right / Floating</td><td>Where the navigation bar sits on the page</td></tr>
+        <tr><td><strong>Card Style</strong></td><td>Shadow / Flat / Glass</td><td>How product and service cards look — Shadow has depth, Flat is minimal, Glass has a translucent effect</td></tr>
+        <tr><td><strong>Nav Visibility</strong></td><td>Always Show / Auto-Hide</td><td>Auto-Hide makes the nav disappear when scrolling down and reappear when scrolling up</td></tr>
+        <tr><td><strong>Nav Hover Animation</strong></td><td>Simple / Underline Slide / Glow / Fill Pill</td><td>The animation on navigation links when the mouse hovers over them</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-heading">🖼 Layout Styles — All 8 Options</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th>Layout</th><th>Visual Character</th><th>Best For</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Default</strong></td><td>Standard dark-gradient site with rectangular cards and balanced spacing</td><td>General use — professional and versatile</td></tr>
+        <tr><td><strong>Minimal</strong></td><td>Lighter borders, reduced visual weight, clean appearance</td><td>Clean B2B or professional services</td></tr>
+        <tr><td><strong>Bold</strong></td><td>High contrast, stronger gradient hero, more visual impact</td><td>E-commerce and product-focused brands</td></tr>
+        <tr><td><strong>🌿 Organic / Anti-Grid</strong></td><td>Curved hero clip-path, rounded asymmetric card corners (24px/6px alternating), flowing section dividers</td><td>Wellness, food, creative brands — natural and approachable</td></tr>
+        <tr><td><strong>🔲 Bento Grid</strong></td><td>Mosaic grid layout — featured product cards span 2 rows, first service spans 2 columns. Inspired by Apple-style grids</td><td>Modern tech, portfolio, product showcases</td></tr>
+        <tr><td><strong>🌌 Immersive 3D</strong></td><td>Perspective transforms on the hero content, product cards tilt in 3D on hover with deep shadows</td><td>Gaming, tech, luxury — high-impact experiences</td></tr>
+        <tr><td><strong>⬛ Neo-Brutalist</strong></td><td>Hard white borders, solid box-shadows (no blur), no border-radius, uppercase section titles, black/white palette</td><td>Art, design studios, bold modern brands</td></tr>
+        <tr><td><strong>⬜ Modern Minimalism</strong></td><td>Light off-white background (#f8f9fc), dark text, white product cards, thin borders, clean whitespace</td><td>Premium / luxury, consultancy, Scandinavian aesthetic</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">Each layout has a <strong>visual preview thumbnail</strong> in the admin panel showing you exactly what the structure will look like before you apply it. Click the thumbnail to select, then click <strong>"Save All Design Settings"</strong>.</div>
+    </div>
+    <div class="success-box" style="margin-top:.8rem;">
+      <div class="ib-icon">🎨</div>
+      <div class="ib-body"><strong>Design changes apply everywhere — including Sign In modal and Profile panel.</strong> When you switch to Brutalist, the auth box gets hard white borders and sharp corners. Minimalism switches it to a white card with dark text. Organic gives it curved asymmetric corners. Immersive adds a subtle 3D tilt. Typography font settings also apply inside auth and profile panels automatically.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading" id="typography">🔤 Typography &amp; Fonts</h3>
+  <div class="card">
+    <div class="card-title">What Is This?</div>
+    <p>Full control over all text appearance on your website — without touching any code. Typography settings are at the <strong>top of the Design tab</strong>.</p>
+    <table>
+      <thead><tr><th>Setting</th><th>What It Controls</th><th>How to Use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Heading Font</strong></td><td>Font used for all titles, section headings, product names</td><td>Select from the dropdown — includes Google Fonts (Playfair Display, Montserrat, Poppins, Roboto Slab, Raleway, Lato, Oswald, Nunito, Merriweather) and system fonts</td></tr>
+        <tr><td><strong>Body Font</strong></td><td>Font used for all paragraph text, labels, descriptions</td><td>Same dropdown as Heading Font — can be the same or different</td></tr>
+        <tr><td><strong>Base Font Size</strong></td><td>The root size all other text is relative to (default: 16px)</td><td>Drag the slider — range: 13px–22px</td></tr>
+        <tr><td><strong>Heading Scale</strong></td><td>How large the biggest headings are relative to body text (default: 2.5)</td><td>Drag the slider — range: 1.8×–4×</td></tr>
+        <tr><td><strong>Line Height</strong></td><td>Space between lines of text (default: 1.7)</td><td>Drag the slider — range: 1.2–2.2</td></tr>
+        <tr><td><strong>Letter Spacing</strong></td><td>Extra space between individual characters (default: 0)</td><td>Drag the slider — range: -1px to +4px</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">A <strong>live preview box</strong> in the admin panel shows your heading and body text updating in real time as you drag the sliders. Google Fonts are loaded automatically — no separate setup needed. After saving, download data.json and push to GitHub to make it live.</div>
+    </div>
+    <ol class="step-list" style="margin-top:.8rem;">
+      <li>Select your <strong>Heading Font</strong> and <strong>Body Font</strong> from the dropdowns</li>
+      <li>Adjust the sliders for size, scale, line height, and letter spacing</li>
+      <li>Check the <strong>Preview box</strong> to confirm the look</li>
+      <li>Click <strong>"Save Typography"</strong></li>
+      <li>Download data.json → push to GitHub → your font changes go live</li>
+    </ol>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ THEME ═══════════════════ -->
+<div class="section-block" id="theme">
+  <h2 class="section-heading"><span class="hico">🎭</span> Theme Tab</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This Tab?</div>
+    <p>Controls the <strong>colour scheme</strong> of the entire website, plus the all-important <strong>Download data.json</strong> button.</p>
+    <table>
+      <thead><tr><th>Setting</th><th>What It Changes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Primary (Blue)</strong></td><td>Main brand colour — buttons, headings, nav bar</td></tr>
+        <tr><td><strong>Secondary (Red)</strong></td><td>Accent colour — badge, dividers, some highlights</td></tr>
+        <tr><td><strong>Background</strong></td><td>The dark background colour of the entire page</td></tr>
+        <tr><td><strong>Accent</strong></td><td>Interactive element colour — links, hover states, progress</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="background:#eff6ff;border-color:#bfdbfe;">
+    <div class="card-title">📦 Publishing Changes — The Most Important Button</div>
+    <p>After making any content changes in the admin panel, click <strong>"⬇ Download data.json"</strong>. This downloads your updated content file. Then:</p>
+    <ol class="step-list" style="margin-top:.8rem;">
+      <li>Open your project folder on your computer</li>
+      <li>Replace the old <code>data.json</code> file with the newly downloaded one</li>
+      <li>Commit and push to GitHub</li>
+      <li>Your changes go live within 1–2 minutes</li>
+    </ol>
+    <div class="warn-box" style="margin-top:.8rem;">
+      <div class="ib-icon">⚠️</div>
+      <div class="ib-body"><strong>Do not skip this step.</strong> Changes you make in the admin panel are stored temporarily in your browser. They are only permanent and visible to all visitors after you download data.json and push it to GitHub.</div>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fef2f2;border-color:#fecaca;">
+    <div class="card-title">⚠️ Danger Zone — Reset Everything</div>
+    <p>The <strong>"🔄 Reset Everything to Default"</strong> button wipes all your customisations and restores factory settings. It requires your admin password to confirm. <strong>This cannot be undone.</strong> Only use this if you want to start completely fresh.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ USER AUTH ═══════════════════ -->
+<div class="section-block" id="user-auth">
+  <h2 class="section-heading"><span class="hico">🔐</span> User Accounts — Customer Sign In &amp; Sign Up</h2>
+
+  <div class="card">
+    <div class="card-title">Overview</div>
+    <p>When User Accounts is enabled (Configuration tab → Auth Configuration), a <strong>Sign In</strong> button appears in the top-right corner of the navigation bar on your website. Customers can create an account, sign in, and access their profile, order history, and favourites.</p>
+    <div class="where-tag">🧭 Navigation bar (top-right)</div>
+    <div class="where-tag">📍 Auth modal (sign in / sign up overlay)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">The Authentication Flow — What Customers Experience</div>
+    <table>
+      <thead><tr><th>Action</th><th>What Happens</th></tr></thead>
+      <tbody>
+        <tr><td>Click <strong>"Sign In"</strong> button in nav</td><td>A modal overlay opens with email + password fields and a "Continue with Google" button</td></tr>
+        <tr><td>New user clicks <strong>"Create account"</strong></td><td>Sign-up form appears (name, email, password + any extra fields you configured)</td></tr>
+        <tr><td>After sign-up (email verification ON)</td><td>A verification email is sent. The account is pending until they click the link</td></tr>
+        <tr><td>After sign-up (email verification OFF)</td><td>Account is immediately active — they are signed in straight away</td></tr>
+        <tr><td>Click <strong>"Continue with Google"</strong></td><td>Google's OAuth popup opens. After approving, they are signed in — no password needed</td></tr>
+        <tr><td>Signed in — nav button changes</td><td>The "Sign In" button changes to show their name/avatar and turns blue to indicate they're logged in</td></tr>
+        <tr><td>Click their name/avatar</td><td>The <strong>User Profile Panel</strong> slides in from the right</td></tr>
+        <tr><td>Click <strong>"Sign Out"</strong></td><td>They are logged out, button returns to "Sign In"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Password Reset</div>
+    <p>Customers can click <strong>"Forgot password?"</strong> on the sign-in screen. They enter their email and receive a password-reset link from Firebase Authentication. No configuration needed — Firebase handles the email automatically.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ USER PROFILE ═══════════════════ -->
+<div class="section-block" id="user-profile">
+  <h2 class="section-heading"><span class="hico">👤</span> User Profile Panel &amp; Favourites</h2>
+
+  <div class="card">
+    <div class="card-title">What Is the Profile Panel?</div>
+    <p>A <strong>full-screen side panel</strong> that slides in from the right when a signed-in customer clicks their name in the navigation bar. Designed like Amazon or Shopify's account area — modern, clean, and functional.</p>
+    <div class="where-tag">📍 Slides over the website from the right side</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Profile Tab — Overview</div>
+    <p>The first tab customers see when they open their profile. Shows a summary of their activity:</p>
+    <ul class="bullet-list">
+      <li><strong>Avatar</strong> — their initials (or Google profile photo if signed in with Google)</li>
+      <li><strong>Name &amp; email</strong> — their account details</li>
+      <li><strong>Stats grid</strong> — Total Orders, Favourites count, Member Since date</li>
+      <li><strong>Recent orders</strong> — their last 3 orders with status badges</li>
+      <li><strong>Email verification banner</strong> — shown if their email is not yet verified, with a Resend button</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Orders Tab</div>
+    <p>Shows the <strong>full order history</strong> for the signed-in customer. Each row includes:</p>
+    <ul class="bullet-list">
+      <li>Order ID, date placed, item count, and total amount</li>
+      <li>Current status badge (e.g. 🟡 Order Placed, 🟢 Delivered)</li>
+      <li>Delivery method (Home Delivery / Store Pickup)</li>
+    </ul>
+    <div class="info-box">
+      <div class="ib-icon">📌</div>
+      <div class="ib-body">Order history requires <strong>Firebase to be connected</strong>. With Local Storage backend, orders are saved in the browser and may not match across devices.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❤ Favourites Tab</div>
+    <p>Shows all products the customer has saved as a favourite. Customers add favourites by clicking the <strong>heart icon</strong> on any product card on the main website.</p>
+    <ul class="bullet-list">
+      <li>Favourites are saved to their Firebase account — available from any device</li>
+      <li>Clicking a favourited product card opens the product detail view</li>
+      <li>Clicking the heart again removes it from favourites</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Settings Tab</div>
+    <p>Lets customers update their account details:</p>
+    <ul class="bullet-list">
+      <li><strong>Display Name</strong> — update the name shown in the nav and profile</li>
+      <li><strong>Change Password</strong> — enter current password then new password (email/password accounts only)</li>
+      <li><strong>Save Settings</strong> — updates their Firebase profile</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ GUEST CHECKOUT ═══════════════════ -->
+<div class="section-block" id="guest-checkout">
+  <h2 class="section-heading"><span class="hico">🛒</span> Guest Checkout</h2>
+
+  <div class="card">
+    <div class="card-title">What Is This?</div>
+    <p>When <strong>User Accounts is ON</strong> and <strong>Allow Guest Checkout is ON</strong>, customers who are not signed in will see a <strong>choice overlay</strong> when they click "Proceed to Checkout". This gives them two options:</p>
+    <table>
+      <thead><tr><th>Option</th><th>What Happens</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Create an Account / Sign In</strong></td>
+          <td>Opens the auth modal. Once signed in, checkout proceeds and the order is linked to their account (visible in their Orders tab)</td>
+        </tr>
+        <tr>
+          <td><strong>Continue as Guest</strong></td>
+          <td>Skips authentication entirely. The regular 3-step checkout proceeds as normal. The order is saved but not linked to any user account</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">💡</div>
+      <div class="ib-body">If <strong>Allow Guest Checkout is OFF</strong> and User Accounts is ON, customers <em>must</em> be signed in to complete a purchase. This is useful if you want all orders to be linked to accounts — but it reduces conversion for first-time buyers who don't want to register.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recommended Setting</div>
+    <p>For most businesses:</p>
+    <ul class="bullet-list">
+      <li>Enable <strong>User Accounts</strong> so customers can register and track orders</li>
+      <li>Enable <strong>Allow Guest Checkout</strong> so you don't lose sales from visitors who just want to buy quickly</li>
+      <li>Enable <strong>Google Sign-In</strong> — it's the fastest way for customers to register (one click, no password)</li>
+      <li>Enable <strong>Email Verification</strong> only if you need to prevent fake accounts</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ BACKEND DEEP DIVE ═══════════════════ -->
+<div class="section-block" id="backend">
+  <h2 class="section-heading"><span class="hico">🗄</span> Backend Options — Full Explanation</h2>
+
+  <div class="card">
+    <div class="card-title">Why Does This Matter?</div>
+    <p>Your website needs to store orders and enquiries somewhere. The backend setting determines <em>where</em> that data lives and <em>who</em> can see it. This is the single most important technical decision for running the business side of your website.</p>
+  </div>
+
+  <h3 class="sub-heading">Option 1 — 💾 Local Storage (Default)</h3>
+  <div class="card">
+    <div class="card-title">What Happens</div>
+    <p>Data is saved inside the visitor's browser on their own device. Think of it like a notebook that only exists on that one computer.</p>
+    <table>
+      <thead><tr><th>Scenario</th><th>What Happens</th></tr></thead>
+      <tbody>
+        <tr><td>Customer A orders from their phone</td><td>Order saved in Customer A's phone browser</td></tr>
+        <tr><td>You open admin panel on your laptop</td><td><strong>You see Customer A's order only if you use the same browser</strong></td></tr>
+        <tr><td>Your warehouse manager opens admin</td><td>They see a different (their own) local storage — empty</td></tr>
+        <tr><td>You clear your browser cache</td><td>All orders are permanently deleted</td></tr>
+      </tbody>
+    </table>
+    <div class="success-box" style="margin-top:.8rem;">
+      <div class="ib-icon">✅</div>
+      <div class="ib-body"><strong>Best for:</strong> Testing the system, learning how it works, single-admin operations where you want to track your own enquiries only.</div>
+    </div>
+    <div class="danger-box">
+      <div class="ib-icon">❌</div>
+      <div class="ib-body"><strong>Not suitable for:</strong> Real customer orders that need to be shared with a warehouse team, or any production use where orders must not be lost.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">Option 2 — 🔥 Firebase (Recommended)</h3>
+  <div class="card">
+    <div class="card-title">What It Is</div>
+    <p>Firebase Firestore is a <strong>cloud database made by Google</strong>. All orders and enquiries are saved to Google's servers and can be viewed from any browser, any device, anywhere in the world — instantly.</p>
+
+    <div class="card-title" style="margin-top:1rem;">What Happens When Firebase Is ON</div>
+    <table>
+      <thead><tr><th>Scenario</th><th>With Firebase</th></tr></thead>
+      <tbody>
+        <tr><td>Customer orders from their phone</td><td>✅ Order saved to Firebase cloud immediately</td></tr>
+        <tr><td>You open admin on your laptop</td><td>✅ You see the order within seconds</td></tr>
+        <tr><td>Warehouse manager opens admin-warehouse.html</td><td>✅ They also see the same order</td></tr>
+        <tr><td>You close your browser</td><td>✅ Order still exists safely in Firebase</td></tr>
+        <tr><td>1000 customers order in a day</td><td>✅ All orders visible (free tier: 50K reads/day)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card-title" style="margin-top:1rem;">How to Set Up Firebase (15 minutes, free)</div>
+    <ol class="step-list">
+      <li>Go to <strong>console.firebase.google.com</strong> and sign in with your Google account</li>
+      <li>Click <strong>"Create a project"</strong> → give it a name (e.g. "bista-group") → Continue</li>
+      <li>In the left sidebar, click <strong>Firestore Database</strong> → <strong>Create database</strong></li>
+      <li>Choose <strong>Start in test mode</strong> (you can add security rules later) → select a region close to Nepal (e.g. asia-south1) → Enable</li>
+      <li>Click the <strong>⚙ Settings gear</strong> → Project Settings → scroll down to "Your apps" → click <strong>Web (&lt;/&gt;)</strong> icon</li>
+      <li>Give the app a nickname → click <strong>Register app</strong></li>
+      <li>You will see a block of code with your configuration. Copy these values:</li>
+    </ol>
+    <table style="margin-top:.5rem;">
+      <thead><tr><th>Config Key</th><th>Where to Paste in Admin</th></tr></thead>
+      <tbody>
+        <tr><td><code>apiKey</code></td><td>Configuration tab → Firebase → API Key</td></tr>
+        <tr><td><code>projectId</code></td><td>Configuration tab → Firebase → Project ID</td></tr>
+        <tr><td><code>authDomain</code></td><td>Configuration tab → Firebase → Auth Domain</td></tr>
+        <tr><td><code>storageBucket</code></td><td>Configuration tab → Firebase → Storage Bucket</td></tr>
+        <tr><td><code>appId</code></td><td>Configuration tab → Firebase → App ID</td></tr>
+      </tbody>
+    </table>
+    <ol class="step-list" style="margin-top:.8rem; counter-reset:steps 8;">
+      <li>In admin panel → <strong>⚙ Configuration tab</strong> → select <strong>Firebase</strong> radio button</li>
+      <li>Paste all the values → click <strong>"Save Backend Config"</strong></li>
+      <li>Refresh the page → from now on, all orders save to Firebase</li>
+    </ol>
+
+    <div class="success-box" style="margin-top:.8rem;">
+      <div class="ib-icon">✅</div>
+      <div class="ib-body"><strong>Firebase Free Tier (Spark Plan) includes:</strong> 50,000 document reads/day, 20,000 writes/day, 1 GB storage. This is <strong>more than enough</strong> for a growing business. You only pay if you exceed these limits consistently.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">Option 3 — ⚡ Supabase</h3>
+  <div class="card">
+    <div class="card-title">What It Is</div>
+    <p>Supabase is an <strong>open-source alternative to Firebase</strong>, built on PostgreSQL (a powerful database). It offers similar cloud-sync features with a generous free tier.</p>
+    <div class="card-title" style="margin-top:1rem;">How to Set Up Supabase</div>
+    <ol class="step-list">
+      <li>Create a free account at <strong>supabase.com</strong></li>
+      <li>Create a new project → choose a region and set a database password</li>
+      <li>Wait 2 minutes for the project to be created</li>
+      <li>Go to <strong>Project Settings → API</strong></li>
+      <li>Copy the <strong>Project URL</strong> and <strong>anon/public key</strong></li>
+      <li>In admin → Configuration tab → select Supabase → paste both values → Save</li>
+      <li>Create tables in Supabase: <code>orders</code>, <code>enquiries</code>, <code>admins</code> (with columns matching the order object structure)</li>
+    </ol>
+    <div class="warn-box">
+      <div class="ib-icon">⚠️</div>
+      <div class="ib-body">Supabase requires you to manually create database tables. <strong>Firebase is recommended</strong> for non-technical users as it requires no table setup — it creates everything automatically.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">Summary: Which Backend Should You Choose?</h3>
+  <div class="card">
+    <table>
+      <thead><tr><th>Your Situation</th><th>Recommended Backend</th></tr></thead>
+      <tbody>
+        <tr><td>Just testing the system / learning</td><td>💾 Local Storage (default)</td></tr>
+        <tr><td>Running a real business with real customers</td><td>🔥 Firebase</td></tr>
+        <tr><td>You have a technical team and prefer open-source</td><td>⚡ Supabase</td></tr>
+        <tr><td>Multiple staff need to see orders simultaneously</td><td>🔥 Firebase</td></tr>
+        <tr><td>Small volume, single admin, just contact enquiries</td><td>💾 Local Storage is fine</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ ROLE PORTALS ═══════════════════ -->
+<div class="section-block" id="roles">
+  <h2 class="section-heading"><span class="hico">🔑</span> Role-Based Admin Portals</h2>
+
+  <div class="card">
+    <div class="card-title">Overview</div>
+    <p>Instead of giving everyone the full admin panel (which could be overwhelming or risk accidental changes), you can create separate logins for each staff member with access to <strong>only what they need</strong>.</p>
+    <table>
+      <thead><tr><th>Portal</th><th>URL</th><th>Who Uses It</th><th>What They Can Do</th></tr></thead>
+      <tbody>
+        <tr><td>🔑 Shared Login</td><td><code>admin-login.html</code></td><td>All role admins</td><td>Select their role, log in, get redirected to their portal</td></tr>
+        <tr><td>🏭 Warehouse Portal</td><td><code>admin-warehouse.html</code></td><td>Warehouse/packing staff</td><td>See new orders, mark as At Warehouse / Ready / Not Ready with comments</td></tr>
+        <tr><td>🚚 Delivery Portal</td><td><code>admin-delivery.html</code></td><td>Dispatch / drivers team</td><td>See ready-to-ship orders, mark as Out for Delivery or Not Delivered</td></tr>
+        <tr><td>✅ Quality Portal</td><td><code>admin-quality.html</code></td><td>Customer service / QC</td><td>Confirm delivery, record customer rating (1–5 stars) and feedback notes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">How an Order Flows Through the Team</div>
+    <ol class="step-list">
+      <li><strong>Customer</strong> places an order on the website → Status: 🟡 Order Placed</li>
+      <li><strong>Warehouse Admin</strong> sees it in their portal → processes the items → updates to 🟠 At Warehouse</li>
+      <li>Once packed → Warehouse Admin marks it 🔵 Ready for Delivery</li>
+      <li><strong>Delivery Admin</strong> sees the ready order → dispatches driver → marks 🟣 Out for Delivery</li>
+      <li><strong>Quality Admin</strong> confirms delivery was received → marks 🟢 Delivered → records customer feedback</li>
+      <li><strong>Master Admin</strong> can see the full history of all status changes with timestamps and who made each update</li>
+    </ol>
+    <div class="info-box" style="margin-top:.8rem;">
+      <div class="ib-icon">📌</div>
+      <div class="ib-body">All portals show <strong>live stats</strong> at the top (e.g. "5 Ready for Delivery", "2 Not Delivered") so staff can quickly see their workload without scrolling through tables.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ PUBLISHING ═══════════════════ -->
+<div class="section-block" id="publishing">
+  <h2 class="section-heading"><span class="hico">🚀</span> Publishing Changes to the Live Website</h2>
+
+  <div class="card">
+    <div class="card-title">The Two Types of Changes</div>
+    <table>
+      <thead><tr><th>Type of Change</th><th>Examples</th><th>How to Publish</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Content Changes</strong></td>
+          <td>Products, prices, text, images, theme colors, payment gateways, design</td>
+          <td>Admin Panel → edit → <strong>Download data.json</strong> → replace file → push to GitHub</td>
+        </tr>
+        <tr>
+          <td><strong>Order/Enquiry Data</strong></td>
+          <td>New orders from customers, enquiry submissions, status updates</td>
+          <td>Automatic — saves directly to local storage or Firebase. <strong>No download needed</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Step-by-Step: Publishing Content Changes</div>
+    <ol class="step-list">
+      <li>Open admin panel (<code>admin.html</code>) — either locally or on GitHub Pages</li>
+      <li>Make your changes in the relevant tab (e.g. update a product price)</li>
+      <li>Click the <strong>Save</strong> button in that tab (e.g. "Save Product")</li>
+      <li>Go to the <strong>Theme</strong> tab → click <strong>"⬇ Download data.json"</strong></li>
+      <li>A file called <code>data.json</code> will download to your computer</li>
+      <li>Open your project folder → delete the old <code>data.json</code> → move the new one in</li>
+      <li>Open GitHub Desktop (or terminal) → commit with a message like "Update product prices"</li>
+      <li>Push/Sync to GitHub → your live website updates within 1–2 minutes</li>
+    </ol>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ═══════════════════ QUICK REF ═══════════════════ -->
+<div class="section-block" id="quickref">
+  <h2 class="section-heading"><span class="hico">⚡</span> Quick Reference — "If I Want To…"</h2>
+
+  <div class="card">
+    <table class="qref-table">
+      <thead><tr><th>If you want to…</th><th>Go to this tab</th><th>Then do…</th></tr></thead>
+      <tbody>
+        <tr><td>Change the company name everywhere</td><td>🏢 Ownership</td><td>Type new name → "Sync Company Info" → Download data.json</td></tr>
+        <tr><td>Add a new product</td><td>Products</td><td>Fill form → add images → Save Product → Download data.json</td></tr>
+        <tr><td>Change a product price</td><td>Products</td><td>Click Edit → update price → Save → Download data.json</td></tr>
+        <tr><td>Add a product photo</td><td>Products</td><td>Edit product → add image URL or upload → Save → Download data.json</td></tr>
+        <tr><td>Update the hero title or subtitle</td><td>Hero</td><td>Edit fields → Save Hero → Download data.json</td></tr>
+        <tr><td>Change the logo</td><td>Hero</td><td>Upload logo or paste URL → Save Logo → Download data.json</td></tr>
+        <tr><td>Update contact email or phone</td><td>Contact</td><td>Edit fields → Save Contact → Download data.json</td></tr>
+        <tr><td>Add a new team member</td><td>Leadership</td><td>Fill form → upload photo → Save Leader → Download data.json</td></tr>
+        <tr><td>Add gallery photos</td><td>Gallery</td><td>Enter URL or upload → Add to Gallery → Download data.json</td></tr>
+        <tr><td>Hide a section (e.g. gallery)</td><td>Sections</td><td>Toggle section OFF → Save Visibility → Download data.json</td></tr>
+        <tr><td>Rename a section heading</td><td>Sections</td><td>Edit section title → Save Section Titles → Download data.json</td></tr>
+        <tr><td>Enable eSewa payments</td><td>💳 Payments</td><td>Toggle eSewa ON → enter merchant code → Save Gateways → Download data.json</td></tr>
+        <tr><td>Add a delivery option (e.g. DHL)</td><td>💳 Payments</td><td>Toggle DHL ON in Delivery Providers → Save Checkout Settings → Download data.json</td></tr>
+        <tr><td>Change the delivery fee</td><td>💳 Payments</td><td>Edit provider charge → Save Checkout Settings → Download data.json</td></tr>
+        <tr><td>Add a pickup store location</td><td>💳 Payments</td><td>Fill store form → Add Store → Save Checkout Settings → Download data.json</td></tr>
+        <tr><td>View all customer orders</td><td>📦 Orders</td><td>Click Refresh — orders load automatically</td></tr>
+        <tr><td>Update an order status</td><td>📦 Orders</td><td>Click View → select new status → add comment → Update Status</td></tr>
+        <tr><td>Export orders to Excel</td><td>📦 Orders</td><td>Click "⬇ Export Excel"</td></tr>
+        <tr><td>Read customer enquiries</td><td>✉ Enquiries</td><td>Open tab — all messages are listed</td></tr>
+        <tr><td>Give warehouse staff access</td><td>👤 Users → Admin Users</td><td>Create user with "Warehouse Admin" role → share admin-login.html</td></tr>
+        <tr><td>View all registered customers</td><td>👤 Users → Customer Accounts</td><td>Open tab — all registered accounts are listed with badges</td></tr>
+        <tr><td>Delete a customer account</td><td>👤 Users → Customer Accounts</td><td>Find the card → click Delete → confirm</td></tr>
+        <tr><td>Connect Firebase for shared orders</td><td>⚙ Configuration</td><td>Select Firebase → paste credentials → Save Backend Config</td></tr>
+        <tr><td>Set up email notifications</td><td>⚙ Configuration</td><td>Enter EmailJS Public Key, Service ID, Template ID → Save EmailJS</td></tr>
+        <tr><td>Update currency rates</td><td>⚙ Configuration</td><td>Enter new NPR→AUD and NPR→USD rates → Save Rates → Download data.json</td></tr>
+        <tr><td>Hide the Sign In button from visitors</td><td>⚙ Configuration → Auth</td><td>Toggle "Show Sign In / Sign Up Button" OFF → Save Auth Settings → reloads locally immediately; Download data.json to publish to all visitors</td></tr>
+        <tr><td>Enable customer accounts (Sign In / Sign Up)</td><td>⚙ Configuration → Auth</td><td>Enable Firebase Auth in console → toggle is ON by default → Test Connection → Download data.json</td></tr>
+        <tr><td>Enable / disable Google Sign-In button</td><td>⚙ Configuration → Auth → Google Card</td><td>Toggle Google Sign-In ON or OFF → Save → takes effect locally on next page load; Download data.json to publish. Enable Google provider in Firebase Console</td></tr>
+        <tr><td>Test Google Sign-In is working</td><td>⚙ Configuration → Auth → Google Card</td><td>Click "⚡ Test Google Connection" — green result = Firebase Auth reachable</td></tr>
+        <tr><td>Export all customer accounts to Excel</td><td>👤 Users → Customer Accounts</td><td>Click "⬇ Export Excel" — downloads customers_YYYY-MM-DD.csv</td></tr>
+        <tr><td>Turn on email verification for new sign-ups</td><td>⚙ Configuration → Auth</td><td>Toggle Email Verification ON → Save Auth Config → Download data.json</td></tr>
+        <tr><td>Allow guest checkout (no account required)</td><td>⚙ Configuration → Auth</td><td>Toggle Allow Guest Checkout ON → Save Auth Config → Download data.json</td></tr>
+        <tr><td>Add a new field to the contact form</td><td>Contact → Form Fields</td><td>Click "+ Add New Field" → set label/key/type → Add Field → Save → Download data.json</td></tr>
+        <tr><td>Make contact form phone field visible</td><td>Contact → Form Fields</td><td>Toggle Phone Number field ON → Save → Download data.json</td></tr>
+        <tr><td>Make a contact form field mandatory</td><td>Contact → Form Fields</td><td>Check the "Mandatory" box on the field → Save → Download data.json</td></tr>
+        <tr><td>Change the website font</td><td>Design → Typography</td><td>Select Heading/Body font → adjust sliders → Save Typography → takes effect locally on next page load; Download data.json to publish</td></tr>
+        <tr><td>Change font size or line spacing</td><td>Design → Typography</td><td>Drag the Base Font Size / Line Height slider → Save Typography → takes effect locally on next page load; Download data.json to publish</td></tr>
+        <tr><td>Switch to Bento Grid or Brutalist layout</td><td>Design</td><td>Select layout thumbnail → Save All Design Settings → takes effect locally on next page load; Download data.json to publish</td></tr>
+        <tr><td>Change brand colours</td><td>Theme</td><td>Pick colours → Apply Theme → takes effect locally on next page load; Download data.json to publish</td></tr>
+        <tr><td>Change the navigation style</td><td>Design</td><td>Select option → Save All Design Settings → takes effect locally on next page load; Download data.json to publish</td></tr>
+        <tr><td>Add a completely new section</td><td>Custom Sections</td><td>Fill section builder → Save → Download data.json</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="background:#f0fdf4;border-color:#bbf7d0;margin-top:1.5rem;">
+    <div class="card-title" style="color:#14532d;">✅ The Golden Rule</div>
+    <p style="color:#14532d;font-weight:600;font-size:.95rem;">Every time you change content in the admin panel → Save → Download data.json → Replace the file → Push to GitHub.</p>
+    <p style="color:#166534;margin-top:.4rem;font-size:.84rem;">Orders and enquiries save automatically — they never need a download step.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:2rem 0 3rem;color:var(--muted);font-size:.8rem;">
+  <div style="font-size:1.5rem;margin-bottom:.5rem;">🛡</div>
+  <div>Bista Group Admin Documentation — v2.0</div>
+  <div style="margin-top:.3rem;">Prepared for Master Admin · Updated April 2026 · All rights reserved.</div>
+  <div style="margin-top:.8rem;">
+    <a href="admin.html" style="color:var(--accent);text-decoration:none;margin:0 .8rem;">Open Admin Panel</a>
+    <a href="index.html" style="color:var(--accent);text-decoration:none;margin:0 .8rem;">View Website</a>
+    <a href="admin-login.html" style="color:var(--accent);text-decoration:none;margin:0 .8rem;">Role Portal Login</a>
+  </div>
+</div>
+
+</main>
+</div><!-- layout -->
+
+<script>
+// Sidebar active link highlight
+const links = document.querySelectorAll('.sidebar a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const id = e.target.id;
+      const link = document.querySelector(`.sidebar a[href="#${id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-60px 0px -60% 0px' });
+
+document.querySelectorAll('.section-block[id]').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

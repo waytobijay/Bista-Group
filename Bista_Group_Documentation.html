@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bista Group — Website Documentation</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; color: #1a1a2e; background: #fff; }
+  .cover { background: linear-gradient(135deg, #1a3a8f 0%, #0a1a4f 100%); color: #fff; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 40px; page-break-after: always; }
+  .cover h1 { font-size: 56px; font-weight: 900; letter-spacing: 4px; margin-bottom: 10px; }
+  .cover h2 { font-size: 22px; font-weight: 300; opacity: 0.85; margin-bottom: 40px; }
+  .cover .title { font-size: 28px; font-weight: 700; border-top: 2px solid #c0152a; border-bottom: 2px solid #c0152a; padding: 16px 40px; margin: 30px 0; }
+  .cover .meta { font-size: 13px; opacity: 0.75; line-height: 2; }
+  .toc { padding: 60px 80px; page-break-after: always; }
+  .toc h2 { font-size: 28px; color: #1a3a8f; border-bottom: 3px solid #c0152a; padding-bottom: 10px; margin-bottom: 30px; }
+  .toc ol { line-height: 2.4; font-size: 14px; }
+  .toc ol li { padding-left: 8px; }
+  .toc ol li.sub { padding-left: 30px; font-size: 13px; color: #555; }
+  .section { padding: 50px 80px; page-break-before: always; }
+  h1.sh { font-size: 28px; color: #fff; background: #1a3a8f; padding: 14px 24px; margin: -50px -80px 40px -80px; border-left: 8px solid #c0152a; }
+  h2.sh { font-size: 20px; color: #1a3a8f; border-bottom: 2px solid #e8ecf5; padding-bottom: 8px; margin: 36px 0 14px; }
+  h3.sh { font-size: 16px; color: #c0152a; margin: 24px 0 10px; font-weight: 700; }
+  p { line-height: 1.8; margin-bottom: 12px; }
+  ul { margin: 10px 0 16px 24px; line-height: 2; }
+  ol { margin: 10px 0 16px 24px; line-height: 2; }
+  li { margin-bottom: 2px; }
+  pre { background: #f1f3f8; border-left: 4px solid #1a3a8f; padding: 14px 18px; font-family: 'Courier New', monospace; font-size: 12px; margin: 14px 0; overflow-x: auto; border-radius: 0 6px 6px 0; line-height: 1.7; white-space: pre-wrap; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  th { background: #1a3a8f; color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+  td { padding: 9px 14px; border-bottom: 1px solid #e0e5f0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f7fc; }
+  .badge { display: inline-block; background: #c0152a; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 700; margin-left: 8px; vertical-align: middle; }
+  .warn { background: #fff4e5; border-left: 4px solid #f59e0b; padding: 12px 16px; margin: 14px 0; border-radius: 0 6px 6px 0; font-size: 13px; }
+  .formfield { background: #f8f9fc; border: 1px solid #d0d7e8; border-radius: 6px; padding: 6px 14px; margin: 4px 0; font-size: 13px; }
+  .divider { border: none; border-top: 1px solid #e0e5f0; margin: 30px 0; }
+  @media print {
+    .section { page-break-before: always; }
+    .cover { min-height: auto; padding: 100px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="cover">
+  <h1>BISTA GROUP</h1>
+  <h2>Website Project</h2>
+  <div class="title">Complete Technical Documentation</div>
+  <div class="meta">
+    Version 1.0 &nbsp;|&nbsp; April 2026<br>
+    Prepared for: Bista Group &nbsp;|&nbsp; Kathmandu, Nepal<br>
+    Hosting: GitHub Pages &nbsp;|&nbsp; Database: Firebase &nbsp;|&nbsp; Images: Cloudinary<br><br>
+    This document covers: Project Overview · Section Breakdown · Tools & Services ·<br>
+    Process Workflow · Developer Manual · Template Guide · Intake Form · Claude AI Usage
+  </div>
+</div>
+
+<!-- ═══════════════════ TOC ═══════════════════ -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><strong>Full Project Overview</strong></li>
+    <li class="sub">1.1 &nbsp;Purpose of the Project</li>
+    <li class="sub">1.2 &nbsp;End-to-End System Architecture</li>
+    <li class="sub">1.3 &nbsp;Complete Data Flow Sequence</li>
+    <li><strong>Detailed Section Breakdown</strong></li>
+    <li class="sub">2.1 &nbsp;Public Website Sections (9 sections)</li>
+    <li class="sub">2.2 &nbsp;Admin Panel Sections (table)</li>
+    <li><strong>Tools and Services Explanation</strong></li>
+    <li class="sub">3.1 &nbsp;Firebase Realtime Database</li>
+    <li class="sub">3.2 &nbsp;Cloudinary</li>
+    <li class="sub">3.3 &nbsp;GitHub Pages</li>
+    <li class="sub">3.4 &nbsp;EmailJS</li>
+    <li class="sub">3.5 &nbsp;Python Development Server</li>
+    <li><strong>Process Workflow</strong></li>
+    <li class="sub">4.1 &nbsp;Initial Setup — Six Phases</li>
+    <li class="sub">4.2 &nbsp;Daily Content Update Workflow</li>
+    <li><strong>Developer User Manual</strong></li>
+    <li class="sub">5.1 &nbsp;File Structure Reference</li>
+    <li class="sub">5.2 &nbsp;Updating Fields for a New Project</li>
+    <li class="sub">5.3 &nbsp;Modifying Website Sections</li>
+    <li><strong>Reusable Template Guidance</strong></li>
+    <li class="sub">6.1 &nbsp;What to Change / What to Keep</li>
+    <li><strong>Custom Input Form for Future Projects</strong></li>
+    <li><strong>Reusable Skill — 10-Step Build Process</strong></li>
+    <li><strong>Claude AI Usage Instructions</strong></li>
+    <li><strong>Appendix</strong> — URLs · Credentials · Data Structure · Error Table</li>
+  </ol>
+</div>
+
+<!-- ═══════════════════ SECTION 1 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">1. Full Project Overview</h1>
+
+  <h2 class="sh">1.1 Purpose of the Project</h2>
+  <p>The Bista Group website is a professional corporate web presence for a diversified conglomerate headquartered in Kathmandu, Nepal. It delivers a fully manageable public-facing website showcasing the company brand, products, leadership team, gallery, and contact information — without requiring developer involvement for content updates.</p>
+  <p>The website is built around a <strong>dual-panel architecture</strong>:</p>
+  <ul>
+    <li><strong>Public Website (index.html)</strong> — Visible to all internet visitors. Displays all company content dynamically, loaded in real time from the Firebase cloud database.</li>
+    <li><strong>Admin Panel (admin.html)</strong> — A password-protected control panel for authorised personnel. Enables complete content management: text edits, image uploads, product management, team updates, gallery management, and theme customisation.</li>
+  </ul>
+  <p>The system runs without a traditional server or backend framework. All logic runs in the visitor's browser using vanilla JavaScript, with three cloud services handling storage, images, and delivery.</p>
+
+  <h2 class="sh">1.2 End-to-End System Architecture</h2>
+  <table>
+    <tr><th>Cloud Service</th><th>Role in the System</th></tr>
+    <tr><td><strong>GitHub Pages</strong></td><td>Hosts all HTML, CSS, and JavaScript files. Serves the public website and admin panel to any visitor worldwide for free with automatic HTTPS.</td></tr>
+    <tr><td><strong>Firebase Realtime Database</strong></td><td>Cloud database. All text content, product data, team information, settings, and image URLs are stored here and read by every visitor on page load.</td></tr>
+    <tr><td><strong>Cloudinary</strong></td><td>Image hosting and CDN. Images are uploaded directly from the browser to Cloudinary. A permanent https:// URL is returned and saved to Firebase.</td></tr>
+  </table>
+
+  <h2 class="sh">1.3 Complete Data Flow Sequence</h2>
+  <ol>
+    <li>Admin opens <code>admin.html</code> and logs in with the username and password.</li>
+    <li>Admin selects a section tab and makes changes — editing text, uploading images, or managing products.</li>
+    <li>For images: <code>admin.js</code> sends the file directly to the Cloudinary API via a browser <code>fetch()</code> POST. No server is involved.</li>
+    <li>Cloudinary stores and optimises the image and returns a permanent <code>https://</code> URL.</li>
+    <li><code>admin.js</code> writes all data (including the Cloudinary URL) to Firebase at path <code>siteData/{sectionKey}</code>.</li>
+    <li>Firebase stores the data and makes it immediately available to all readers worldwide.</li>
+    <li>Any visitor opening <code>index.html</code> triggers <code>script.js</code>, which reads the complete <code>siteData</code> object from Firebase.</li>
+    <li><code>script.js</code> renders all page sections with the live Firebase data.</li>
+    <li>Changes are globally visible within seconds — no deployments, restarts, or file edits needed.</li>
+  </ol>
+</div>
+
+<!-- ═══════════════════ SECTION 2 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">2. Detailed Section Breakdown</h1>
+
+  <h2 class="sh">2.1 Public Website Sections</h2>
+
+  <h3 class="sh">Hero <span class="badge">siteData/hero</span></h3>
+  <p>The first visual element visitors see. Contains three editable fields: <strong>tag</strong> (short promotional label), <strong>title</strong> (main heading), and <strong>sub</strong> (brand subtitle). Sets the tone and brand identity of the entire site.</p>
+
+  <h3 class="sh">Logo <span class="badge">siteData/logo</span></h3>
+  <p>Controls the logo image displayed in the navigation bar and footer, plus the brand name text. The logo is uploaded to Cloudinary and its URL stored in Firebase. The brand name also serves as the browser tab title.</p>
+
+  <h3 class="sh">About <span class="badge">siteData/about</span></h3>
+  <p>Presents the company story and statistics. Contains: a company image (Cloudinary), a badge showing years of experience, two description paragraphs, and three statistic counters (e.g. 500+ Products, 50+ Countries, 10K+ Customers).</p>
+
+  <h3 class="sh">Products <span class="badge">siteData/products</span></h3>
+  <p>A responsive grid of product cards. Each card shows a name, short description, price in NPR with automatic conversion to AUD and USD, and an image. Clicking opens a modal with the full description. Full CRUD available in the admin panel.</p>
+
+  <h3 class="sh">Leadership <span class="badge">siteData/leadership</span></h3>
+  <p>Team member cards with a Cloudinary photo, name, role title, and biography. Full CRUD available in the admin panel.</p>
+
+  <h3 class="sh">Gallery <span class="badge">siteData/gallery</span></h3>
+  <p>A responsive image grid of company events and activities. Each item has a Cloudinary image URL and optional caption. Images can be added and removed from the admin panel.</p>
+
+  <h3 class="sh">Testimonials <span class="badge">siteData/testimonials</span></h3>
+  <p>Client reviews with name, company/title, review text, and a 1–5 star rating. Full CRUD available in the admin panel.</p>
+
+  <h3 class="sh">Contact <span class="badge">siteData/contact</span></h3>
+  <p>Company email, phone, and address. Includes a functional contact form powered by EmailJS — visitors can send messages with no server-side code.</p>
+
+  <h3 class="sh">Footer</h3>
+  <p>Displays the brand name, logo, description, repeated contact details, and copyright notice. All content is pulled from the Firebase logo and contact data for consistency.</p>
+
+  <h2 class="sh">2.2 Admin Panel Sections</h2>
+  <table>
+    <tr><th>Admin Section</th><th>What It Controls</th><th>Firebase Key</th></tr>
+    <tr><td>Hero</td><td>Tag line, main heading, subtitle</td><td>siteData/hero</td></tr>
+    <tr><td>Logo</td><td>Logo image upload and brand name text</td><td>siteData/logo</td></tr>
+    <tr><td>About</td><td>Company image, description paragraphs, badge, stat counters</td><td>siteData/about</td></tr>
+    <tr><td>Products</td><td>Full CRUD: name, description, price, image per product</td><td>siteData/products</td></tr>
+    <tr><td>Leadership</td><td>Full CRUD: name, role, bio, photo per team member</td><td>siteData/leadership</td></tr>
+    <tr><td>Gallery</td><td>Add and remove images with captions</td><td>siteData/gallery</td></tr>
+    <tr><td>Testimonials</td><td>Full CRUD: name, company, review text, star rating</td><td>siteData/testimonials</td></tr>
+    <tr><td>Contact &amp; Footer</td><td>Email, phone, address, footer text, copyright</td><td>siteData/contact</td></tr>
+    <tr><td>EmailJS Config</td><td>Public Key, Service ID, Template ID for contact form</td><td>siteData/emailjs</td></tr>
+    <tr><td>Exchange Rates</td><td>NPR-to-AUD and NPR-to-USD conversion rates</td><td>siteData/rates</td></tr>
+    <tr><td>Theme &amp; Colors</td><td>Primary, Secondary, Background, Accent hex colours</td><td>siteData/theme</td></tr>
+    <tr><td>Reset All</td><td><strong>Dangerous:</strong> Resets ALL content to built-in defaults. Irreversible.</td><td>All keys</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════ SECTION 3 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">3. Tools and Services Explanation</h1>
+
+  <h2 class="sh">3.1 Firebase Realtime Database</h2>
+  <p><strong>Purpose:</strong> Cloud-hosted NoSQL database from Google. Single source of truth for all website content — every text field, product, team member, gallery item, testimonial, and setting.</p>
+  <p><strong>How it is used:</strong> Data is stored at <code>siteData/{key}</code>. The admin panel writes data via the Firebase JS SDK (loaded from CDN). The public site reads all data on every page load via a single database call.</p>
+  <pre>Project ID    : bista-group
+Database URL  : https://bista-group-default-rtdb.firebaseio.com
+SDK version   : Firebase Compat v9.23.0 via CDN
+Data path     : siteData/{sectionKey}
+Rules mode    : test mode — .read = true, .write = true</pre>
+  <p><strong>Basic Usage:</strong></p>
+  <ol>
+    <li>Go to <code>console.firebase.google.com</code> and open your project.</li>
+    <li>Navigate to Build → Realtime Database.</li>
+    <li>Use the Data tab to view all stored content in real time.</li>
+    <li>Use the Rules tab to manage read/write permissions.</li>
+  </ol>
+  <p><strong>Troubleshooting:</strong></p>
+  <ul>
+    <li><strong>Changes not visible to visitors:</strong> Firebase Rules have <code>.read</code> set to <code>false</code>. Set both <code>.read</code> and <code>.write</code> to <code>true</code>.</li>
+    <li><strong>Login does nothing:</strong> <code>firebase.database()</code> crashed the script. Check <code>databaseURL</code> is correct and the Realtime Database has been created (not just the project).</li>
+    <li><strong>Database not found error:</strong> Firebase Console → Realtime Database → Create Database → Select Region → Start in Test Mode → Enable.</li>
+    <li><strong>Script crashes on load:</strong> Firebase init is now wrapped in <code>try/catch</code> — errors are caught and the page still loads.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 class="sh">3.2 Cloudinary</h2>
+  <p><strong>Purpose:</strong> Cloud media management. Permanently stores all uploaded images and delivers them via global CDN. Replaces the need for server-side file storage.</p>
+  <p><strong>How it is used:</strong> When an admin uploads an image, <code>admin.js</code> sends the file to the Cloudinary Upload API using <code>fetch()</code> POST with FormData. No server required. Cloudinary returns a permanent <code>https://</code> URL which is then saved to Firebase.</p>
+  <pre>Cloud Name    : dyjzhbvkf
+Upload Preset : bista-group-unassigned
+Preset Type   : Unsigned (no server signing required)
+Upload Folder : bista-group
+API Endpoint  : https://api.cloudinary.com/v1_1/dyjzhbvkf/image/upload</pre>
+  <p><strong>Troubleshooting:</strong></p>
+  <ul>
+    <li><strong>Upload fails silently:</strong> Verify the preset name in <code>admin.js</code> matches exactly — names are case-sensitive.</li>
+    <li><strong>Unauthorised error:</strong> Preset Signing Mode must be <strong>Unsigned</strong>. Signed presets require server-side API keys.</li>
+    <li><strong>Image disappears on reload:</strong> The URL was not saved to Firebase. Always click the <strong>Save</strong> button after uploading.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 class="sh">3.3 GitHub Pages</h2>
+  <p><strong>Purpose:</strong> Free static site hosting by GitHub. Serves all HTML, CSS, JS, and assets from a public repository with automatic HTTPS at zero cost.</p>
+  <p><strong>Basic Usage:</strong></p>
+  <ol>
+    <li>Create a public repository on GitHub.</li>
+    <li>Upload all project files to the repository root.</li>
+    <li>Go to Settings → Pages → Branch: main → Folder: / (root) → Save.</li>
+    <li>Wait ~60 seconds. Site is live at <code>https://USERNAME.github.io/REPO-NAME/</code>.</li>
+    <li>To update: simply upload changed files to the repository.</li>
+  </ol>
+  <p><strong>Troubleshooting:</strong></p>
+  <ul>
+    <li><strong>Site not loading:</strong> Repository must be Public.</li>
+    <li><strong>Old content showing:</strong> Hard refresh: <code>Ctrl+Shift+R</code> (Windows) or <code>Cmd+Shift+R</code> (Mac).</li>
+    <li><strong>Images broken:</strong> GitHub Pages runs on Linux — file paths are case-sensitive.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 class="sh">3.4 EmailJS</h2>
+  <p><strong>Purpose:</strong> Sends emails from client-side JavaScript with no server required. Powers the contact form on the website.</p>
+  <p><strong>Required template variables:</strong> <code>from_name</code>, <code>reply_to</code>, <code>subject</code>, <code>message</code></p>
+  <p><strong>Setup:</strong> Sign up at emailjs.com → connect Gmail → create template → copy Public Key, Service ID, and Template ID → enter all three in Admin Panel → EmailJS Config tab.</p>
+  <p><strong>Troubleshooting:</strong></p>
+  <ul>
+    <li>Form fails: Verify all three keys are saved in Admin Panel.</li>
+    <li>No email received: Check EmailJS dashboard for failed sends.</li>
+    <li>Empty variables in email: Use exact variable names listed above.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 class="sh">3.5 Python Development Server (server.py)</h2>
+  <p><strong>Purpose:</strong> Local HTTP server that serves files AND handles image uploads. Required because browsers block <code>fetch()</code> requests when pages are opened using the <code>file://</code> protocol.</p>
+  <p><strong>Usage:</strong></p>
+  <ol>
+    <li>Open a terminal in the project folder.</li>
+    <li>Run: <code>python server.py</code></li>
+    <li>Open browser at <code>http://localhost:8080</code></li>
+  </ol>
+  <p><strong>Troubleshooting:</strong> If <code>python</code> is not found, try <code>python3 server.py</code>. If port is in use, change <code>PORT = 8080</code> in server.py.</p>
+</div>
+
+<!-- ═══════════════════ SECTION 4 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">4. Process Workflow</h1>
+
+  <h2 class="sh">4.1 Initial Setup — Six Phases</h2>
+
+  <h3 class="sh">Phase 1: Create Service Accounts</h3>
+  <ol>
+    <li>GitHub: Create an account at github.com or log in.</li>
+    <li>Cloudinary: Create a free account at cloudinary.com.</li>
+    <li>Firebase: Create an account at console.firebase.google.com using a Google account.</li>
+    <li>EmailJS (optional): Create an account at emailjs.com if the contact form is required.</li>
+  </ol>
+
+  <h3 class="sh">Phase 2: Configure Firebase</h3>
+  <ol>
+    <li>In Firebase Console, click Add Project and enter the project name.</li>
+    <li>Disable Google Analytics if not needed. Click Create Project.</li>
+    <li>Navigate to Build → Realtime Database in the left sidebar.</li>
+    <li>Click Create Database → Select a region → Start in Test Mode → Enable.</li>
+    <li>Go to Project Settings (gear icon) → General → Your Apps.</li>
+    <li>Click the web icon (&lt;/&gt;) → Register app → Copy the <code>firebaseConfig</code> object.</li>
+  </ol>
+
+  <h3 class="sh">Phase 3: Configure Cloudinary</h3>
+  <ol>
+    <li>Log in to cloudinary.com → Settings → Upload tab.</li>
+    <li>Scroll to Upload Presets → Add Upload Preset.</li>
+    <li>Enter a preset name → Set Signing Mode to <strong>Unsigned</strong> → Set Upload Folder.</li>
+    <li>Click Save and note the exact preset name.</li>
+  </ol>
+
+  <h3 class="sh">Phase 4: Configure the Code</h3>
+  <ol>
+    <li>Open <code>js/admin.js</code> — find the FIREBASE INIT block — paste your Firebase credentials.</li>
+    <li>Set <code>CLOUDINARY_CLOUD</code> and <code>CLOUDINARY_PRESET</code> in the same file.</li>
+    <li>Open <code>js/script.js</code> — paste the same Firebase credentials in its FIREBASE INIT block.</li>
+    <li>Update <code>ADMIN_USER</code> and <code>ADMIN_PASS</code> in <code>admin.js</code> with secure credentials.</li>
+  </ol>
+
+  <h3 class="sh">Phase 5: Deploy to GitHub Pages</h3>
+  <ol>
+    <li>Create a new public repository on GitHub.</li>
+    <li>Upload all project files to the repository root.</li>
+    <li>Go to Settings → Pages → Branch: main → Folder: root → Save.</li>
+    <li>After ~60 seconds, the site is live at the displayed URL.</li>
+  </ol>
+
+  <h3 class="sh">Phase 6: Verify Everything Works</h3>
+  <ol>
+    <li>Open the live site URL — verify default content loads.</li>
+    <li>Open <code>admin.html</code> — log in with your credentials.</li>
+    <li>Edit a text field → click Save → open <code>index.html</code> in a new tab → verify the change appears.</li>
+    <li>Upload an image → click Save → verify it displays from a Cloudinary <code>https://</code> URL.</li>
+  </ol>
+
+  <h2 class="sh">4.2 Daily Content Update Workflow</h2>
+  <ol>
+    <li>Navigate to <code>your-site.github.io/admin.html</code></li>
+    <li>Enter username and password → click Login.</li>
+    <li>Click the tab for the section you want to update.</li>
+    <li>Make changes: edit text, upload images, add/edit/delete items.</li>
+    <li>Click the <strong>Save</strong> button. Green toast confirms success.</li>
+    <li>Open the main website in a new tab to verify the change is live.</li>
+  </ol>
+</div>
+
+<!-- ═══════════════════ SECTION 5 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">5. Developer User Manual</h1>
+
+  <h2 class="sh">5.1 File Structure Reference</h2>
+  <table>
+    <tr><th>File / Folder</th><th>Location</th><th>Purpose</th></tr>
+    <tr><td>index.html</td><td>Root</td><td>Main public website. All visitors load this file.</td></tr>
+    <tr><td>admin.html</td><td>Root</td><td>Admin control panel. Password-protected.</td></tr>
+    <tr><td>js/script.js</td><td>js/</td><td>Public site logic. Reads from Firebase on load and renders all sections.</td></tr>
+    <tr><td>js/admin.js</td><td>js/</td><td>Admin logic. Handles login, CRUD, Firebase writes, Cloudinary uploads.</td></tr>
+    <tr><td>assets/images/</td><td>assets/</td><td>Static assets: logo, favicon, placeholder images.</td></tr>
+    <tr><td>upload.php</td><td>Root</td><td>PHP upload handler for PHP-capable hosting environments.</td></tr>
+    <tr><td>server.py</td><td>Root</td><td>Local Python dev server with image upload support at localhost:8080.</td></tr>
+  </table>
+
+  <h2 class="sh">5.2 Updating Required Fields for a New Project</h2>
+
+  <h3 class="sh">1 — Firebase Credentials (update in BOTH js/admin.js and js/script.js)</h3>
+  <pre>firebase.initializeApp({
+  apiKey:            'YOUR_NEW_API_KEY',
+  authDomain:        'YOUR_PROJECT.firebaseapp.com',
+  databaseURL:       'https://YOUR_PROJECT-default-rtdb.firebaseio.com',
+  projectId:         'YOUR_PROJECT',
+  storageBucket:     'YOUR_PROJECT.firebasestorage.app',
+  messagingSenderId: 'YOUR_SENDER_ID',
+  appId:             'YOUR_APP_ID'
+});</pre>
+
+  <h3 class="sh">2 — Cloudinary Credentials (js/admin.js only)</h3>
+  <pre>const CLOUDINARY_CLOUD  = 'your_cloud_name';
+const CLOUDINARY_PRESET = 'your_unsigned_preset_name';</pre>
+
+  <h3 class="sh">3 — DEFAULTS Object (both JS files)</h3>
+  <p>Update the <code>DEFAULTS</code> constant in both files with the new client content:</p>
+  <ul>
+    <li><code>hero.title</code> — Company name</li>
+    <li><code>hero.tag</code> — Short promotional tagline</li>
+    <li><code>hero.sub</code> — Brand description subtitle</li>
+    <li><code>logo.brand</code> — Brand name for navigation and footer</li>
+    <li><code>contact.email / phone / addr</code> — Contact details</li>
+    <li><code>products[]</code> — Replace with real products (id, name, desc, fullDesc, price, img)</li>
+    <li><code>leadership[]</code> — Replace with real team members (id, name, role, desc, img)</li>
+    <li><code>theme.primary / secondary / bg / accent</code> — Brand colours in hex</li>
+  </ul>
+
+  <h3 class="sh">4 — Admin Credentials (js/admin.js only)</h3>
+  <pre>const ADMIN_USER = 'your_admin_username';
+const ADMIN_PASS = 'your_secure_password';</pre>
+  <div class="warn">⚠ These are stored as plain text. Use a strong unique password and change before going live.</div>
+
+  <h2 class="sh">5.3 Modifying Website Sections</h2>
+  <p>To add a completely new section:</p>
+  <ol>
+    <li>Add HTML markup in <code>index.html</code> with appropriate element IDs.</li>
+    <li>Add admin form fields in <code>admin.html</code> within a new tab section.</li>
+    <li>Add the default data structure to <code>DEFAULTS</code> in both JS files.</li>
+    <li>Write a <code>renderNewSection()</code> function in <code>script.js</code>.</li>
+    <li>Add a <code>saveNewSection()</code> function in <code>admin.js</code>.</li>
+    <li>Call <code>renderNewSection()</code> inside <code>renderAll()</code> in <code>script.js</code>.</li>
+    <li>Add population logic inside <code>populateForms()</code> in <code>admin.js</code>.</li>
+  </ol>
+</div>
+
+<!-- ═══════════════════ SECTION 6 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">6. Reusable Template Guidance</h1>
+
+  <h2 class="sh">6.1 What to Change for a New Project</h2>
+  <table>
+    <tr><th>Element</th><th>Action Required</th></tr>
+    <tr><td>Company &amp; Brand Identity</td><td>Update DEFAULTS in both JS files: name, tagline, description, contact, colours.</td></tr>
+    <tr><td>Firebase Project</td><td>Create new Firebase project. Update FIREBASE_CONFIG in both JS files.</td></tr>
+    <tr><td>Cloudinary Account</td><td>Create unsigned upload preset. Update CLOUDINARY_CLOUD and CLOUDINARY_PRESET in admin.js.</td></tr>
+    <tr><td>Admin Credentials</td><td>Change ADMIN_USER and ADMIN_PASS in admin.js before going live.</td></tr>
+    <tr><td>Default Products</td><td>Replace products array in DEFAULTS with actual client products.</td></tr>
+    <tr><td>Default Team</td><td>Replace leadership array in DEFAULTS with actual team members.</td></tr>
+    <tr><td>Logo &amp; Favicon</td><td>Replace files in assets/images/ with client brand assets.</td></tr>
+    <tr><td>Page Title &amp; Meta</td><td>Update &lt;title&gt; and &lt;meta description&gt; tags in index.html.</td></tr>
+    <tr><td>EmailJS</td><td>Set up new account and enter all three keys via Admin Panel.</td></tr>
+    <tr><td>GitHub Repository</td><td>Create new public repository and enable GitHub Pages.</td></tr>
+  </table>
+
+  <h2 class="sh">6.2 What Does NOT Need to Change</h2>
+  <ul>
+    <li>Complete HTML layout structure of index.html and admin.html</li>
+    <li>All CSS styling (unless brand redesign required)</li>
+    <li>Firebase read/write logic in both JS files</li>
+    <li>Cloudinary upload logic with error handling and fallback</li>
+    <li>All CRUD functions for products, leadership, gallery, and testimonials</li>
+    <li>Admin panel tab navigation and login system</li>
+    <li>Python local development server (server.py)</li>
+    <li>PHP upload handler (upload.php)</li>
+    <li>EmailJS contact form integration</li>
+    <li>Multi-currency price converter (NPR / AUD / USD)</li>
+    <li>Product modal popup and mobile-responsive navigation</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════ SECTION 7 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">7. Custom Input Form for Future Projects</h1>
+  <p>Complete this form before beginning development on a new project based on this template.</p>
+
+  <h2 class="sh">A. Company &amp; Brand</h2>
+  <div class="formfield">Company Name: ___________________________________________________</div>
+  <div class="formfield">Brand Tagline (under 10 words): ___________________________________</div>
+  <div class="formfield">Brand Description (1–2 sentences): ________________________________</div>
+  <div class="formfield">Primary Contact Email: ____________________________________________</div>
+  <div class="formfield">Phone Number (with country code): _________________________________</div>
+  <div class="formfield">Physical Address: _________________________________________________</div>
+  <div class="formfield">Website Domain (if purchased): ____________________________________</div>
+
+  <h2 class="sh">B. Visual Identity</h2>
+  <div class="formfield">Primary Colour hex:     #_______________</div>
+  <div class="formfield">Secondary Colour hex:   #_______________</div>
+  <div class="formfield">Background Colour hex:  #_______________</div>
+  <div class="formfield">Accent Colour hex:      #_______________</div>
+  <div class="formfield">Primary Font (if specific): _______________________________________</div>
+  <div class="formfield">Logo File Available: &nbsp;&nbsp; Yes &nbsp; / &nbsp; No &nbsp; / &nbsp; To be created</div>
+  <div class="formfield">Favicon File Available: &nbsp; Yes &nbsp; / &nbsp; No &nbsp; / &nbsp; To be created</div>
+
+  <h2 class="sh">C. Website Type &amp; Audience</h2>
+  <div class="formfield">Website Type: &nbsp; Corporate &nbsp;/&nbsp; eCommerce &nbsp;/&nbsp; Portfolio &nbsp;/&nbsp; SaaS &nbsp;/&nbsp; NGO &nbsp;/&nbsp; Other: _______</div>
+  <div class="formfield">Target Audience: __________________________________________________</div>
+  <div class="formfield">Primary Language: _________________________________________________</div>
+  <div class="formfield">Secondary Languages (if any): _____________________________________</div>
+
+  <h2 class="sh">D. Sections &amp; Pages Required</h2>
+  <div class="formfield">Hero Banner: Yes/No &nbsp;&nbsp; About: Yes/No &nbsp;&nbsp; Products/Services: Yes/No &nbsp;&nbsp; Leadership Team: Yes/No</div>
+  <div class="formfield">Gallery: Yes/No &nbsp;&nbsp; Testimonials: Yes/No &nbsp;&nbsp; Contact Form: Yes/No &nbsp;&nbsp; Blog: Yes/No</div>
+  <div class="formfield">FAQ: Yes/No &nbsp;&nbsp; Pricing Table: Yes/No &nbsp;&nbsp; Partners/Clients: Yes/No &nbsp;&nbsp; Other: ___________</div>
+
+  <h2 class="sh">E. Features Required</h2>
+  <div class="formfield">Admin Panel: Yes/No &nbsp;&nbsp; Image Upload (Cloudinary): Yes/No &nbsp;&nbsp; Contact Form (EmailJS): Yes/No</div>
+  <div class="formfield">Currency Switcher: Yes/No &nbsp;&nbsp; Social Media Links: Yes/No &nbsp;&nbsp; Google Analytics: Yes/No</div>
+  <div class="formfield">Other features: ___________________________________________________</div>
+
+  <h2 class="sh">F. Integrations &amp; APIs</h2>
+  <div class="formfield">Firebase Realtime Database: Yes/No</div>
+  <div class="formfield">Cloudinary: Yes/No</div>
+  <div class="formfield">EmailJS — Service ID: ______________ &nbsp; Template ID: ______________</div>
+  <div class="formfield">Google Analytics Measurement ID: ___________________________________</div>
+  <div class="formfield">Other APIs: _______________________________________________________</div>
+
+  <h2 class="sh">G. Content Readiness</h2>
+  <div class="formfield">Number of products/services: _____ &nbsp; Team members: _____ &nbsp; Gallery images: _____ &nbsp; Testimonials: _____</div>
+  <div class="formfield">Text content ready: Yes / No / In progress</div>
+  <div class="formfield">Image assets ready: Yes / No / In progress</div>
+  <div class="formfield">Content provided by: Client / Developer / AI assisted</div>
+
+  <h2 class="sh">H. Hosting &amp; Deployment</h2>
+  <div class="formfield">Hosting: GitHub Pages (free) &nbsp;/&nbsp; Shared Hosting (PHP) &nbsp;/&nbsp; VPS &nbsp;/&nbsp; Other: _________</div>
+  <div class="formfield">Custom Domain: Yes/No — Domain: ____________________________________</div>
+  <div class="formfield">GitHub Username: __________________________________________________</div>
+  <div class="formfield">Repository Name: __________________________________________________</div>
+
+  <h2 class="sh">I. Admin Panel Configuration</h2>
+  <div class="formfield">Admin Username: ___________________________________________________</div>
+  <div class="formfield">Admin Password (strong &amp; unique): ___________________________________</div>
+  <div class="formfield">Firebase Project ID: _______________________________________________</div>
+  <div class="formfield">Cloudinary Cloud Name: ____________________________________________</div>
+  <div class="formfield">Cloudinary Upload Preset Name: ____________________________________</div>
+
+  <h2 class="sh">J. Project Logistics</h2>
+  <div class="formfield">Project Deadline: _________________________________________________</div>
+  <div class="formfield">Client Technical Skill Level: &nbsp; Beginner &nbsp;/&nbsp; Intermediate &nbsp;/&nbsp; Advanced</div>
+  <div class="formfield">Budget Constraints: _______________________________________________</div>
+  <div class="formfield">Special Requirements: _____________________________________________</div>
+  <div class="formfield">Additional Notes: _________________________________________________</div>
+</div>
+
+<!-- ═══════════════════ SECTION 8 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">8. Reusable Skill — 10-Step Build Process</h1>
+
+  <h2 class="sh">8.1 Required Accounts &amp; Tools</h2>
+  <ul>
+    <li>GitHub account (github.com) — free static hosting</li>
+    <li>Firebase account (console.firebase.google.com) — cloud database</li>
+    <li>Cloudinary account (cloudinary.com) — permanent image storage</li>
+    <li>EmailJS account (emailjs.com) — optional, for contact forms</li>
+    <li>Text editor such as VS Code for configuration changes</li>
+    <li>Modern browser (Chrome recommended) for testing</li>
+    <li>Python — optional, for running the local development server</li>
+  </ul>
+
+  <h2 class="sh">8.2 The 10-Step Repeatable Build Process</h2>
+  <ol>
+    <li><strong>Complete</strong> the Project Intake Form (Section 7) with the client before writing any code.</li>
+    <li><strong>Create Firebase project</strong> → Realtime Database → Test mode → Copy <code>firebaseConfig</code>.</li>
+    <li><strong>Create Cloudinary account</strong> → New unsigned upload preset → Note cloud name and preset name.</li>
+    <li><strong>Copy all template files</strong> from the Bista Group project to a new folder.</li>
+    <li><strong>Update DEFAULTS</strong> in both JS files with the new client brand content.</li>
+    <li><strong>Update FIREBASE_CONFIG</strong> in both JS files with new Firebase credentials.</li>
+    <li><strong>Update</strong> <code>CLOUDINARY_CLOUD</code> and <code>CLOUDINARY_PRESET</code> in <code>admin.js</code>.</li>
+    <li><strong>Update</strong> <code>ADMIN_USER</code> and <code>ADMIN_PASS</code> in <code>admin.js</code> with strong credentials.</li>
+    <li><strong>Replace</strong> logo and favicon in <code>assets/images/</code> with client brand assets.</li>
+    <li><strong>Deploy</strong> — Create public GitHub repo → upload all files → enable GitHub Pages → verify live URL.</li>
+  </ol>
+
+  <h2 class="sh">8.3 Post-Launch Verification Checklist</h2>
+  <ul>
+    <li>☐ &nbsp; Main site loads at the GitHub Pages URL</li>
+    <li>☐ &nbsp; Admin panel login works with new credentials</li>
+    <li>☐ &nbsp; Text changes in admin panel appear on public site within seconds</li>
+    <li>☐ &nbsp; Images upload to Cloudinary and display with permanent https:// URL</li>
+    <li>☐ &nbsp; Firebase console shows <code>siteData</code> entries being written</li>
+    <li>☐ &nbsp; Contact form sends email (if EmailJS configured)</li>
+    <li>☐ &nbsp; Site displays correctly on mobile devices</li>
+    <li>☐ &nbsp; All sections render with correct client content</li>
+    <li>☐ &nbsp; Admin credentials changed from default (admin / bista2025)</li>
+    <li>☐ &nbsp; Firebase Rules reviewed for production security</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════ SECTION 9 ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">9. Claude AI Usage Instructions</h1>
+
+  <h2 class="sh">9.1 Prompt Templates for Common Tasks</h2>
+
+  <h3 class="sh">Template 1 — Build a New Project From Scratch</h3>
+  <pre>Build a static corporate website with a cloud admin panel using:
+- HTML, CSS, and JavaScript (no frameworks, no build tools)
+- Firebase Realtime Database for all content storage
+- Cloudinary with unsigned upload preset for image hosting
+- GitHub Pages for free static hosting
+
+Client details:
+[paste completed Section 7 intake form here]
+
+Architecture:
+- index.html: public site that reads from Firebase on load
+- admin.html: password-protected admin panel that writes to Firebase
+- js/script.js: all rendering logic
+- js/admin.js: all admin logic including CRUD and image uploads</pre>
+
+  <h3 class="sh">Template 2 — Modify a Specific Section</h3>
+  <pre>In the [project name] website project:
+File: [filename]
+Task: [describe the specific change]
+Constraint: Only modify the section related to [feature name]
+Do not change other files. Keep changes minimal. Do not refactor.</pre>
+
+  <h3 class="sh">Template 3 — Regenerate Documentation</h3>
+  <pre>Generate complete technical documentation for this website project:
+[paste project summary with tech stack and configuration]
+
+Required sections: overview, section breakdown, tools and services,
+workflow, developer manual, template guide, intake form, reusable skill,
+Claude usage instructions.
+
+Output as a professional Word .docx document.</pre>
+
+  <h3 class="sh">Template 4 — Debug a Specific Issue</h3>
+  <pre>In my static website using Firebase, Cloudinary, and GitHub Pages:
+Problem: [exact symptom you are seeing]
+Expected: [what should happen]
+Files involved: [list only relevant files]
+
+Constraints:
+- Only check the files listed
+- Minimal focused fix only
+- Explain the root cause before providing the fix
+- Do not refactor unrelated code</pre>
+
+  <h2 class="sh">9.2 Key Context to Include at the Start of Any Conversation</h2>
+  <pre>Project: Static HTML/JS website, no server framework, no build tools
+Database: Firebase Realtime Database, compat SDK v9.23.0 via CDN
+Images: Cloudinary unsigned preset, uploaded via browser fetch() POST
+Hosting: GitHub Pages, static files only
+Admin: Password-protected HTML panel writing all data to Firebase
+Key files: index.html, admin.html, js/script.js, js/admin.js
+Firebase path: siteData/{sectionKey}
+Image flow: browser fetches to Cloudinary API → receives secure_url → saves URL to Firebase</pre>
+
+  <h2 class="sh">9.3 Efficiency Guidelines</h2>
+  <ul>
+    <li>Always specify exactly which files to read — e.g. "only check js/admin.js lines 50–80".</li>
+    <li>State constraints upfront: no frameworks, no backend, free hosting, minimal changes.</li>
+    <li>Describe the symptom you observe, not your assumed cause. Let Claude diagnose.</li>
+    <li>For upload issues, state whether testing locally on <code>file://</code> or on the live GitHub Pages URL.</li>
+    <li>Request minimal changes: "only change this function", "do not refactor anything else".</li>
+    <li>If you have usage limits, split large tasks into multiple focused conversations.</li>
+    <li>Reference this document by section number when asking for changes.</li>
+    <li>Verify changes in the browser before asking for further modifications.</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════ APPENDIX ═══════════════════ -->
+<div class="section">
+  <h1 class="sh">Appendix: Quick Reference</h1>
+
+  <h2 class="sh">A. Service Console URLs</h2>
+  <table>
+    <tr><th>Service</th><th>URL</th></tr>
+    <tr><td>Live Website</td><td>https://USERNAME.github.io/REPO-NAME/</td></tr>
+    <tr><td>Admin Panel</td><td>https://USERNAME.github.io/REPO-NAME/admin.html</td></tr>
+    <tr><td>Firebase Console</td><td>https://console.firebase.google.com</td></tr>
+    <tr><td>Cloudinary Console</td><td>https://cloudinary.com/console</td></tr>
+    <tr><td>GitHub Repository</td><td>https://github.com/USERNAME/REPO-NAME</td></tr>
+    <tr><td>EmailJS Dashboard</td><td>https://dashboard.emailjs.com</td></tr>
+  </table>
+
+  <h2 class="sh">B. Default Admin Credentials</h2>
+  <pre>Username : admin
+Password : bista2025</pre>
+  <div class="warn">⚠ Change both values before the site goes live. Update <code>ADMIN_USER</code> and <code>ADMIN_PASS</code> in <code>js/admin.js</code>. These are stored as plain text.</div>
+
+  <h2 class="sh">C. Complete Firebase Data Structure</h2>
+  <pre>siteData/
+  hero/          { tag, title, sub }
+  logo/          { url, brand }
+  about/         { img, badgeNum, badgeTxt, p1, p2, s1v, s1l, s2v, s2l, s3v, s3l }
+  products/      [ { id, name, desc, fullDesc, price, img }, ... ]
+  leadership/    [ { id, name, role, desc, img }, ... ]
+  gallery/       [ { id, url, cap }, ... ]
+  testimonials/  [ { id, name, title, text, stars }, ... ]
+  contact/       { email, phone, addr, footerDesc, footerCopy }
+  emailjs/       { pk, sid, tid }
+  rates/         { aud, usd }
+  theme/         { primary, secondary, bg, accent }</pre>
+
+  <h2 class="sh">D. Common Errors — Quick-Fix Table</h2>
+  <table>
+    <tr><th>Symptom</th><th>Root Cause</th><th>Fix</th></tr>
+    <tr><td>Login button does nothing</td><td>Firebase init error crashed script before doLogin was defined</td><td>Wrap initializeApp() and database() in try/catch — already fixed in current version</td></tr>
+    <tr><td>Images do not save permanently</td><td>Cloudinary preset Signing Mode is Signed, not Unsigned</td><td>Set Signing Mode to Unsigned in Cloudinary Settings</td></tr>
+    <tr><td>Changes not visible to other users</td><td>Firebase Rules have .read set to false</td><td>Set .read and .write to true in Firebase Console → Rules tab</td></tr>
+    <tr><td>Database not found error</td><td>Realtime Database was never created</td><td>Firebase Console → Realtime Database → Create Database → Test Mode</td></tr>
+    <tr><td>Site shows old cached content</td><td>Browser cached the old version</td><td>Hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)</td></tr>
+    <tr><td>Contact form does not send</td><td>EmailJS keys not configured</td><td>Enter Public Key, Service ID, and Template ID in Admin Panel → EmailJS Config tab</td></tr>
+    <tr><td>Image disappears after reload</td><td>Image URL not saved to Firebase</td><td>Always click the section Save button after uploading. Upload alone does not save.</td></tr>
+    <tr><td>Local fetch errors with file://</td><td>Browsers block fetch() on file:// protocol</td><td>Run server.py and open http://localhost:8080 instead</td></tr>
+  </table>
+
+  <br><hr class="divider">
+  <p style="text-align:center; color:#888; font-size:12px; padding:20px 0;">
+    Bista Group Website — Complete Technical Documentation &nbsp;|&nbsp; Version 1.0 &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Confidential<br>
+    Update this document whenever significant changes are made to architecture, services, or deployment process.
+  </p>
+</div>
+
+</body>
+</html>

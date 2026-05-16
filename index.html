@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bista Group</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/images/favicon-64.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- Hide page until data loads — prevents flash of default "Bista Group" content -->
+<style id="init-hide">html{opacity:0;transition:opacity .2s ease}</style>
+<link id="gfont-heading" rel="stylesheet" href="">
+<link id="gfont-body" rel="stylesheet" href="">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img id="nav-logo-img" src="assets/images/logo-placeholder.png" onerror="this.src='https://placehold.co/40x40/1a3a8f/ffffff?text=BG'" alt="Logo">
+    <span id="nav-logo-text">Bista Group</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li id="nav-about"><a href="#about">About</a></li>
+    <li id="nav-products"><a href="#products">Products</a></li>
+    <li id="nav-services"><a href="#services">Services</a></li>
+    <li id="nav-leadership"><a href="#leadership">Leadership</a></li>
+    <li id="nav-gallery"><a href="#gallery">Gallery</a></li>
+    <li id="nav-testimonials"><a href="#testimonials">Testimonials</a></li>
+    <li id="nav-contact"><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="cart-nav-btn" id="cart-nav-btn" onclick="openCart()" style="display:none;" title="View Cart">
+    🛒<span class="cart-badge" id="cart-badge">0</span>
+  </button>
+  <button class="user-auth-btn" id="user-auth-btn" onclick="authBtnClick()" title="My Account">
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+    <span id="user-auth-label">Sign In</span>
+  </button>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div id="cart-toast" class="cart-toast"></div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-header">
+    <span>🛒 Your Cart <span id="cart-count-label" style="font-weight:400;color:var(--text-muted);font-size:.85rem;"></span></span>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-summary-row"><span>Subtotal</span><span id="cart-subtotal"></span></div>
+    <div class="cart-summary-row" id="cart-fee-row" style="display:none;"><span id="cart-fee-label">Processing fee</span><span id="cart-fee"></span></div>
+    <div class="cart-summary-total"><span>Total</span><span id="cart-total"></span></div>
+    <div class="cart-footer-btns">
+      <button class="btn btn-outline" onclick="closeCart()">Continue Shopping</button>
+      <button class="btn btn-primary" onclick="openCheckout()">Proceed to Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT OVERLAY -->
+<div class="checkout-overlay" id="checkout-overlay">
+  <div class="checkout-modal" id="checkout-modal">
+    <div class="checkout-modal-header">
+      <h3 id="checkout-modal-title">Checkout</h3>
+      <button class="checkout-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="checkout-steps" id="checkout-steps">
+      <div class="checkout-step-dot active" id="cstep-1"><div class="step-num">1</div><span>Fulfillment</span></div>
+      <div class="checkout-step-dot" id="cstep-2"><div class="step-num">2</div><span>Details</span></div>
+      <div class="checkout-step-dot" id="cstep-3"><div class="step-num">3</div><span>Payment</span></div>
+    </div>
+    <div class="checkout-body" id="checkout-body"></div>
+  </div>
+</div>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#hero" onclick="closeMobile()">Home</a>
+  <a id="mob-about"        href="#about"        onclick="closeMobile()">About</a>
+  <a id="mob-products"     href="#products"     onclick="closeMobile()">Products</a>
+  <a id="mob-services"     href="#services"     onclick="closeMobile()">Services</a>
+  <a id="mob-leadership"   href="#leadership"   onclick="closeMobile()">Leadership</a>
+  <a id="mob-gallery"      href="#gallery"      onclick="closeMobile()">Gallery</a>
+  <a id="mob-testimonials" href="#testimonials" onclick="closeMobile()">Testimonials</a>
+  <a id="mob-contact"      href="#contact"      onclick="closeMobile()">Contact</a>
+  <a id="mob-signin-link"  href="#"             onclick="closeMobile(); authBtnClick(); return false;" style="display:none; border-top:2px solid var(--border); margin-top:.5rem; padding-top:1rem; font-weight:700; color:var(--text);">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" style="vertical-align:-2px; margin-right:6px;" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+    <span id="mob-signin-label">Sign In / My Account</span>
+  </a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="hero-tag">Premium Quality Products</div>
+    <h1 class="hero-title">Welcome to <span id="hero-title-span">Bista Group</span></h1>
+    <p class="hero-sub" id="hero-sub">A diversified conglomerate delivering excellence across industries.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn btn-primary">Explore Products</a>
+      <a href="#contact"  class="btn btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img fade-in">
+      <img id="about-img" src="https://placehold.co/600x420/1a3a8f/ffffff?text=About+Us" alt="About">
+      <div class="about-badge">
+        <strong id="about-badge-num">25+</strong>
+        <span id="about-badge-text">Years of Excellence</span>
+      </div>
+    </div>
+    <div class="about-text fade-in">
+      <p class="section-tag">Who We Are</p>
+      <h2 class="section-title"><span id="st-about">About Us</span></h2>
+      <div class="divider"></div>
+      <p id="about-p1"></p>
+      <p id="about-p2" style="margin-top:1rem;"></p>
+      <div class="about-stats">
+        <div class="stat-card"><strong id="stat-1">500+</strong><span id="stat-1-l">Products</span></div>
+        <div class="stat-card"><strong id="stat-2">50+</strong><span id="stat-2-l">Countries</span></div>
+        <div class="stat-card"><strong id="stat-3">10K+</strong><span id="stat-3-l">Customers</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div style="text-align:center;">
+    <p class="section-tag">Our Collection</p>
+    <h2 class="section-title"><span id="st-products">Our Products</span></h2>
+    <div class="divider" style="margin:1rem auto 1.5rem;"></div>
+  </div>
+  <div class="currency-bar" id="currency-bar"></div>
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div style="text-align:center;margin-bottom:2.5rem;">
+    <p class="section-tag">What We Do</p>
+    <h2 class="section-title"><span id="st-services">Our Services</span></h2>
+    <div class="divider" style="margin:1rem auto 0;"></div>
+  </div>
+  <div class="services-grid" id="services-grid"></div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div style="text-align:center;">
+    <p class="section-tag">Our Team</p>
+    <h2 class="section-title"><span id="st-leadership">Leadership</span></h2>
+    <div class="divider" style="margin:1rem auto 2rem;"></div>
+  </div>
+  <div class="leadership-grid" id="leadership-grid"></div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div style="text-align:center;margin-bottom:2.5rem;">
+    <p class="section-tag">Visual Story</p>
+    <h2 class="section-title"><span id="st-gallery">Gallery</span></h2>
+    <div class="divider" style="margin:1rem auto 0;"></div>
+  </div>
+  <div class="slideshow-wrap">
+    <div class="slideshow" id="gallery-slideshow"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="text-align:center;margin-bottom:2.5rem;">
+    <p class="section-tag">What People Say</p>
+    <h2 class="section-title"><span id="st-testimonials">Testimonials</span></h2>
+    <div class="divider" style="margin:1rem auto 0;"></div>
+  </div>
+  <div class="testimonials-grid" id="testimonials-grid"></div>
+</section>
+
+<!-- CUSTOM SECTIONS (dynamically rendered) -->
+<div id="custom-sections-container"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="text-align:center;margin-bottom:3rem;">
+    <p class="section-tag">Get in Touch</p>
+    <h2 class="section-title"><span id="st-contact">Contact Us</span></h2>
+    <div class="divider" style="margin:1rem auto 0;"></div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📧</div>
+        <div><strong>Email</strong><br><span id="contact-email" style="color:var(--text-muted);font-size:.9rem;"></span></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📞</div>
+        <div><strong>Phone</strong><br><span id="contact-phone" style="color:var(--text-muted);font-size:.9rem;"></span></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📍</div>
+        <div><strong>Address</strong><br><span id="contact-addr" style="color:var(--text-muted);font-size:.9rem;"></span></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-msg" id="contact-msg"></div>
+      <div id="contact-form-fields">
+        <!-- Dynamically rendered from state.contactForm.fields — falls back to static HTML if JS not loaded -->
+        <div class="form-group"><label>Your Name</label><input type="text" id="cf-name" placeholder="Your name"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="cf-email" placeholder="your@email.com"></div>
+        <div class="form-group"><label>Subject</label><input type="text" id="cf-subject" placeholder="How can we help?"></div>
+        <div class="form-group"><label>Message</label><textarea id="cf-message" placeholder="Tell us more..."></textarea></div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;margin-top:1rem;" onclick="sendContact()">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:.8rem;">
+        <img id="footer-logo" src="assets/images/logo-placeholder.png" alt="Logo" style="width:36px;height:36px;border-radius:6px;">
+        <span id="footer-brand-name">Bista Group</span>
+      </div>
+      <p id="footer-desc"></p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#services">Services</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#" id="footer-email"></a>
+      <a href="#" id="footer-phone"></a>
+      <a href="#" id="footer-addr"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p id="footer-copy">© 2025 Bista Group. All Rights Reserved.</p>
+    <a href="admin.html" class="admin-footer-link" title="Admin">&#9679; Admin</a>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <button class="modal-img-btn modal-img-prev" id="modal-img-prev" onclick="modalPrevImg()">&#10094;</button>
+        <img id="modal-img" src="" alt="">
+        <button class="modal-img-btn modal-img-next" id="modal-img-next" onclick="modalNextImg()">&#10095;</button>
+        <div class="modal-img-dots" id="modal-img-dots"></div>
+      </div>
+      <div class="modal-details">
+        <h2 id="modal-name"></h2>
+        <div class="modal-price" id="modal-price"></div>
+        <p class="modal-desc" id="modal-desc"></p>
+        <!-- Quantity + Add to Cart -->
+        <div class="modal-qty-row" id="modal-qty-row" style="display:none;">
+          <span class="modal-qty-label">Qty:</span>
+          <div class="modal-qty-ctrl">
+            <button class="modal-qty-btn" onclick="modalQtyChange(-1)">−</button>
+            <span class="modal-qty-val" id="modal-qty-val">1</span>
+            <button class="modal-qty-btn" onclick="modalQtyChange(1)">+</button>
+          </div>
+          <span class="modal-qty-max" id="modal-qty-max"></span>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline" onclick="contactSeller()">✉ Contact Seller</button>
+          <button class="btn btn-primary" id="add-to-cart-btn" onclick="modalAddToCart()" style="display:none;">🛒 Add to Cart</button>
+        </div>
+        <!-- Direct payment panel (no cart) -->
+        <div class="payment-panel" id="payment-panel" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEADER MODAL -->
+<div class="modal-overlay" id="leader-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeLeaderModal()">✕</button>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <img id="leader-modal-img" src="" alt="">
+      </div>
+      <div class="modal-details">
+        <h2 id="leader-modal-name"></h2>
+        <div class="leader-modal-role" id="leader-modal-role"></div>
+        <p class="modal-desc" id="leader-modal-desc"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="auth-overlay" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-box" id="auth-box">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div id="auth-modal-content"></div>
+  </div>
+</div>
+
+<!-- USER PROFILE PANEL -->
+<div class="profile-dim" id="profile-dim" onclick="closeProfile()"></div>
+<div class="profile-panel" id="profile-panel">
+  <div class="profile-panel-head">
+    <div id="profile-head-info"></div>
+    <button class="profile-panel-close" onclick="closeProfile()">✕</button>
+  </div>
+  <nav class="profile-nav">
+    <button class="p-tab active" id="ptab-overview"   onclick="switchProfileTab('overview')">Overview</button>
+    <button class="p-tab"        id="ptab-orders"     onclick="switchProfileTab('orders')">My Orders</button>
+    <button class="p-tab"        id="ptab-favourites" onclick="switchProfileTab('favourites')">Favourites</button>
+    <button class="p-tab"        id="ptab-settings"   onclick="switchProfileTab('settings')">Settings</button>
+  </nav>
+  <div class="profile-body" id="profile-body"></div>
+</div>
+
+<!-- GUEST CHECKOUT CHOICE (shown at checkout start when auth is enabled) -->
+<div class="guest-choice-overlay" id="guest-choice-overlay" style="display:none;">
+  <div class="guest-choice-box">
+    <button class="auth-close" onclick="dismissGuestChoice()">✕</button>
+    <h3 style="margin-bottom:.4rem;">How would you like to checkout?</h3>
+    <p style="color:var(--text-muted);font-size:.88rem;margin-bottom:1.5rem;">Sign in for faster checkout and order tracking.</p>
+    <div class="guest-choice-btns">
+      <button class="btn btn-primary" onclick="chooseSignIn()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-right:.4rem;vertical-align:middle;"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Sign In / Create Account
+      </button>
+      <button class="btn btn-outline" onclick="continueAsGuest()">Continue as Guest →</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/data-service.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/User/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/4c32461a-6029-4a3f-a8af-e2f8908d82a8/b5926363-5603-4620-b620-d9c542471867/skills/docx/**)",
+      "Bash(npm list *)",
+      "Bash(node -e \"require\\('docx'\\); console.log\\('ok'\\)\")",
+      "Bash(npm root *)",
+      "PowerShell(node -e \"require\\('docx'\\); console.log\\('docx ok'\\)\" 2>&1)",
+      "PowerShell(npm list -g docx 2>&1)",
+      "PowerShell($env:PATH -split \";\" | Where-Object { $_ -ne \"\" })",
+      "PowerShell($word = New-Object -ComObject Word.Application -ErrorAction SilentlyContinue; if \\($word\\) { Write-Host \"Word COM available: $\\($word.Version\\)\"; $word.Quit\\(\\) } else { Write-Host \"Word not available\" })",
+      "PowerShell(Set-Location \"C:\\\\Users\\\\User\\\\Desktop\\\\Bista Group of company\"; powershell -ExecutionPolicy Bypass -File \".\\\\generate_doc.ps1\" 2>&1)",
+      "PowerShell(Test-Path \"C:\\\\Users\\\\User\\\\Desktop\\\\Bista Group of company\\\\Bista_Group_Website_Documentation.docx\"; if \\(Test-Path \"C:\\\\Users\\\\User\\\\Desktop\\\\Bista Group of company\\\\Bista_Group_Website_Documentation.docx\"\\) { \\(Get-Item \"C:\\\\Users\\\\User\\\\Desktop\\\\Bista Group of company\\\\Bista_Group_Website_Documentation.docx\"\\).Length })",
+      "PowerShell(Add-Type -Assembly System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile] | Get-Member -Static | Select-Object -First 3)",
+      "Bash(extract-text \"C:\\\\Users\\\\User\\\\Desktop\\\\Ammedment.docx\")",
+      "Bash(py --version)"
+    ]
+  }
+}

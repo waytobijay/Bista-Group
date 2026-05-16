@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="admin-page-title">Admin Panel — Bista Group</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="admin-login" class="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🛡</div>
+    <h2>Admin Panel</h2>
+    <p>Sign in to manage your website.</p>
+    <div class="field-group"><label>Username</label><input type="text" id="admin-user" placeholder="admin"></div>
+    <div class="field-group"><label>Password</label><input type="password" id="admin-pass" placeholder="••••••••"></div>
+    <div id="admin-login-msg" class="login-error"></div>
+    <button class="save-btn full-width" onclick="doLogin()">Login →</button>
+    <a href="index.html" class="back-link">← Back to Website</a>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="admin-dash" style="display:none;">
+
+  <div class="admin-header">
+    <div class="admin-header-left">
+      <span class="admin-logo">🛡</span>
+      <h1><span id="admin-company-name">Bista Group</span> <span>Admin</span></h1>
+    </div>
+    <div class="admin-nav" id="admin-nav">
+      <button class="admin-nav-btn" onclick="showTab('tab-ownership',this)">🏢 Ownership</button>
+      <button class="admin-nav-btn active" onclick="showTab('tab-hero',this)">Hero</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-about',this)">About</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-products',this)">Products</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-services',this)">Services</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-leadership',this)">Leadership</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-gallery',this)">Gallery</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-testi',this)">Testimonials</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-contact',this)">Contact</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-sections',this)">Sections</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-custom-sections',this)">Custom Sections</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-payment',this)">💳 Payments</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-orders',this)">📦 Orders</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-enquiries',this)">✉ Enquiries</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-users',this)">👤 Users</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-config',this)">⚙ Configuration</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-design',this)">Design</button>
+      <button class="admin-nav-btn" onclick="showTab('tab-theme',this)">Theme</button>
+    </div>
+    <div class="admin-header-right">
+      <a href="index.html" target="_blank" class="view-site-btn">🌐 View Site</a>
+      <button class="signout-btn" onclick="signOut()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- ── OWNERSHIP ── -->
+    <div class="admin-section" id="tab-ownership">
+      <div class="tab-title">Ownership &amp; Branding</div>
+
+      <div class="admin-card">
+        <h3>Company Name</h3>
+        <p class="hint-text">Changing the company name here will update it everywhere on the site — navigation, hero, footer, copyright, the admin panel header, and optionally the About section text — in one click.</p>
+        <div class="field-group">
+          <label>Company / Brand Name</label>
+          <input id="own-company" type="text" placeholder="e.g. Bista Group">
+        </div>
+        <div class="field-group">
+          <label>Industry / Type <span style="color:var(--text-muted);font-weight:400;">(shown in hero tag)</span></label>
+          <input id="own-tag" type="text" placeholder="e.g. Premium Quality Products">
+        </div>
+        <div class="field-group">
+          <label>One-line Description <span style="color:var(--text-muted);font-weight:400;">(hero subtitle &amp; footer description)</span></label>
+          <textarea id="own-desc" rows="3" placeholder="A diversified conglomerate delivering excellence..."></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field-group">
+            <label>Copyright Year</label>
+            <input id="own-year" type="text" placeholder="2025">
+          </div>
+          <div class="field-group">
+            <label>Copyright Suffix</label>
+            <input id="own-copy-suffix" type="text" placeholder="All Rights Reserved.">
+          </div>
+        </div>
+        <div class="field-group" style="margin-top:.5rem;">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;">
+            <input type="checkbox" id="own-update-about" checked style="width:auto;accent-color:var(--accent);">
+            <span style="font-size:.82rem;color:var(--text-muted);">Also replace old company name in the About section text</span>
+          </label>
+        </div>
+        <div class="btn-row" style="margin-top:1rem;">
+          <button class="save-btn" onclick="saveOwnership()">🔄 Sync Company Info Everywhere</button>
+        </div>
+        <div id="own-preview" style="margin-top:1.2rem;padding:1rem;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:10px;font-size:.82rem;color:var(--text-muted);display:none;">
+          <strong style="color:var(--text);display:block;margin-bottom:.5rem;">Preview — fields that will be updated:</strong>
+          <div id="own-preview-list"></div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3>What Gets Updated</h3>
+        <div class="toggle-list">
+          <div class="toggle-row"><label>🌐 Nav bar &amp; page tab title</label><span style="font-size:.78rem;color:var(--accent);">logo.brand</span></div>
+          <div class="toggle-row"><label>🦸 Hero section company name</label><span style="font-size:.78rem;color:var(--accent);">hero.title</span></div>
+          <div class="toggle-row"><label>🏷 Hero tag / badge</label><span style="font-size:.78rem;color:var(--accent);">hero.tag</span></div>
+          <div class="toggle-row"><label>📝 Hero subtitle</label><span style="font-size:.78rem;color:var(--accent);">hero.sub</span></div>
+          <div class="toggle-row"><label>🦶 Footer brand name</label><span style="font-size:.78rem;color:var(--accent);">logo.brand</span></div>
+          <div class="toggle-row"><label>📄 Footer description</label><span style="font-size:.78rem;color:var(--accent);">contact.footerDesc</span></div>
+          <div class="toggle-row"><label>©️ Copyright line</label><span style="font-size:.78rem;color:var(--accent);">contact.footerCopy</span></div>
+          <div class="toggle-row" style="border-bottom:none;"><label>🛡 Admin panel header</label><span style="font-size:.78rem;color:var(--accent);">live update</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <div class="admin-section active" id="tab-hero">
+      <div class="tab-title">Hero Section</div>
+      <div class="admin-card">
+        <h3>Hero Content</h3>
+        <div class="field-group"><label>Tag Line</label><input id="a-hero-tag" type="text"></div>
+        <div class="field-group"><label>Main Title</label><input id="a-hero-title" type="text"></div>
+        <div class="field-group"><label>Subtitle</label><textarea id="a-hero-sub" rows="3"></textarea></div>
+        <button class="save-btn" onclick="saveHero()">Save Hero</button>
+      </div>
+      <div class="admin-card">
+        <h3>Logo &amp; Branding</h3>
+        <div class="field-group"><label>Logo URL</label><input id="a-logo-url" type="text"></div>
+        <div class="field-group"><label>Upload Logo</label><input type="file" id="a-logo-file" accept="image/*" onchange="handleLogoUpload(this)"></div>
+        <img id="a-logo-preview" class="img-preview" src="" style="display:none;margin:.5rem 0 1rem;">
+        <div class="field-group"><label>Brand Name</label><input id="a-brand-name" type="text"></div>
+        <button class="save-btn" onclick="saveLogo()">Save Logo</button>
+      </div>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <div class="admin-section" id="tab-about">
+      <div class="tab-title">About Section</div>
+      <div class="admin-card">
+        <h3>About Image &amp; Badge</h3>
+        <div class="field-group"><label>Image URL</label><input id="a-about-img" type="text"></div>
+        <div class="field-group"><label>Upload Image</label><input type="file" id="a-about-file" accept="image/*" onchange="handleImgUpload(this,'a-about-img')"></div>
+        <div class="grid-2">
+          <div class="field-group"><label>Badge Number</label><input id="a-badge-num" type="text"></div>
+          <div class="field-group"><label>Badge Text</label><input id="a-badge-txt" type="text"></div>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>About Text</h3>
+        <div class="field-group"><label>Paragraph 1</label><textarea id="a-about-p1" rows="4"></textarea></div>
+        <div class="field-group"><label>Paragraph 2</label><textarea id="a-about-p2" rows="4"></textarea></div>
+        <button class="save-btn" onclick="saveAbout()">Save About</button>
+      </div>
+      <div class="admin-card">
+        <h3>Stats</h3>
+        <div class="grid-2">
+          <div class="field-group"><label>Stat 1 Value</label><input id="a-s1v" type="text"></div>
+          <div class="field-group"><label>Stat 1 Label</label><input id="a-s1l" type="text"></div>
+          <div class="field-group"><label>Stat 2 Value</label><input id="a-s2v" type="text"></div>
+          <div class="field-group"><label>Stat 2 Label</label><input id="a-s2l" type="text"></div>
+          <div class="field-group"><label>Stat 3 Value</label><input id="a-s3v" type="text"></div>
+          <div class="field-group"><label>Stat 3 Label</label><input id="a-s3l" type="text"></div>
+        </div>
+        <button class="save-btn" onclick="saveAbout()">Save Stats</button>
+      </div>
+    </div>
+
+    <!-- ── PRODUCTS ── -->
+    <div class="admin-section" id="tab-products">
+      <div class="tab-title">Products</div>
+      <div class="admin-card">
+        <h3 id="product-form-title">Add New Product</h3>
+        <input type="hidden" id="editing-product-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Product Name</label><input id="a-prod-name" type="text"></div>
+          <div class="field-group"><label>Price (NPR)</label><input id="a-prod-price" type="number"></div>
+        </div>
+        <div class="field-group"><label>Short Description</label><textarea id="a-prod-desc" rows="2"></textarea></div>
+        <div class="field-group"><label>Full Description (modal)</label><textarea id="a-prod-fulldesc" rows="4"></textarea></div>
+        <div class="admin-card" style="margin-top:1rem;padding:1rem;">
+          <h3>Product Images</h3>
+          <div id="prod-images-list" style="margin-bottom:1rem;"></div>
+          <div class="grid-2">
+            <div class="field-group"><label>Add by URL</label><input id="a-prod-img-url" type="text" placeholder="https://..."></div>
+            <div class="field-group"><label>Or Upload File</label><input type="file" id="a-prod-file" accept="image/*"></div>
+          </div>
+          <button class="clear-btn" onclick="addProdImage()">+ Add Image</button>
+        </div>
+        <div class="btn-row" style="margin-top:1rem;">
+          <button class="save-btn" onclick="saveProduct()">Save Product</button>
+          <button class="clear-btn" onclick="clearProductForm()">Clear Form</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Product List</h3>
+        <div id="admin-product-list"></div>
+      </div>
+    </div>
+
+    <!-- ── SERVICES ── -->
+    <div class="admin-section" id="tab-services">
+      <div class="tab-title">Services</div>
+      <div class="admin-card">
+        <h3 id="service-form-title">Add Service</h3>
+        <input type="hidden" id="editing-service-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Icon (emoji)</label><input id="a-svc-icon" type="text" placeholder="🌍"></div>
+          <div class="field-group"><label>Title</label><input id="a-svc-title" type="text"></div>
+        </div>
+        <div class="field-group"><label>Description</label><textarea id="a-svc-desc" rows="3"></textarea></div>
+        <div class="field-group"><label>Optional Image URL <span style="color:var(--text-muted);font-weight:400;">(shown above icon)</span></label><input id="a-svc-img" type="text" placeholder="https://..."></div>
+        <div class="field-group"><label>Or Upload Image</label><input type="file" id="a-svc-file" accept="image/*" onchange="handleImgUpload(this,'a-svc-img')"></div>
+        <div class="btn-row">
+          <button class="save-btn" onclick="saveService()">Save Service</button>
+          <button class="clear-btn" onclick="clearServiceForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Service List</h3>
+        <div id="admin-service-list"></div>
+      </div>
+    </div>
+
+    <!-- ── LEADERSHIP ── -->
+    <div class="admin-section" id="tab-leadership">
+      <div class="tab-title">Leadership</div>
+      <div class="admin-card">
+        <h3 id="leader-form-title">Add Leader</h3>
+        <input type="hidden" id="editing-leader-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Full Name</label><input id="a-lead-name" type="text"></div>
+          <div class="field-group"><label>Title / Role</label><input id="a-lead-role" type="text"></div>
+        </div>
+        <div class="field-group"><label>Short Bio (shown on card)</label><textarea id="a-lead-desc" rows="2"></textarea></div>
+        <div class="field-group"><label>Full Bio (shown in modal)</label><textarea id="a-lead-fulldesc" rows="4"></textarea></div>
+        <div class="field-group"><label>Photo URL</label><input id="a-lead-img" type="text"></div>
+        <div class="field-group"><label>Upload Photo</label><input type="file" id="a-lead-file" accept="image/*" onchange="handleImgUpload(this,'a-lead-img')"></div>
+        <div class="btn-row">
+          <button class="save-btn" onclick="saveLeader()">Save Leader</button>
+          <button class="clear-btn" onclick="clearLeaderForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Leadership List</h3>
+        <div id="admin-leader-list"></div>
+      </div>
+    </div>
+
+    <!-- ── GALLERY ── -->
+    <div class="admin-section" id="tab-gallery">
+      <div class="tab-title">Gallery</div>
+      <div class="admin-card">
+        <h3>Slideshow Settings</h3>
+        <div class="field-group" style="max-width:200px;">
+          <label>Auto-advance (seconds, 0 = manual only)</label>
+          <input id="a-gal-interval" type="number" min="0" max="30" value="4">
+        </div>
+        <button class="save-btn" onclick="saveGallerySettings()">Save Settings</button>
+      </div>
+      <div class="admin-card">
+        <h3>Add Image</h3>
+        <div class="field-group"><label>Image URL</label><input id="a-gal-url" type="text" placeholder="https://..."></div>
+        <div class="field-group"><label>Upload Image</label><input type="file" id="a-gal-file" accept="image/*"></div>
+        <div class="field-group"><label>Caption (optional)</label><input id="a-gal-cap" type="text"></div>
+        <button class="save-btn" onclick="addGallery()">Add to Gallery</button>
+      </div>
+      <div class="admin-card">
+        <h3>Gallery Images</h3>
+        <div id="admin-gallery-list" class="gallery-admin-grid"></div>
+      </div>
+    </div>
+
+    <!-- ── TESTIMONIALS ── -->
+    <div class="admin-section" id="tab-testi">
+      <div class="tab-title">Testimonials</div>
+      <div class="admin-card">
+        <h3 id="testi-form-title">Add Testimonial</h3>
+        <input type="hidden" id="editing-testi-id">
+        <div class="grid-2">
+          <div class="field-group"><label>Client Name</label><input id="a-testi-name" type="text"></div>
+          <div class="field-group"><label>Title / Company</label><input id="a-testi-title" type="text"></div>
+        </div>
+        <div class="field-group"><label>Review Text</label><textarea id="a-testi-text" rows="3"></textarea></div>
+        <div class="field-group" style="max-width:140px;"><label>Stars (1–5)</label><input id="a-testi-stars" type="number" min="1" max="5" value="5"></div>
+        <div class="btn-row">
+          <button class="save-btn" onclick="saveTesti()">Save</button>
+          <button class="clear-btn" onclick="clearTestiForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Testimonial List</h3>
+        <div id="admin-testi-list"></div>
+      </div>
+    </div>
+
+    <!-- ── CONTACT ── -->
+    <div class="admin-section" id="tab-contact">
+      <div class="tab-title">Contact &amp; Footer</div>
+      <div class="admin-card">
+        <h3>Contact Details</h3>
+        <div class="field-group"><label>Email</label><input id="a-con-email" type="text"></div>
+        <div class="field-group"><label>Phone</label><input id="a-con-phone" type="text"></div>
+        <div class="field-group"><label>Address</label><input id="a-con-addr" type="text"></div>
+        <button class="save-btn" onclick="saveContact()">Save Contact</button>
+      </div>
+      <div class="admin-card">
+        <h3>Footer</h3>
+        <div class="field-group"><label>Footer Description</label><textarea id="a-footer-desc" rows="3"></textarea></div>
+        <div class="field-group"><label>Copyright Text</label><input id="a-footer-copy" type="text"></div>
+        <button class="save-btn" onclick="saveContact()">Save Footer</button>
+      </div>
+      <div class="admin-card">
+        <div class="card-title">✉ Contact Form Email Notifications</div>
+        <p class="hint-text">Configure email alerts sent to the admin when a visitor submits the Contact Us form. EmailJS credentials are set in the <strong>⚙ Configuration</strong> tab. Contact enquiries are <strong>always saved</strong> regardless of this setting.</p>
+        <div class="toggle-row" style="margin-bottom:1rem;">
+          <label>Enable Contact Email Notifications</label>
+          <label class="toggle-switch"><input type="checkbox" id="contact-email-on-2"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="field-group"><label>Template ID <span class="hint-inline">EmailJS → Email Templates → your contact template</span></label>
+          <input id="a-ejs-tid-contact-2" type="text" placeholder="template_contact_..."></div>
+        <div class="field-group"><label>Subject <span class="hint-inline">{name} {subject} {email}</span></label>
+          <input id="contact-email-subject-2" type="text" placeholder="New Enquiry from {name}"></div>
+        <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+          <button class="save-btn" style="background:var(--accent);" onclick="saveContactEmailConfig()">💾 Save</button>
+          <button class="save-btn" style="background:#374151;" onclick="testEmailConfig('contact')">⚡ Test Send</button>
+        </div>
+        <div class="connection-result" id="contact-email-test-result-2" style="display:none;"></div>
+      </div>
+
+      <!-- Contact Form Fields Management -->
+      <div class="admin-card">
+        <div class="card-title">📋 Contact Form Fields</div>
+        <p class="hint-text">Add, reorder and toggle mandatory/optional fields on the Contact Us form. The <em>key</em> is used internally — use lowercase letters only (e.g. <code>phone</code>, <code>company</code>).</p>
+        <div id="contact-form-fields-admin"></div>
+        <div class="add-provider-form" style="margin-top:1rem;">
+          <h4 style="font-size:.84rem;margin-bottom:.6rem;">Add New Field</h4>
+          <div class="field-row">
+            <div class="field-group"><label>Field Label</label><input id="new-cf-label" type="text" placeholder="e.g. Company Name"></div>
+            <div class="field-group"><label>Key (no spaces)</label><input id="new-cf-key" type="text" placeholder="e.g. company"></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label>Type</label>
+              <select id="new-cf-type">
+                <option value="text">Text</option>
+                <option value="email">Email</option>
+                <option value="tel">Phone</option>
+                <option value="number">Number</option>
+                <option value="textarea">Textarea</option>
+              </select>
+            </div>
+            <div class="field-group" style="justify-content:flex-end;align-items:flex-end;">
+              <button class="save-btn" style="background:var(--accent);" onclick="addContactFormField()">+ Add Field</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card" style="background:rgba(37,99,235,.06);border-color:rgba(37,99,235,.2);">
+        <p style="font-size:.84rem;color:var(--text-muted);">⚙ EmailJS account credentials, Cloudinary, S3 and exchange rate settings are in the <strong style="color:#fff;">⚙ Configuration</strong> tab. Payment email template is under <strong style="color:#fff;">💳 Payments</strong>.</p>
+      </div>
+    </div>
+
+    <!-- ── SECTIONS (Visibility + Titles) ── -->
+    <div class="admin-section" id="tab-sections">
+      <div class="tab-title">Sections — Visibility &amp; Titles</div>
+      <div class="admin-card">
+        <h3>Show / Hide Sections</h3>
+        <p class="hint-text">Toggle each section on or off. Hidden sections are removed from both the page and the navigation bar.</p>
+        <div class="toggle-list">
+          <div class="toggle-row"><label>About Us</label><label class="toggle-switch"><input type="checkbox" id="vis-about" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Products</label><label class="toggle-switch"><input type="checkbox" id="vis-products" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Services</label><label class="toggle-switch"><input type="checkbox" id="vis-services" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Leadership</label><label class="toggle-switch"><input type="checkbox" id="vis-leadership" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Gallery</label><label class="toggle-switch"><input type="checkbox" id="vis-gallery" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Testimonials</label><label class="toggle-switch"><input type="checkbox" id="vis-testimonials" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><label>Contact</label><label class="toggle-switch"><input type="checkbox" id="vis-contact" checked><span class="toggle-slider"></span></label></div>
+        </div>
+        <button class="save-btn" style="margin-top:1.2rem;" onclick="saveVisibility()">Save Visibility</button>
+      </div>
+      <div class="admin-card">
+        <h3>Section Titles</h3>
+        <p class="hint-text">Rename any section heading as it appears on the public site.</p>
+        <div class="field-group"><label>About Section Title</label><input id="st-about" type="text"></div>
+        <div class="field-group"><label>Products Section Title</label><input id="st-products" type="text"></div>
+        <div class="field-group"><label>Services Section Title</label><input id="st-services" type="text"></div>
+        <div class="field-group"><label>Leadership Section Title</label><input id="st-leadership" type="text"></div>
+        <div class="field-group"><label>Gallery Section Title</label><input id="st-gallery" type="text"></div>
+        <div class="field-group"><label>Testimonials Section Title</label><input id="st-testimonials" type="text"></div>
+        <div class="field-group"><label>Contact Section Title</label><input id="st-contact" type="text"></div>
+        <button class="save-btn" onclick="saveSectionTitles()">Save Titles</button>
+      </div>
+    </div>
+
+    <!-- ── CUSTOM SECTIONS ── -->
+    <div class="admin-section" id="tab-custom-sections">
+      <div class="tab-title">Custom Sections</div>
+      <div class="admin-card">
+        <h3 id="cs-form-title">New Custom Section</h3>
+        <div class="grid-2">
+          <div class="field-group"><label>Section Title</label><input id="cs-title" type="text" placeholder="e.g. Our Partners"></div>
+          <div class="field-group"><label>Tag / Subtitle</label><input id="cs-tag" type="text" placeholder="e.g. Who We Work With"></div>
+        </div>
+        <div class="field-group">
+          <label>Layout Template</label>
+          <select id="cs-layout" onchange="updateCsForm()">
+            <option value="card-grid">Card Grid (Products-style)</option>
+            <option value="icon-grid">Icon Grid (Services-style)</option>
+            <option value="content-block">Content Block (About-style)</option>
+            <option value="centered-text">Centered Text</option>
+          </select>
+        </div>
+
+        <!-- Content Block Fields -->
+        <div id="cs-content-block-fields" style="display:none;">
+          <div class="field-group"><label>Image URL</label><input id="cs-img" type="text" placeholder="https://..."></div>
+          <div class="field-group"><label>Paragraph 1</label><textarea id="cs-p1" rows="3"></textarea></div>
+          <div class="field-group"><label>Paragraph 2</label><textarea id="cs-p2" rows="3"></textarea></div>
+        </div>
+
+        <!-- Shared items list for Card Grid + Icon Grid -->
+        <div id="cs-items-section" style="display:none;">
+          <div id="cs-items-list" style="margin-bottom:.8rem;"></div>
+          <!-- Card add form -->
+          <div id="cs-card-add-form" class="admin-card" style="padding:1rem;margin-bottom:.5rem;">
+            <h3 style="font-size:.85rem;margin-bottom:.8rem;">Add Card</h3>
+            <div class="grid-2">
+              <div class="field-group"><label>Name</label><input id="cs-item-name" type="text"></div>
+              <div class="field-group"><label>Image URL (optional)</label><input id="cs-item-img" type="text" placeholder="https://..."></div>
+            </div>
+            <div class="field-group"><label>Description</label><textarea id="cs-item-desc" rows="2"></textarea></div>
+            <button class="clear-btn" onclick="addCsItem()">+ Add Card</button>
+          </div>
+          <!-- Icon add form -->
+          <div id="cs-icon-add-form" class="admin-card" style="padding:1rem;margin-bottom:.5rem;display:none;">
+            <h3 style="font-size:.85rem;margin-bottom:.8rem;">Add Icon Item</h3>
+            <div class="grid-2">
+              <div class="field-group"><label>Icon (emoji)</label><input id="cs-item-icon" type="text" placeholder="🌍"></div>
+              <div class="field-group"><label>Title</label><input id="cs-item-title" type="text"></div>
+            </div>
+            <div class="field-group"><label>Description</label><textarea id="cs-item-icon-desc" rows="2"></textarea></div>
+            <button class="clear-btn" onclick="addCsItem()">+ Add Item</button>
+          </div>
+        </div>
+        <!-- (card-grid and icon-grid use the shared section above) -->
+        <div id="cs-card-grid-fields" style="display:none;"></div>
+        <div id="cs-icon-grid-fields" style="display:none;"></div>
+
+        <!-- Centered Text Fields -->
+        <div id="cs-centered-text-fields" style="display:none;">
+          <div class="field-group"><label>Body Text</label><textarea id="cs-body" rows="5"></textarea></div>
+        </div>
+
+        <div class="btn-row" style="margin-top:1rem;">
+          <button class="save-btn" onclick="saveCustomSection()">Save Section</button>
+          <button class="clear-btn" onclick="clearCsForm()">Clear</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Custom Sections List</h3>
+        <p class="hint-text">Sections appear on the public site between Testimonials and Contact.</p>
+        <div id="admin-cs-list"></div>
+      </div>
+    </div>
+
+    <!-- ── PAYMENTS ── -->
+    <div class="admin-section" id="tab-payment">
+      <div class="tab-title">Payment Settings</div>
+
+      <!-- Currency -->
+      <div class="admin-card">
+        <div class="card-title">💱 Currency Settings</div>
+        <p class="hint-text">
+          <strong>Default Currency</strong> — all prices, delivery charges, processing fees, and order totals displayed throughout the admin and checkout use this currency.<br>
+          <strong>Currency Switcher</strong> — the options visitors can use on the public site to <em>view</em> prices in another currency (display-only, does not change stored amounts).
+        </p>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Default Currency <span class="hint-inline">used for all orders, delivery &amp; payment amounts</span></label>
+            <select id="pay-cur-default">
+              <option value="NPR">NPR — Nepalese Rupee (रू)</option>
+              <option value="USD">USD — US Dollar ($)</option>
+              <option value="AUD">AUD — Australian Dollar (A$)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-group" style="margin-top:.8rem;">
+          <label>Show Currency Switcher for <span class="hint-inline">customer view-only — does not affect stored prices</span></label>
+          <div class="checkbox-row">
+            <label><input type="checkbox" id="pay-cur-npr" value="NPR"> NPR (रू)</label>
+            <label><input type="checkbox" id="pay-cur-usd" value="USD"> USD ($)</label>
+            <label><input type="checkbox" id="pay-cur-aud" value="AUD"> AUD (A$)</label>
+          </div>
+        </div>
+        <button class="save-btn" onclick="savePaymentCurrency()">Save Currency</button>
+      </div>
+
+      <!-- Processing Fee -->
+      <div class="admin-card">
+        <div class="card-title">🏷 Processing Fee</div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Charge Percentage (%)</label>
+            <input type="number" id="pay-charge-pct" value="2" min="0" max="100" step="0.1" placeholder="2">
+          </div>
+          <div class="field-group">
+            <label>Fee Label</label>
+            <input type="text" id="pay-charge-label" placeholder="Processing fee">
+          </div>
+        </div>
+        <div class="hint">Set 0 to hide the processing fee row in checkout.</div>
+        <button class="save-btn" onclick="savePaymentCharge()">Save Fee</button>
+      </div>
+
+      <!-- Gateways -->
+      <div class="admin-card">
+        <div class="card-title">🌐 Payment Gateways</div>
+
+        <div class="gateway-card">
+          <div class="gateway-header">
+            <div><div class="gateway-title">✉ Contact Seller <span class="gw-badge always-on">Always On</span></div>
+            <div class="gateway-desc">Redirects to the contact form. No credentials needed.</div></div>
+          </div>
+        </div>
+
+        <!-- Stripe -->
+        <div class="gateway-card">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">💳 Stripe <span class="gw-badge stripe-badge">Card / Google Pay</span></div>
+              <div class="gateway-desc">Accept international card payments via a Stripe Payment Link.</div>
+            </div>
+            <label class="toggle-switch"><input type="checkbox" id="gw-stripe-on" onchange="toggleGateway('stripe')"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="gateway-creds" id="gw-stripe-creds" style="display:none;">
+            <div class="be-setup-steps"><strong>Setup:</strong> Stripe Dashboard → Payment Links → Create link → copy URL below. Get Publishable Key from Developers → API Keys.</div>
+            <div class="field-group"><label>Payment Link URL</label><input type="text" id="gw-stripe-paylink" placeholder="https://buy.stripe.com/..."></div>
+            <div class="field-group"><label>Publishable Key</label><input type="text" id="gw-stripe-pk" placeholder="pk_live_..."></div>
+            <div class="btn-row" style="margin-top:.7rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="savePaymentGateway('stripe')">💾 Save</button>
+              <button class="save-btn" style="background:#374151;" onclick="testPaymentGateway('stripe')">⚡ Test Config</button>
+            </div>
+            <div class="connection-result" id="gw-stripe-test" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- eWAY -->
+        <div class="gateway-card">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">🔴 eWAY <span class="gw-badge eway-badge">AUS / NZ</span></div>
+              <div class="gateway-desc">Accept payments via eWAY hosted payment page (Australia &amp; New Zealand).</div>
+            </div>
+            <label class="toggle-switch"><input type="checkbox" id="gw-eway-on" onchange="toggleGateway('eway')"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="gateway-creds" id="gw-eway-creds" style="display:none;">
+            <div class="be-setup-steps"><strong>Setup:</strong> eWAY MyAccount → API Keys → copy API Key. Hosted Payments → create page → copy URL.</div>
+            <div class="field-group"><label>API Key</label><input type="text" id="gw-eway-apikey" placeholder="Your eWAY API Key"></div>
+            <div class="field-group"><label>Hosted Payment Page URL</label><input type="text" id="gw-eway-payurl" placeholder="https://secure.ewaypayments.com/..."></div>
+            <div class="btn-row" style="margin-top:.7rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="savePaymentGateway('eway')">💾 Save</button>
+              <button class="save-btn" style="background:#374151;" onclick="testPaymentGateway('eway')">⚡ Test Config</button>
+            </div>
+            <div class="connection-result" id="gw-eway-test" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Fonepay -->
+        <div class="gateway-card">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">📲 Fonepay QR <span class="gw-badge fonepay-badge">Nepal</span></div>
+              <div class="gateway-desc">Display your Fonepay merchant QR — customer scans and pays instantly.</div>
+            </div>
+            <label class="toggle-switch"><input type="checkbox" id="gw-fonepay-on" onchange="toggleGateway('fonepay')"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="gateway-creds" id="gw-fonepay-creds" style="display:none;">
+            <div class="be-setup-steps"><strong>Setup:</strong> Get Merchant Code from your Fonepay merchant account. Upload your QR image to Cloudinary and paste the URL below.</div>
+            <div class="field-group"><label>Merchant Code</label><input type="text" id="gw-fonepay-code" placeholder="Your Fonepay merchant code"></div>
+            <div class="field-group"><label>QR Image URL</label><input type="text" id="gw-fonepay-qr" placeholder="https://res.cloudinary.com/.../qr.png"></div>
+            <div class="btn-row" style="margin-top:.7rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="savePaymentGateway('fonepay')">💾 Save</button>
+              <button class="save-btn" style="background:#374151;" onclick="testPaymentGateway('fonepay')">⚡ Test Config</button>
+            </div>
+            <div class="connection-result" id="gw-fonepay-test" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- eSewa -->
+        <div class="gateway-card">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">🟢 eSewa <span class="gw-badge esewa-badge">Nepal</span></div>
+              <div class="gateway-desc">Nepal's most popular digital wallet. Use EPAYTEST merchant code for sandbox testing.</div>
+            </div>
+            <label class="toggle-switch"><input type="checkbox" id="gw-esewa-on" onchange="toggleGateway('esewa')"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="gateway-creds" id="gw-esewa-creds" style="display:none;">
+            <div class="be-setup-steps"><strong>Setup:</strong> eSewa merchant portal → Merchant Code (scd). Use <code>EPAYTEST</code> for sandbox. Set redirect URLs to your published site.</div>
+            <div class="field-group"><label>Merchant Code (scd)</label><input type="text" id="gw-esewa-mid" placeholder="EPAYTEST"></div>
+            <div class="field-group"><label>Success Redirect URL</label><input type="text" id="gw-esewa-su" placeholder="https://yoursite.com/#products"></div>
+            <div class="field-group"><label>Failure Redirect URL</label><input type="text" id="gw-esewa-fu" placeholder="https://yoursite.com/#products"></div>
+            <div class="btn-row" style="margin-top:.7rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="savePaymentGateway('esewa')">💾 Save</button>
+              <button class="save-btn" style="background:#374151;" onclick="testPaymentGateway('esewa')">⚡ Test Config</button>
+            </div>
+            <div class="connection-result" id="gw-esewa-test" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Khalti -->
+        <div class="gateway-card">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">🟣 Khalti <span class="gw-badge khalti-badge">Nepal</span></div>
+              <div class="gateway-desc">Accept payments via Khalti digital wallet. Supports live and test keys.</div>
+            </div>
+            <label class="toggle-switch"><input type="checkbox" id="gw-khalti-on" onchange="toggleGateway('khalti')"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="gateway-creds" id="gw-khalti-creds" style="display:none;">
+            <div class="be-setup-steps"><strong>Setup:</strong> Khalti merchant dashboard → API Keys → copy your Public Key (starts with <code>live_public_key_</code> or <code>test_public_key_</code>).</div>
+            <div class="field-group"><label>Public Key</label><input type="text" id="gw-khalti-pk" placeholder="live_public_key_..."></div>
+            <div class="btn-row" style="margin-top:.7rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="savePaymentGateway('khalti')">💾 Save</button>
+              <button class="save-btn" style="background:#374151;" onclick="testPaymentGateway('khalti')">⚡ Test Config</button>
+            </div>
+            <div class="connection-result" id="gw-khalti-test" style="display:none;"></div>
+          </div>
+        </div>
+
+        <button class="save-btn" style="margin-top:.5rem;" onclick="savePaymentGateways()">💾 Save All Gateways</button>
+      </div>
+
+      <!-- Cart Settings -->
+      <div class="admin-card">
+        <div class="card-title">🛒 Cart Settings</div>
+        <div class="field-row">
+          <div class="field-group">
+            <label style="display:flex;align-items:center;gap:.8rem;">Enable Shopping Cart <label class="toggle-switch" style="flex-shrink:0;"><input type="checkbox" id="cart-enabled" checked><span class="toggle-slider"></span></label></label>
+          </div>
+          <div class="field-group">
+            <label>Max Quantity Per Item</label>
+            <input type="number" id="cart-max-qty" value="10" min="1" max="100">
+          </div>
+        </div>
+        <button class="save-btn" onclick="savePaymentCart()">Save Cart Settings</button>
+      </div>
+
+      <!-- Checkout Settings -->
+      <div class="admin-card">
+        <div class="card-title">🧾 Checkout Settings</div>
+        <div class="field-group">
+          <label style="display:flex;align-items:center;gap:.8rem;">Enable Checkout <label class="toggle-switch" style="flex-shrink:0;"><input type="checkbox" id="checkout-enabled" checked><span class="toggle-slider"></span></label></label>
+        </div>
+        <div class="field-group" style="margin-top:.8rem;">
+          <label style="display:flex;align-items:center;gap:.8rem;">Enable Store Pickup <label class="toggle-switch" style="flex-shrink:0;"><input type="checkbox" id="checkout-pickup-enabled" checked><span class="toggle-slider"></span></label></label>
+        </div>
+        <div class="field-group" style="margin-top:.5rem;">
+          <label style="display:flex;align-items:center;gap:.8rem;">Enable Home Delivery <label class="toggle-switch" style="flex-shrink:0;"><input type="checkbox" id="checkout-delivery-enabled" checked><span class="toggle-slider"></span></label></label>
+        </div>
+
+        <h4 style="margin:1.2rem 0 .6rem;">Store Locations</h4>
+        <div id="admin-stores-list"></div>
+        <div class="field-row" style="margin-top:.8rem;">
+          <div class="field-group"><label>Store Name</label><input id="new-store-name" type="text" placeholder="Main Store"></div>
+          <div class="field-group"><label>Address</label><input id="new-store-addr" type="text" placeholder="Kathmandu, Nepal"></div>
+          <div class="field-group"><label>Hours</label><input id="new-store-hours" type="text" placeholder="9am–6pm Mon–Sat"></div>
+        </div>
+        <button class="save-btn" style="background:var(--accent);" onclick="addStore()">+ Add Store</button>
+
+        <h4 style="margin:1.2rem 0 .6rem;">Delivery Providers</h4>
+        <p class="hint-text">Toggle providers on/off, edit their charge amount and description, then click <strong>💾 Save</strong> on each card. Charges are in the <strong>default currency</strong> set above.</p>
+        <div id="admin-providers-list"></div>
+
+        <div class="add-provider-form">
+          <div style="font-size:.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.7rem;">➕ Add Custom Provider</div>
+          <div class="field-row">
+            <div class="field-group">
+              <label>Provider Name</label>
+              <input id="new-prov-label" type="text" placeholder="e.g. FedEx, Pickup Courier…">
+            </div>
+            <div class="field-group">
+              <label>Charge (default currency)</label>
+              <input id="new-prov-charge" type="number" min="0" step="1" placeholder="0">
+            </div>
+            <div class="field-group">
+              <label>Info / Delivery Time</label>
+              <input id="new-prov-info" type="text" placeholder="e.g. 2–3 business days">
+            </div>
+          </div>
+          <button class="save-btn" style="background:var(--accent);" onclick="addCustomProvider()">+ Add Provider</button>
+        </div>
+
+        <h4 style="margin:1.2rem 0 .6rem;">Customer Form Fields</h4>
+        <p class="hint-text" style="margin-bottom:.6rem;">Toggle fields on/off. Core fields (Name, Phone, Email, Address) cannot be deleted. Add custom fields below.</p>
+        <div id="admin-cf-fields-list"></div>
+        <div class="add-provider-form" style="margin-top:.6rem;">
+          <div style="font-size:.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.7rem;">➕ Add Custom Field</div>
+          <div class="field-row">
+            <div class="field-group"><label>Field Label</label><input id="new-cf-label" type="text" placeholder="e.g. Company Name"></div>
+            <div class="field-group"><label>Field Type</label>
+              <select id="new-cf-type">
+                <option value="text">Text</option>
+                <option value="email">Email</option>
+                <option value="tel">Phone</option>
+                <option value="number">Number</option>
+                <option value="textarea">Textarea</option>
+                <option value="select">Dropdown</option>
+              </select>
+            </div>
+            <div class="field-group" style="justify-content:flex-end;padding-top:1.4rem;">
+              <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;">
+                <input type="checkbox" id="new-cf-required"> Required
+              </label>
+            </div>
+          </div>
+          <button class="save-btn" style="background:var(--accent);" onclick="addCustomerFormField()">+ Add Field</button>
+        </div>
+
+        <button class="save-btn" style="margin-top:1rem;" onclick="savePaymentCheckout()">Save Checkout Settings</button>
+      </div>
+    </div>
+
+    <!-- ── DESIGN ── -->
+    <div class="admin-section" id="tab-design">
+      <div class="tab-title">Design, Layout &amp; Typography</div>
+
+      <!-- Typography Controls -->
+      <div class="admin-card">
+        <div class="card-title">🔤 Typography &amp; Fonts</div>
+        <p class="hint-text">Choose fonts and size scales. Google Fonts load automatically. Changes apply live after Save.</p>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Heading Font</label>
+            <select id="typo-heading-font">
+              <option value="Segoe UI">Segoe UI (System)</option>
+              <option value="Inter">Inter</option>
+              <option value="Poppins">Poppins</option>
+              <option value="Raleway">Raleway</option>
+              <option value="Oswald">Oswald</option>
+              <option value="Bebas Neue">Bebas Neue (Display)</option>
+              <option value="Playfair Display">Playfair Display (Serif)</option>
+              <option value="Lora">Lora (Serif)</option>
+              <option value="Rajdhani">Rajdhani</option>
+              <option value="Space Grotesk">Space Grotesk</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Body Font</label>
+            <select id="typo-body-font">
+              <option value="Segoe UI">Segoe UI (System)</option>
+              <option value="Inter">Inter</option>
+              <option value="Poppins">Poppins</option>
+              <option value="Lato">Lato</option>
+              <option value="Roboto">Roboto</option>
+              <option value="DM Sans">DM Sans</option>
+              <option value="Source Sans 3">Source Sans 3</option>
+              <option value="Raleway">Raleway</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Base Font Size: <strong id="typo-base-size-val">16px</strong></label>
+            <input type="range" id="typo-base-size" min="13" max="20" value="16" oninput="document.getElementById('typo-base-size-val').textContent=this.value+'px'">
+          </div>
+          <div class="field-group">
+            <label>Heading Scale: <strong id="typo-heading-scale-val">2.5rem</strong></label>
+            <input type="range" id="typo-heading-scale" min="1.4" max="4" step="0.1" value="2.5" oninput="document.getElementById('typo-heading-scale-val').textContent=parseFloat(this.value).toFixed(1)+'rem'">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Line Height: <strong id="typo-line-height-val">1.7</strong></label>
+            <input type="range" id="typo-line-height" min="1.2" max="2.2" step="0.1" value="1.7" oninput="document.getElementById('typo-line-height-val').textContent=parseFloat(this.value).toFixed(1)">
+          </div>
+          <div class="field-group">
+            <label>Letter Spacing: <strong id="typo-letter-spacing-val">0px</strong></label>
+            <input type="range" id="typo-letter-spacing" min="-1" max="4" step="0.5" value="0" oninput="document.getElementById('typo-letter-spacing-val').textContent=parseFloat(this.value).toFixed(1)+'px'">
+          </div>
+        </div>
+        <button class="save-btn" style="margin-top:1rem;" onclick="saveTypography()">Save Typography</button>
+      </div>
+
+      <!-- Layout Style -->
+      <div class="admin-card">
+        <h3>Layout Style</h3>
+        <p class="hint-text">Choose the overall visual style and layout theme for the website.</p>
+        <div class="layout-options" style="flex-wrap:wrap;gap:1rem;">
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="default" checked>
+            <div class="layout-preview layout-preview-default">
+              <div class="lp-nav"></div><div class="lp-hero"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Default</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="minimal">
+            <div class="layout-preview layout-preview-minimal">
+              <div class="lp-nav"></div><div class="lp-hero"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Minimal</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="bold">
+            <div class="layout-preview layout-preview-bold">
+              <div class="lp-nav"></div><div class="lp-hero lp-hero-bold"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Bold</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="organic">
+            <div class="layout-preview" style="overflow:hidden;background:linear-gradient(135deg,#0a1628 60%,#1a3a8f 100%);">
+              <div class="lp-nav"></div>
+              <div style="height:22px;background:linear-gradient(135deg,var(--grad));border-radius:0 0 40% 0;"></div>
+              <div class="lp-cards" style="gap:.2rem;margin-top:.3rem;"><span style="border-radius:8px 2px;"></span><span style="border-radius:2px 8px;"></span><span style="border-radius:8px 2px;"></span></div>
+            </div>
+            <span>Organic / Fluid</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="bento">
+            <div class="layout-preview" style="padding:.4rem;background:#0d1120;">
+              <div class="lp-nav"></div>
+              <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:2px;margin-top:.3rem;height:35px;">
+                <div style="background:rgba(26,58,143,.5);border-radius:3px;grid-row:span 2;"></div>
+                <div style="background:rgba(192,21,42,.4);border-radius:3px;"></div>
+                <div style="background:rgba(37,99,235,.3);border-radius:3px;"></div>
+              </div>
+            </div>
+            <span>Bento Grid</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="immersive">
+            <div class="layout-preview" style="overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#1a3a8f 0%,#080c18 70%);">
+              <div class="lp-nav" style="background:transparent;border:none;"></div>
+              <div style="height:22px;background:linear-gradient(180deg,rgba(26,58,143,.8),transparent);"></div>
+              <div class="lp-cards" style="gap:.2rem;"><span style="transform:perspective(60px) rotateX(8deg);"></span><span style="transform:perspective(60px) rotateX(8deg);"></span><span style="transform:perspective(60px) rotateX(8deg);"></span></div>
+            </div>
+            <span>Immersive 3D</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="brutalist">
+            <div class="layout-preview" style="background:#fff;color:#000;">
+              <div class="lp-nav" style="background:#000;border-radius:0;height:8px;"></div>
+              <div style="height:18px;background:#000;border:2px solid #000;margin:.2rem;"></div>
+              <div class="lp-cards" style="gap:.25rem;margin-top:.3rem;"><span style="background:#000;border-radius:0;"></span><span style="background:#ff0044;border-radius:0;"></span><span style="background:#000;border-radius:0;"></span></div>
+            </div>
+            <span>Neo-Brutalist</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-layout" value="minimalist">
+            <div class="layout-preview" style="background:#fafafa;padding:.5rem;">
+              <div style="height:1px;background:#ddd;margin-bottom:.4rem;"></div>
+              <div style="height:20px;background:transparent;border-bottom:2px solid #000;margin-bottom:.4rem;"></div>
+              <div class="lp-cards" style="gap:.3rem;"><span style="background:transparent;border:1px solid #ccc;"></span><span style="background:transparent;border:1px solid #ccc;"></span><span style="background:transparent;border:1px solid #ccc;"></span></div>
+            </div>
+            <span>Minimalist</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Hero Text Alignment</h3>
+        <div class="layout-options">
+          <label class="layout-option">
+            <input type="radio" name="a-hero-align" value="center" checked>
+            <div class="layout-preview" style="padding:.8rem;gap:.4rem;display:flex;flex-direction:column;align-items:center;">
+              <div style="width:70%;height:6px;background:var(--grad);border-radius:3px;"></div>
+              <div style="width:50%;height:4px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
+              <div style="width:40%;height:4px;background:rgba(255,255,255,.15);border-radius:3px;"></div>
+            </div>
+            <span>Centered</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-hero-align" value="left">
+            <div class="layout-preview" style="padding:.8rem;gap:.4rem;display:flex;flex-direction:column;align-items:flex-start;">
+              <div style="width:70%;height:6px;background:var(--grad);border-radius:3px;"></div>
+              <div style="width:50%;height:4px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
+              <div style="width:40%;height:4px;background:rgba(255,255,255,.15);border-radius:3px;"></div>
+            </div>
+            <span>Left Aligned</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Navigation Style</h3>
+        <p class="hint-text">Choose how the navigation menu is displayed on your site.</p>
+        <div class="layout-options" style="flex-wrap:wrap;gap:1rem;">
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="top" checked>
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;">
+              <div class="lp-nav"></div><div class="lp-hero"></div><div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Top Bar</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="sidebar-left">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:row;">
+              <div style="width:20px;background:rgba(255,255,255,.12);border-radius:4px;flex-shrink:0;"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:.3rem;">
+                <div class="lp-hero"></div><div class="lp-cards"><span></span><span></span></div>
+              </div>
+            </div>
+            <span>Sidebar Left</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="sidebar-right">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:row;">
+              <div style="flex:1;display:flex;flex-direction:column;gap:.3rem;">
+                <div class="lp-hero"></div><div class="lp-cards"><span></span><span></span></div>
+              </div>
+              <div style="width:20px;background:rgba(255,255,255,.12);border-radius:4px;flex-shrink:0;"></div>
+            </div>
+            <span>Sidebar Right</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-style" value="floating">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;align-items:center;">
+              <div style="width:80%;height:8px;background:rgba(255,255,255,.15);border-radius:20px;"></div>
+              <div class="lp-hero" style="width:100%;"></div>
+              <div class="lp-cards" style="width:100%;"><span></span><span></span><span></span></div>
+            </div>
+            <span>Floating Pill</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Card Style</h3>
+        <p class="hint-text">Choose the visual style of cards across the site.</p>
+        <div class="layout-options">
+          <label class="layout-option">
+            <input type="radio" name="a-card-style" value="shadow" checked>
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;">
+              <div class="lp-hero"></div>
+              <div class="lp-cards"><span style="box-shadow:0 4px 12px rgba(0,0,0,.4);border-radius:4px;"></span><span style="box-shadow:0 4px 12px rgba(0,0,0,.4);border-radius:4px;"></span></div>
+            </div>
+            <span>Shadow (Default)</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-card-style" value="flat">
+            <div class="layout-preview layout-preview-minimal" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;">
+              <div class="lp-hero"></div><div class="lp-cards"><span></span><span></span></div>
+            </div>
+            <span>Flat / Minimal</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-card-style" value="glass">
+            <div class="layout-preview" style="padding:.5rem;gap:.3rem;display:flex;flex-direction:column;background:rgba(37,99,235,.08);">
+              <div class="lp-hero"></div>
+              <div class="lp-cards"><span style="background:rgba(255,255,255,.12);border-radius:4px;"></span><span style="background:rgba(255,255,255,.12);border-radius:4px;"></span></div>
+            </div>
+            <span>Glass</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Nav Visibility on Scroll</h3>
+        <p class="hint-text">Control whether the navigation bar stays visible or hides when the user scrolls down.</p>
+        <div class="toggle-list">
+          <div class="toggle-row">
+            <div>
+              <label style="font-size:.875rem;color:var(--text);">Always Visible</label>
+              <p style="font-size:.78rem;color:var(--text-muted);margin-top:.15rem;">Nav stays fixed at all times — classic, always accessible.</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="radio" name="a-nav-hide" value="always" checked style="opacity:0;position:absolute;">
+              <span class="toggle-slider" id="nav-hide-always-indicator"></span>
+            </label>
+          </div>
+        </div>
+        <div class="nav-hide-options" style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hide" value="always" checked>
+            <div class="layout-preview" style="padding:.6rem;gap:.4rem;display:flex;flex-direction:column;">
+              <div class="lp-nav" style="opacity:1;"></div>
+              <div class="lp-hero"></div>
+              <div class="lp-nav" style="opacity:1;"></div>
+              <div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Always Show</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hide" value="autohide">
+            <div class="layout-preview" style="padding:.6rem;gap:.4rem;display:flex;flex-direction:column;">
+              <div class="lp-nav" style="opacity:1;"></div>
+              <div class="lp-hero"></div>
+              <div class="lp-nav" style="opacity:.2;"></div>
+              <div class="lp-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span>Auto-Hide</span>
+          </label>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Nav Link Hover Animation</h3>
+        <p class="hint-text">Choose how navigation links respond when hovered. Preview by hovering the boxes below.</p>
+        <div class="layout-options nav-hover-previews" style="flex-wrap:wrap;gap:1rem;">
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="simple" checked>
+            <div class="layout-preview nav-hover-demo-simple" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Simple</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="underline">
+            <div class="layout-preview nav-hover-demo-underline" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Underline Slide</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="glow">
+            <div class="layout-preview nav-hover-demo-glow" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Glow</span>
+          </label>
+          <label class="layout-option">
+            <input type="radio" name="a-nav-hover" value="fill">
+            <div class="layout-preview nav-hover-demo-fill" style="padding:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;">
+              <span class="nhd-link">Home</span>
+              <span class="nhd-link">About</span>
+            </div>
+            <span>Fill Pill</span>
+          </label>
+        </div>
+        <button class="save-btn" style="margin-top:1.2rem;" onclick="saveDesign()">Save All Design Settings</button>
+      </div>
+    </div>
+
+    <!-- ── ORDERS ── -->
+    <div class="admin-section" id="tab-orders">
+      <div class="tab-title">Order Management</div>
+      <div class="admin-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1rem;">
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+            <select id="order-filter-status" onchange="renderAdminOrders()" style="padding:.45rem .8rem;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.84rem;">
+              <option value="">All Orders</option>
+              <option value="pending">Order Placed</option>
+              <option value="warehouse_processing">At Warehouse</option>
+              <option value="warehouse_ready">Ready for Delivery</option>
+              <option value="not_ready">Not Ready</option>
+              <option value="in_delivery">Out for Delivery</option>
+              <option value="delivered">Delivered</option>
+              <option value="not_delivered">Not Delivered</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <button class="save-btn" style="padding:.45rem 1rem;font-size:.84rem;" onclick="renderAdminOrders()">🔄 Refresh</button>
+          </div>
+          <button class="save-btn" style="background:#166534;padding:.45rem 1rem;font-size:.84rem;" onclick="exportOrdersExcel()">⬇ Export Excel</button>
+        </div>
+        <div id="admin-orders-table"></div>
+      </div>
+      <div class="admin-card" id="order-detail-panel" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <h3>Order Details</h3>
+          <button onclick="document.getElementById('order-detail-panel').style.display='none'" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:1.2rem;">✕</button>
+        </div>
+        <div id="order-detail-content"></div>
+      </div>
+    </div>
+
+    <!-- ── ENQUIRIES ── -->
+    <div class="admin-section" id="tab-enquiries">
+      <div class="tab-title">Customer Enquiries</div>
+      <div class="admin-card">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:1rem;">
+          <button class="save-btn" style="background:#166534;padding:.45rem 1rem;font-size:.84rem;" onclick="exportEnquiriesExcel()">⬇ Export Excel</button>
+        </div>
+        <div id="admin-enquiries-table"></div>
+      </div>
+    </div>
+
+    <!-- ── USERS (Admin + Customer) ── -->
+    <div class="admin-section" id="tab-users">
+      <div class="tab-title">User Management</div>
+
+      <!-- Sub-tab navigation -->
+      <div class="users-subtabs">
+        <button class="users-subtab active" id="ustab-customers" onclick="switchUsersSubtab('customers')">👥 Customer Accounts</button>
+        <button class="users-subtab" id="ustab-admins" onclick="switchUsersSubtab('admins')">🛡 Admin Users</button>
+      </div>
+
+      <!-- Customer Users panel -->
+      <div id="users-panel-customers">
+        <div class="admin-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1rem;">
+            <div>
+              <h3 style="margin:0;">Customer Accounts</h3>
+              <p class="hint-text" style="margin:.3rem 0 0;">Users who registered or signed in on the website. Enable User Accounts in Configuration → User Authentication.</p>
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+              <button class="save-btn" style="padding:.45rem 1rem;font-size:.84rem;background:#1e3a5f;" onclick="exportCustomersExcel()">⬇ Export Excel</button>
+              <button class="save-btn" style="padding:.45rem 1rem;font-size:.84rem;" onclick="renderCustomerUsers()">🔄 Refresh</button>
+            </div>
+          </div>
+          <div style="margin-bottom:.8rem;">
+            <input type="text" id="customer-search" placeholder="🔍 Search by name or email…" oninput="filterCustomerUsers()" style="width:100%;max-width:340px;padding:.45rem .8rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);font-size:.84rem;">
+          </div>
+          <div id="customer-users-list"><p style="color:var(--text-muted);">Loading…</p></div>
+        </div>
+      </div>
+
+      <!-- Admin Users panel -->
+      <div id="users-panel-admins" style="display:none;">
+        <div class="admin-card">
+          <h3>Admin Users</h3>
+          <p class="hint-text">Create and manage admin users. Each role has a dedicated portal with specific permissions.</p>
+          <div id="admin-users-list"></div>
+        </div>
+        <div class="admin-card">
+          <h3 id="admin-user-form-title">Add New Admin User</h3>
+          <input type="hidden" id="editing-admin-id">
+          <div class="field-row">
+            <div class="field-group"><label>Full Name</label><input id="admin-name" type="text" placeholder="John Doe"></div>
+            <div class="field-group"><label>Username</label><input id="admin-username" type="text" placeholder="username"></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group"><label>Password</label><input id="admin-password" type="password" placeholder="••••••••"></div>
+            <div class="field-group">
+              <label>Role</label>
+              <select id="admin-role">
+                <option value="master">Master Admin</option>
+                <option value="config">Configuration Admin</option>
+                <option value="warehouse">Warehouse Admin</option>
+                <option value="delivery">Delivery Admin</option>
+                <option value="quality">Quality Admin</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-group">
+            <label style="display:flex;align-items:center;gap:.8rem;">Account Enabled <label class="toggle-switch" style="flex-shrink:0;"><input type="checkbox" id="admin-enabled" checked><span class="toggle-slider"></span></label></label>
+          </div>
+          <div class="btn-row" style="margin-top:1rem;">
+            <button class="save-btn" onclick="saveAdminUser()">Save Admin User</button>
+            <button class="save-btn" style="background:var(--border);" onclick="clearAdminUserForm()">Cancel</button>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h3>Role Descriptions</h3>
+          <div class="toggle-list">
+            <div class="toggle-row"><label>👑 Master Admin</label><span style="font-size:.78rem;color:var(--text-muted);">Full access to all admin panels and settings</span></div>
+            <div class="toggle-row"><label>⚙ Configuration Admin</label><span style="font-size:.78rem;color:var(--text-muted);">Manage website content, products, design</span></div>
+            <div class="toggle-row"><label>🏭 Warehouse Admin</label><span style="font-size:.78rem;color:var(--text-muted);">View orders, update warehouse status</span></div>
+            <div class="toggle-row"><label>🚚 Delivery Admin</label><span style="font-size:.78rem;color:var(--text-muted);">Manage delivery dispatch and tracking</span></div>
+            <div class="toggle-row" style="border-bottom:none;"><label>✅ Quality Admin</label><span style="font-size:.78rem;color:var(--text-muted);">Confirm delivery and record customer feedback</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONFIGURATION ── -->
+    <div class="admin-section" id="tab-config">
+      <div class="tab-title">Backend Configuration</div>
+
+      <!-- Live backend status banner -->
+      <div class="be-status-banner" id="be-status-banner">
+        <span id="be-status-icon">💾</span>
+        <span id="be-status-text">Using <strong>Local Storage</strong> — data is stored in this browser only.</span>
+        <button class="be-refresh-btn" onclick="refreshBackendStatus()">↻ Refresh</button>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-title">🗄 Data Storage Backend</div>
+        <p class="hint-text">
+          Enable a <strong>cloud backend</strong> so orders and enquiries sync across all computers. Local Storage is always the automatic fallback if a cloud backend is not set up or temporarily fails.<br>
+          Only <strong>one cloud backend</strong> should be active at a time. Toggle it on, enter credentials, then click <strong>⚡ Test Connection</strong> before saving.
+        </p>
+
+        <!-- Local Storage — always on, not toggleable -->
+        <div class="gateway-card" style="opacity:.75;pointer-events:none;">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">💾 Local Storage <span class="gw-badge always-on">Always On — Fallback</span></div>
+              <div class="gateway-desc">Browser-only. Zero setup, works offline. Data does <em>not</em> sync between computers or browsers — each device sees only its own data.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Firebase -->
+        <div class="gateway-card" id="be-card-firebase">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">
+                🔥 Firebase Firestore
+                <span class="gw-badge" id="be-firebase-badge">Off</span>
+              </div>
+              <div class="gateway-desc">Google's real-time cloud database. Orders and enquiries sync instantly across all devices and browsers. <strong>Recommended.</strong></div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="be-firebase-on" onchange="toggleDataBackend('firebase')">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="gateway-creds" id="firebase-fields" style="display:none;">
+            <div class="be-setup-steps">
+              <strong>How to set up Firebase (free):</strong>
+              <ol>
+                <li>Go to <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> → Create project (or use existing)</li>
+                <li>Firestore Database → Create database → choose <strong>Test mode</strong> (you can tighten rules later)</li>
+                <li>Project Settings ⚙ → Your apps → Add Web app → Copy the config values below</li>
+              </ol>
+            </div>
+            <div class="field-row">
+              <div class="field-group"><label>API Key</label><input id="fb-apikey" type="text" placeholder="AIzaSy..."></div>
+              <div class="field-group"><label>Project ID</label><input id="fb-projectid" type="text" placeholder="my-project-12345"></div>
+            </div>
+            <div class="field-row">
+              <div class="field-group"><label>Auth Domain</label><input id="fb-authdomain" type="text" placeholder="my-project.firebaseapp.com"></div>
+              <div class="field-group"><label>Storage Bucket</label><input id="fb-storagebucket" type="text" placeholder="my-project.appspot.com"></div>
+            </div>
+            <div class="field-group"><label>App ID</label><input id="fb-appid" type="text" placeholder="1:123456789:web:abc..."></div>
+            <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="saveBackendConfig('firebase')">💾 Save &amp; Activate Firebase</button>
+              <button class="save-btn" style="background:#374151;" onclick="testDataConnection('firebase')">⚡ Test Connection</button>
+            </div>
+            <div class="connection-result" id="firebase-test-result" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Supabase -->
+        <div class="gateway-card" id="be-card-supabase">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">
+                ⚡ Supabase
+                <span class="gw-badge" id="be-supabase-badge">Off</span>
+              </div>
+              <div class="gateway-desc">Open-source Firebase alternative backed by PostgreSQL. Good for developers comfortable with SQL databases.</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="be-supabase-on" onchange="toggleDataBackend('supabase')">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="gateway-creds" id="supabase-fields" style="display:none;">
+            <div class="be-setup-steps">
+              <strong>How to set up Supabase (free):</strong>
+              <ol>
+                <li>Go to <a href="https://supabase.com" target="_blank">supabase.com</a> → New project</li>
+                <li>SQL Editor → create tables: <code>orders</code>, <code>enquiries</code>, <code>admins</code> (each with an <code>id</code> text primary key)</li>
+                <li>Project Settings → API → copy Project URL and anon key below</li>
+              </ol>
+            </div>
+            <div class="field-group"><label>Project URL</label><input id="sb-url" type="text" placeholder="https://xxxx.supabase.co"></div>
+            <div class="field-group"><label>Anon / Public Key</label><input id="sb-anonkey" type="text" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..."></div>
+            <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="saveBackendConfig('supabase')">💾 Save &amp; Activate Supabase</button>
+              <button class="save-btn" style="background:#374151;" onclick="testDataConnection('supabase')">⚡ Test Connection</button>
+            </div>
+            <div class="connection-result" id="supabase-test-result" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── USER AUTHENTICATION ── -->
+      <div class="admin-card">
+        <div class="card-title">👤 User Authentication</div>
+        <p class="hint-text">Allow customers to create accounts, sign in with email or Google, save favourites, and track orders. Uses <strong>Firebase Authentication</strong> — requires Firebase to be enabled above.</p>
+
+        <!-- ── Card 1: Show Sign In Button ── -->
+        <div class="gateway-card" id="auth-card-main">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">Show Sign In / Sign Up Button <span class="gw-badge" id="auth-enabled-badge">Off</span></div>
+              <div class="gateway-desc">Displays the Sign In button in the navigation bar. Turn <strong>OFF</strong> to completely hide user accounts from visitors — site works as a public catalogue.</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="auth-enabled-on" onchange="toggleAuthFeature()">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="gateway-creds" id="auth-settings-fields" style="display:none;">
+
+            <!-- Firebase Auth setup steps -->
+            <div class="be-setup-steps" style="margin-bottom:1rem;">
+              <strong>One-time setup (5 min) — Firebase Console:</strong>
+              <ol>
+                <li>Open <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a> → your project</li>
+                <li>Left sidebar → <strong>Authentication</strong> → Get started</li>
+                <li>Sign-in method tab → enable <strong>Email/Password</strong> → Save</li>
+                <li>To use Google Sign-In → also enable <strong>Google</strong> provider → add your support email → Save</li>
+                <li>Authentication → Settings → <strong>Authorized domains</strong> → add your GitHub Pages domain (e.g. <code>yourname.github.io</code>)</li>
+              </ol>
+            </div>
+
+            <!-- Test connection -->
+            <div class="btn-row" style="margin-bottom:1rem;gap:.6rem;">
+              <button class="save-btn" style="background:#374151;" onclick="testAuthConnection()">⚡ Test Firebase Auth Connection</button>
+            </div>
+            <div class="connection-result" id="auth-test-result" style="display:none;margin-bottom:1rem;"></div>
+
+            <!-- Sub-toggles -->
+            <div class="toggle-list">
+              <div class="toggle-row">
+                <div>
+                  <label style="font-size:.875rem;color:var(--text);">Require Email Verification</label>
+                  <p style="font-size:.78rem;color:var(--text-muted);margin-top:.15rem;">New accounts must click a verification link before they are fully active. Recommended for real customers.</p>
+                </div>
+                <label class="toggle-switch"><input type="checkbox" id="auth-verify-on"><span class="toggle-slider"></span></label>
+              </div>
+              <div class="toggle-row" style="border-bottom:none;">
+                <div>
+                  <label style="font-size:.875rem;color:var(--text);">Allow Guest Checkout</label>
+                  <p style="font-size:.78rem;color:var(--text-muted);margin-top:.15rem;">Customers can choose "Continue as Guest" at checkout instead of creating an account. Recommended ON to maximise sales.</p>
+                </div>
+                <label class="toggle-switch"><input type="checkbox" id="auth-guest-on" checked><span class="toggle-slider"></span></label>
+              </div>
+            </div>
+
+            <div class="btn-row" style="margin-top:1rem;">
+              <button class="save-btn" onclick="saveAuthConfig()">💾 Save Auth Settings</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 2: Google Sign-In ── -->
+        <div class="gateway-card" id="auth-card-google" style="margin-top:.8rem;">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="vertical-align:middle;margin-right:.4rem;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Google Sign-In <span class="gw-badge" id="auth-google-badge">Off</span>
+              </div>
+              <div class="gateway-desc">Allow users to sign up / sign in with their Google account — one click, no password needed. No extra API keys required; Firebase handles the entire OAuth flow.</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="auth-google-on" onchange="toggleGoogleAuth()">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="gateway-creds" id="auth-google-fields" style="display:none;">
+            <div class="be-setup-steps">
+              <strong>Enable Google provider in Firebase (already done if you followed step 4 above):</strong>
+              <ol>
+                <li>Firebase Console → Authentication → Sign-in method</li>
+                <li>Click <strong>Google</strong> → toggle to <strong>Enable</strong></li>
+                <li>Enter a Project support email (your Gmail) → <strong>Save</strong></li>
+                <li>No Client ID or Client Secret needed — Firebase manages OAuth tokens automatically</li>
+              </ol>
+            </div>
+            <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+              <button class="save-btn" onclick="saveAuthConfig()">💾 Save Google Sign-In Setting</button>
+              <button class="save-btn" style="background:#374151;" onclick="testGoogleAuthConnection()">⚡ Test Google Connection</button>
+            </div>
+            <div class="connection-result" id="auth-google-test-result" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- Sign-up form fields management -->
+        <div id="auth-signup-fields-section" style="display:none;margin-top:1rem;">
+          <h4 style="font-size:.88rem;color:var(--text-muted);margin-bottom:.8rem;">Sign-Up Form Fields</h4>
+          <p class="hint-text">Extra fields shown on the registration form (Email + Password are always required).</p>
+          <div id="auth-signup-fields-list"></div>
+          <button class="save-btn" style="background:#1e3a5f;margin-top:.8rem;" onclick="addAuthSignupField()">+ Add Field</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-title">☁ Media Storage</div>
+        <p class="hint-text">Choose where product and gallery images are stored. Enable one provider, enter credentials, then <strong>⚡ Test Connection</strong> before saving.</p>
+
+        <!-- Cloudinary -->
+        <div class="gateway-card" id="media-card-cloudinary">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">☁ Cloudinary <span class="gw-badge" id="media-cloudinary-badge">Off</span></div>
+              <div class="gateway-desc">Free image hosting with automatic optimisation, transformations and a CDN. Recommended for most sites.</div>
+            </div>
+            <label class="toggle-switch"><input type="checkbox" id="media-cloudinary-on" onchange="toggleMediaBackend('cloudinary')"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="gateway-creds" id="cloudinary-fields" style="display:none;">
+            <div class="be-setup-steps">
+              <strong>How to set up Cloudinary (free):</strong>
+              <ol>
+                <li>Sign up at <a href="https://cloudinary.com" target="_blank">cloudinary.com</a> → Dashboard</li>
+                <li>Copy your <strong>Cloud Name</strong> from the dashboard</li>
+                <li>Settings → Upload → Add upload preset → set to <strong>Unsigned</strong>, copy its name</li>
+              </ol>
+            </div>
+            <div class="field-row">
+              <div class="field-group"><label>Cloud Name</label><input id="a-cloud-name" type="text" placeholder="your-cloud-name"></div>
+              <div class="field-group"><label>Upload Preset (unsigned)</label><input id="a-cloud-preset" type="text" placeholder="your-upload-preset"></div>
+            </div>
+            <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="saveMediaConfig('cloudinary')">💾 Save &amp; Activate Cloudinary</button>
+              <button class="save-btn" style="background:#374151;" onclick="testMediaConnection('cloudinary')">⚡ Test Connection</button>
+            </div>
+            <div class="connection-result" id="cloudinary-test-result" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- AWS S3 -->
+        <div class="gateway-card" id="media-card-s3">
+          <div class="gateway-header">
+            <div class="gateway-left">
+              <div class="gateway-title">🪣 Amazon S3 <span class="gw-badge" id="media-s3-badge">Off</span></div>
+              <div class="gateway-desc">Store images in your own AWS S3 bucket. Full control, suits enterprise setups with existing AWS infrastructure.</div>
+            </div>
+            <label class="toggle-switch"><input type="checkbox" id="media-s3-on" onchange="toggleMediaBackend('s3')"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="gateway-creds" id="s3-fields" style="display:none;">
+            <div class="be-setup-steps">
+              <strong>How to set up AWS S3:</strong>
+              <ol>
+                <li>AWS Console → S3 → Create bucket (enable public access for images)</li>
+                <li>IAM → Create user → Attach <code>AmazonS3FullAccess</code> → Create access key</li>
+                <li>S3 bucket → Permissions → CORS: allow <code>PUT</code> from your domain</li>
+              </ol>
+            </div>
+            <div class="field-row">
+              <div class="field-group"><label>S3 Bucket Name</label><input id="s3-bucket" type="text" placeholder="my-images-bucket"></div>
+              <div class="field-group"><label>AWS Region</label><input id="s3-region" type="text" placeholder="ap-southeast-2"></div>
+            </div>
+            <div class="field-group"><label>Access Key ID</label><input id="s3-key" type="text" placeholder="AKIA..."></div>
+            <div class="field-group"><label>Secret Access Key</label><input id="s3-secret" type="password" placeholder="••••••••"></div>
+            <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+              <button class="save-btn" style="background:var(--accent);" onclick="saveMediaConfig('s3')">💾 Save &amp; Activate S3</button>
+              <button class="save-btn" style="background:#374151;" onclick="testMediaConnection('s3')">⚡ Test Connection</button>
+            </div>
+            <div class="connection-result" id="s3-test-result" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-title">📧 EmailJS — Shared Account</div>
+        <p class="hint-text">Enter your EmailJS account credentials once here. Then configure <strong>separate templates</strong> for Contact Us and Payment emails below (each can have its own Template ID).</p>
+        <div class="field-row">
+          <div class="field-group"><label>Public Key <span class="hint-inline">EmailJS Dashboard → Account</span></label><input id="a-ejs-pk" type="text" placeholder="user_..."></div>
+          <div class="field-group"><label>Service ID <span class="hint-inline">Email Services tab</span></label><input id="a-ejs-sid" type="text" placeholder="service_..."></div>
+        </div>
+        <button class="save-btn" onclick="saveEmailJS()">💾 Save Account Credentials</button>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-title">✉ Contact Form Email</div>
+        <p class="hint-text">Sends a notification email when a visitor submits the Contact Us form. Uses a <strong>separate Template ID</strong> from Payment emails. Enquiries are always saved regardless of this setting.</p>
+        <div class="toggle-row" style="margin-bottom:1rem;">
+          <label>Enable Contact Email Notifications</label>
+          <label class="toggle-switch"><input type="checkbox" id="contact-email-on"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="field-group"><label>Template ID <span class="hint-inline">EmailJS → Email Templates → Contact template</span></label>
+          <input id="a-ejs-tid-contact" type="text" placeholder="template_contact_..."></div>
+        <div class="field-group"><label>Subject <span class="hint-inline">{name} {subject}</span></label>
+          <input id="contact-email-subject" type="text" placeholder="New Enquiry from {name}"></div>
+        <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+          <button class="save-btn" style="background:var(--accent);" onclick="saveContactEmailConfig()">💾 Save</button>
+          <button class="save-btn" style="background:#374151;" onclick="testEmailConfig('contact')">⚡ Test</button>
+        </div>
+        <div class="connection-result" id="contact-email-test-result" style="display:none;"></div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-title">🧾 Payment Confirmation Email</div>
+        <p class="hint-text">Sends an email to the admin when a customer places an order. Uses a <strong>separate Template ID</strong> from Contact emails.</p>
+        <div class="toggle-row" style="margin-bottom:1rem;">
+          <label>Enable Payment Confirmation Emails</label>
+          <label class="toggle-switch"><input type="checkbox" id="pay-email-on"><span class="toggle-slider"></span></label>
+        </div>
+        <div class="field-group"><label>Template ID <span class="hint-inline">EmailJS → Email Templates → Order template</span></label>
+          <input id="a-ejs-tid-payment" type="text" placeholder="template_payment_..."></div>
+        <div class="field-group"><label>Subject <span class="hint-inline">{product} {customer}</span></label>
+          <input id="pay-email-subject" type="text" placeholder="Payment Confirmation — {product}"></div>
+        <div class="field-group"><label>Body <span class="hint-inline">{product} {customer} {amount} {gateway}</span></label>
+          <textarea id="pay-email-body" rows="4" placeholder="Dear {customer}, ..."></textarea></div>
+        <div class="btn-row" style="margin-top:.8rem;gap:.6rem;">
+          <button class="save-btn" style="background:var(--accent);" onclick="savePaymentEmail()">💾 Save</button>
+          <button class="save-btn" style="background:#374151;" onclick="testEmailConfig('payment')">⚡ Test</button>
+        </div>
+        <div class="connection-result" id="payment-email-test-result" style="display:none;"></div>
+      </div>
+
+      <div class="admin-card">
+        <div class="card-title">💱 Exchange Rates</div>
+        <div class="field-row">
+          <div class="field-group"><label>1 NPR → AUD</label><input id="a-aud-rate" type="number" step="0.0001" placeholder="0.012"></div>
+          <div class="field-group"><label>1 NPR → USD</label><input id="a-usd-rate" type="number" step="0.0001" placeholder="0.0075"></div>
+        </div>
+        <button class="save-btn" onclick="saveRates()">Save Rates</button>
+      </div>
+    </div>
+
+    <!-- ── THEME ── -->
+    <div class="admin-section" id="tab-theme">
+      <div class="tab-title">Theme &amp; Settings</div>
+      <div class="admin-card">
+        <h3>Colour Customization</h3>
+        <div class="color-grid">
+          <div class="color-item"><label>Primary (Blue)</label><input id="a-col-primary" type="color" value="#1a3a8f"><span id="a-col-primary-val">#1a3a8f</span></div>
+          <div class="color-item"><label>Secondary (Red)</label><input id="a-col-secondary" type="color" value="#c0152a"><span id="a-col-secondary-val">#c0152a</span></div>
+          <div class="color-item"><label>Background</label><input id="a-col-bg" type="color" value="#080c18"><span id="a-col-bg-val">#080c18</span></div>
+          <div class="color-item"><label>Accent</label><input id="a-col-accent" type="color" value="#2563eb"><span id="a-col-accent-val">#2563eb</span></div>
+        </div>
+        <div class="btn-row" style="margin-top:1.5rem;">
+          <button class="save-btn" onclick="saveTheme()">Apply Theme</button>
+        </div>
+      </div>
+      <div class="admin-card danger-zone">
+        <h3>⚠ Danger Zone</h3>
+        <p class="hint-text" style="margin-bottom:1.2rem;">Reset all content to factory defaults. Cannot be undone.</p>
+        <button class="reset-btn" onclick="resetAll()">🔄 Reset Everything to Default</button>
+      </div>
+      <div class="admin-card">
+        <h3>📦 Publish Changes</h3>
+        <p class="hint-text" style="margin-bottom:1rem;">After making all edits, download <code>data.json</code> and commit it to your GitHub repository to publish changes to all visitors.</p>
+        <button class="save-btn" style="background:#1a3a8f;" onclick="exportDataJson()">⬇ Download data.json</button>
+      </div>
+    </div>
+
+  </div><!-- admin-body -->
+</div><!-- admin-dash -->
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="js/data-service.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

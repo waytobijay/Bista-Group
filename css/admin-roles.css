@@ -1,0 +1,123 @@
+/* ════════════════════════════════════════
+   css/admin-roles.css — Role Admin Portals
+   Warehouse | Delivery | Quality
+   ════════════════════════════════════════ */
+
+:root {
+  --primary:      #1a3a8f;
+  --accent:       #2563eb;
+  --bg-dark:      #080c18;
+  --bg-glass:     rgba(255,255,255,0.05);
+  --border:       rgba(255,255,255,0.10);
+  --text:         #f0f4ff;
+  --text-muted:   #8899bb;
+  /* Role colours */
+  --wh-color:     #0d9488;   /* Warehouse — teal   */
+  --dl-color:     #f97316;   /* Delivery  — orange */
+  --ql-color:     #8b5cf6;   /* Quality   — purple */
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg-dark); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; min-height:100vh; }
+
+::-webkit-scrollbar       { width:6px; }
+::-webkit-scrollbar-track { background:#0d1120; }
+::-webkit-scrollbar-thumb { background:var(--role-color, var(--primary)); border-radius:3px; }
+
+/* ── Header ── */
+.role-header {
+  position:sticky; top:0; z-index:100;
+  background:rgba(8,12,24,.92); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:.9rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+}
+.role-header-left { display:flex; align-items:center; gap:1rem; }
+.role-icon { font-size:1.6rem; }
+.role-title { font-size:1.05rem; font-weight:700; }
+.role-subtitle { font-size:.78rem; color:var(--text-muted); margin-top:.1rem; }
+.role-header-right { display:flex; gap:.6rem; align-items:center; }
+
+/* ── Buttons ── */
+.btn-primary, .btn-outline, .btn-danger {
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.55rem 1.1rem; border-radius:10px; font-size:.84rem; font-weight:600;
+  cursor:pointer; border:1px solid transparent; transition:all .2s; text-decoration:none;
+}
+.btn-primary { background:var(--role-color, var(--primary)); color:#fff; border-color:var(--role-color, var(--primary)); }
+.btn-primary:hover { opacity:.88; }
+.btn-outline { background:none; border-color:var(--border); color:var(--text-muted); }
+.btn-outline:hover { border-color:var(--text-muted); color:#fff; }
+.btn-danger  { background:rgba(239,68,68,.15); border-color:rgba(239,68,68,.4); color:#ef4444; }
+.btn-danger:hover { background:rgba(239,68,68,.25); }
+.btn-sm { padding:.35rem .75rem; font-size:.78rem; border-radius:8px; }
+.signout-btn { background:rgba(239,68,68,.12); border:1px solid rgba(239,68,68,.3); color:#ef4444; padding:.45rem .9rem; border-radius:8px; cursor:pointer; font-size:.8rem; font-weight:600; transition:all .2s; }
+.signout-btn:hover { background:rgba(239,68,68,.22); }
+
+/* ── Body ── */
+.role-body { padding:1.5rem; max-width:1100px; margin:0 auto; }
+
+/* ── Card ── */
+.role-card {
+  background:var(--bg-glass); border:1px solid var(--border);
+  border-radius:16px; padding:1.4rem; margin-bottom:1.4rem;
+}
+.role-card h3 { font-size:.95rem; font-weight:700; margin-bottom:1rem; color:var(--text); }
+
+/* ── Table ── */
+.r-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.r-table { width:100%; border-collapse:collapse; font-size:.82rem; min-width:620px; }
+.r-table th { background:rgba(255,255,255,.06); color:var(--text-muted); font-weight:600; padding:.6rem .8rem; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap; }
+.r-table td { padding:.55rem .8rem; border-bottom:1px solid rgba(255,255,255,.04); vertical-align:middle; }
+.r-table tr:hover td { background:rgba(255,255,255,.03); }
+.r-table tr.selected td { background:rgba(37,99,235,.08); }
+
+/* ── Status badge ── */
+.status-badge { display:inline-block; padding:.2rem .65rem; border-radius:20px; font-size:.75rem; font-weight:600; white-space:nowrap; }
+
+/* ── Detail panel ── */
+.detail-panel { display:none; }
+.detail-panel.open { display:block; }
+.detail-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+.detail-close { background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer; }
+.detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+@media(max-width:600px) { .detail-grid { grid-template-columns:1fr; } }
+.detail-row { display:flex; justify-content:space-between; padding:.3rem 0; border-bottom:1px solid rgba(255,255,255,.05); font-size:.875rem; }
+.detail-row:last-child { border-bottom:none; }
+.detail-label { color:var(--text-muted); }
+
+/* ── Form ── */
+.form-group { margin-bottom:.9rem; }
+.form-group label { display:block; font-size:.8rem; color:var(--text-muted); margin-bottom:.35rem; font-weight:600; }
+.form-group input, .form-group select, .form-group textarea {
+  width:100%; padding:.55rem .8rem; background:rgba(255,255,255,.06); border:1px solid var(--border);
+  border-radius:8px; color:var(--text); font-size:.875rem; font-family:inherit; transition:border .2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none; border-color:var(--role-color, var(--accent)); }
+.form-group textarea { resize:vertical; min-height:80px; }
+select option { background:#1a1f35; }
+
+/* ── Message ── */
+.form-msg { padding:.6rem 1rem; border-radius:8px; font-size:.84rem; font-weight:600; margin-top:.6rem; display:none; }
+.form-msg.success { background:rgba(34,197,94,.12); color:#4ade80; border:1px solid rgba(34,197,94,.25); display:block; }
+.form-msg.error   { background:rgba(239,68,68,.12);  color:#f87171; border:1px solid rgba(239,68,68,.25);  display:block; }
+
+/* ── Stats row ── */
+.stats-row { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.4rem; }
+.stat-box { background:var(--bg-glass); border:1px solid var(--border); border-radius:14px; padding:1rem 1.4rem; flex:1; min-width:120px; }
+.stat-box .stat-num { font-size:1.8rem; font-weight:800; line-height:1; }
+.stat-box .stat-lbl { font-size:.78rem; color:var(--text-muted); margin-top:.3rem; }
+
+/* ── Warehouse colour override ── */
+body.wh-theme { --role-color: var(--wh-color); }
+/* ── Delivery colour override ── */
+body.dl-theme { --role-color: var(--dl-color); }
+/* ── Quality colour override ── */
+body.ql-theme { --role-color: var(--ql-color); }
+
+/* ── Filter bar ── */
+.filter-bar { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1rem; align-items:center; }
+.filter-bar select, .filter-bar input {
+  padding:.4rem .75rem; border-radius:8px; border:1px solid var(--border);
+  background:rgba(255,255,255,.06); color:var(--text); font-size:.82rem;
+}
